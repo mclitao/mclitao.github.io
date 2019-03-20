@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Openshift CLI笔记 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="版本：OpenShift Origin v3.9官方手册(https://docs.openshift.com/container-platform/3.9/welcome/index.html)说明：本手册包含，项目、权限、资源分配、等运维备份命令，用来速查CLI的。  服务命名规则[servicename]-[namespace].router.default.svc.cluster.loc">
+  <meta name="description" content="版本：OpenShift Origin v3.9官方手册(https://docs.openshift.com/container-platform/3.9/welcome/index.html)说明：本手册包含，项目、权限、资源分配、等运维备份命令，用来速查CLI的。  服务命名规则[servicename]-[namespace].router.default.svc.cluster.lo">
 <meta name="keywords" content="docker,pass,Openshift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Openshift CLI笔记">
 <meta property="og:url" content="http://yoursite.com/2018/09/06/Openshift-CLI笔记/index.html">
 <meta property="og:site_name" content="寂而常乐">
-<meta property="og:description" content="版本：OpenShift Origin v3.9官方手册(https://docs.openshift.com/container-platform/3.9/welcome/index.html)说明：本手册包含，项目、权限、资源分配、等运维备份命令，用来速查CLI的。  服务命名规则[servicename]-[namespace].router.default.svc.cluster.loc">
+<meta property="og:description" content="版本：OpenShift Origin v3.9官方手册(https://docs.openshift.com/container-platform/3.9/welcome/index.html)说明：本手册包含，项目、权限、资源分配、等运维备份命令，用来速查CLI的。  服务命名规则[servicename]-[namespace].router.default.svc.cluster.lo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-20T02:57:23.728Z">
+<meta property="og:image" content="http://yoursite.com/img/kelly-kiernan-1442426-unsplash.jpg">
+<meta property="og:updated_time" content="2019-03-20T06:45:19.015Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Openshift CLI笔记">
-<meta name="twitter:description" content="版本：OpenShift Origin v3.9官方手册(https://docs.openshift.com/container-platform/3.9/welcome/index.html)说明：本手册包含，项目、权限、资源分配、等运维备份命令，用来速查CLI的。  服务命名规则[servicename]-[namespace].router.default.svc.cluster.loc">
+<meta name="twitter:description" content="版本：OpenShift Origin v3.9官方手册(https://docs.openshift.com/container-platform/3.9/welcome/index.html)说明：本手册包含，项目、权限、资源分配、等运维备份命令，用来速查CLI的。  服务命名规则[servicename]-[namespace].router.default.svc.cluster.lo">
+<meta name="twitter:image" content="http://yoursite.com/img/kelly-kiernan-1442426-unsplash.jpg">
   
     <link rel="alternative" href="/atom.xml" title="寂而常乐" type="application/atom+xml">
   
@@ -48,7 +50,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="https://github.com/mclitao/openshift/raw/master/BIGDATA/Images/%E5%BE%AE%E4%BF%A1%E5%A4%B4%E5%83%8F.jpg" class="js-avatar">
+			<img src="img/%E5%BE%AE%E4%BF%A1%E5%A4%B4%E5%83%8F.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">开心波罗蜜</a></h1>
@@ -59,6 +61,8 @@
 			<ul>
 			
 				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/photos/">相册</a></li>
 	        
 				<li><a href="/categories/生活">生活</a></li>
 	        
@@ -118,13 +122,15 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="https://github.com/mclitao/openshift/raw/master/BIGDATA/Images/%E5%BE%AE%E4%BF%A1%E5%A4%B4%E5%83%8F.jpg" class="js-avatar">
+				<img src="img/%E5%BE%AE%E4%BF%A1%E5%A4%B4%E5%83%8F.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">开心波罗蜜</h1>
 			</hgroup>
 			
 			
+			
+				
 			
 				
 			
@@ -162,15 +168,17 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 20%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 20%"><a href="/categories/生活">生活</a></li>
+					<li style="width: 16.666666666666668%"><a href="/photos/">相册</a></li>
 		        
-					<li style="width: 20%"><a href="/categories/佛法">佛法</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/生活">生活</a></li>
 		        
-					<li style="width: 20%"><a href="/categories/随笔">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/佛法">佛法</a></li>
 		        
-					<li style="width: 20%"><a href="/categories/工作">工作</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/随笔">随笔</a></li>
+		        
+					<li style="width: 16.666666666666668%"><a href="/categories/工作">工作</a></li>
 		        
 				</ul>
 			</nav>
@@ -201,11 +209,41 @@
   	<time datetime="2018-09-06T09:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-06</time>
 </a>
         
+
+        <!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                  <span class="btn-bg"></span>
+                  <span class="btn-text">文章导航</span>
+                  </p>
+          <div id="toc-article" class="toc-article">
+              <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+            <strong class="toc-title">文章目录</strong>
+                   <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#服务命名规则"><span class="toc-number">1.</span> <span class="toc-text">服务命名规则</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#系统诊断"><span class="toc-number">2.</span> <span class="toc-text">系统诊断</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#1-参数"><span class="toc-number"></span> <span class="toc-text">1.参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-基础操作命令"><span class="toc-number"></span> <span class="toc-text">2.基础操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-权限操作命令"><span class="toc-number"></span> <span class="toc-text">3.权限操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-项目操作命令"><span class="toc-number"></span> <span class="toc-text">4.项目操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-S2I镜像build部分"><span class="toc-number"></span> <span class="toc-text">5.S2I镜像build部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-集群操作命令"><span class="toc-number"></span> <span class="toc-text">6.集群操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-项目应用数据备份类命令"><span class="toc-number"></span> <span class="toc-text">7.项目应用数据备份类命令</span></a>
+                 </li></div>
+           <script type="text/javascript">
+          function showToc(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:block");
+            show_toc_btn.setAttribute("style","display:none");
+            };
+          function showBtn(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:none");
+            show_toc_btn.setAttribute("style","display:block");
+            };
+           </script>
+                 
+        <!-- 目录内容结束 -->
+        
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
+        <p><img src="/img/kelly-kiernan-1442426-unsplash.jpg" alt="图片说点什么"></p>
+<blockquote>
 <p>版本：OpenShift Origin v3.9<br>官方手册(<a href="https://docs.openshift.com/container-platform/3.9/welcome/index.html" target="_blank" rel="noopener">https://docs.openshift.com/container-platform/3.9/welcome/index.html</a>)<br>说明：本手册包含，项目、权限、资源分配、等运维备份命令，用来速查CLI的。</p>
 </blockquote>
 <h6 id="服务命名规则"><a href="#服务命名规则" class="headerlink" title="服务命名规则"></a>服务命名规则</h6><p>[servicename]-[namespace].router.default.svc.cluster.local</p>
@@ -485,6 +523,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#服务命名规则"><span class="toc-number">1.</span> <span class="toc-text">服务命名规则</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#系统诊断"><span class="toc-number">2.</span> <span class="toc-text">系统诊断</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#1-参数"><span class="toc-number"></span> <span class="toc-text">1.参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-基础操作命令"><span class="toc-number"></span> <span class="toc-text">2.基础操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-权限操作命令"><span class="toc-number"></span> <span class="toc-text">3.权限操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-项目操作命令"><span class="toc-number"></span> <span class="toc-text">4.项目操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-S2I镜像build部分"><span class="toc-number"></span> <span class="toc-text">5.S2I镜像build部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-集群操作命令"><span class="toc-number"></span> <span class="toc-text">6.集群操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-项目应用数据备份类命令"><span class="toc-number"></span> <span class="toc-text">7.项目应用数据备份类命令</span></a>
+                    </li></div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -529,7 +580,7 @@
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
