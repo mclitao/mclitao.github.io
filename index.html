@@ -46,11 +46,13 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/weixintouxiang.jpg" class="js-avatar">
+			<img src="/img/weixitouxiang.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">开心波罗蜜</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">极乐净土中醒酒...</p>
 		
 
 		<nav class="header-menu">
@@ -118,11 +120,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/weixintouxiang.jpg" class="js-avatar">
+				<img src="/img/weixitouxiang.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">开心波罗蜜</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>极乐净土中醒酒...<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -220,139 +224,9 @@
 <blockquote>
 <p>版本：OpenShift Origin v3.9<br>官方手册(<a href="https://docs.openshift.com/container-platform/3.9/welcome/index.html" target="_blank" rel="noopener">https://docs.openshift.com/container-platform/3.9/welcome/index.html</a>)<br>说明：本手册包含，项目、权限、资源分配、等运维备份命令，用来速查CLI的。</p>
 </blockquote>
-<h6 id="服务命名规则"><a href="#服务命名规则" class="headerlink" title="服务命名规则"></a>服务命名规则</h6><p>[servicename]-[namespace].router.default.svc.cluster.local</p>
-<h6 id="系统诊断"><a href="#系统诊断" class="headerlink" title="系统诊断"></a>系统诊断</h6><p>   oadm diagnostics</p>
-<p><br></p>
-<h2 id="1-参数"><a href="#1-参数" class="headerlink" title="1.参数"></a>1.参数</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   强制执行参数</span><br><span class="line"># oc replace --force </span><br><span class="line">   日志跟随</span><br><span class="line"># oc logs podsname --follow</span><br></pre></td></tr></table></figure>
-<p><br></p>
-<h2 id="2-基础操作命令"><a href="#2-基础操作命令" class="headerlink" title="2.基础操作命令"></a>2.基础操作命令</h2><ul>
-<li><p>使用超级管理员登录目标</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oc login -u system:admin https://172.16.5.131:8443</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>查看当前用户登录到那台服务器</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> oc whoami --show-server</span><br><span class="line">https://172.99.0.88:8443</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>登录用户是谁,以及令牌 token | 入口地址</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># oc login -u developer</span><br><span class="line"># oc whoami </span><br><span class="line">developer</span><br><span class="line"># oc whoami --show-token</span><br><span class="line">SzQjAHyn1baS5kYxAA0UDRBowB4t0Fihb-FhhPmvH6k</span><br><span class="line"># oc whoami --show-context </span><br><span class="line">default/172-99-0-88:8443/developer</span><br><span class="line">  当前用户密码加密后</span><br><span class="line"># oc whoami -t</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>使用管理员登录仓库</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># oc login -u system:admin https://172.16.5.131:8443</span><br><span class="line"># docker login -u admin -p $(oc whoami -t)  docker-registry.default.svc:5000</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>查看用户|添加用户|删除用户|修改密码|查看admin用户的全部权限明细</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># oc get user</span><br><span class="line">NAME      UID                                    FULL NAME   IDENTITIES</span><br><span class="line">admin     14480df8-8340-11e8-8b37-000c293e7d45               htpasswd_auth:admin</span><br><span class="line"># htpasswd -b /etc/origin/master/htpasswd &lt;dev&gt; &lt;密码&gt;</span><br><span class="line"># htpasswd -D /etc/origin/master/htpasswd &lt;user_name&gt;</span><br><span class="line"># htpasswd -c -b &lt;user_name&gt; &lt;password&gt;</span><br><span class="line"># oc describe clusterrole admin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>查看已登录用户身份</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># oc get identity</span><br><span class="line">NAME                  IDP NAME        IDP USER NAME   USER NAME   USER UID</span><br><span class="line">htpasswd_auth:admin   htpasswd_auth   admin           admin       14480df8-8340-11e8-8b37-000c293e7d45</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>全部集群的角色列表\角色内容|工作组</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># oc get clusterroles</span><br><span class="line"># oc describe clusterrole cluster-admin</span><br><span class="line"># oc get groups</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><br></p>
-<h2 id="3-权限操作命令"><a href="#3-权限操作命令" class="headerlink" title="3.权限操作命令"></a>3.权限操作命令</h2><ul>
-<li><p><strong>角色 组</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">  添加developers组</span><br><span class="line"># oc adm groups new developers</span><br><span class="line">  将dev用户添加到该组</span><br><span class="line"># oc adm groups add-users developers dev</span><br><span class="line"></span><br><span class="line">  赐予dev用户 view查看权限  当前所在demo项目的权限</span><br><span class="line"># oc policy add-role-to-user view dev</span><br><span class="line">  查看demo项目下的角色绑定关系</span><br><span class="line"># oc get rolebinding -n demo</span><br><span class="line">  查看具体的项目角色信息</span><br><span class="line"># oc get role -n demo</span><br><span class="line">  查看view角色的具体定义内容</span><br><span class="line"># oc describe clusterrole view</span><br><span class="line">  查看admin角色的权利定义内容</span><br><span class="line"># oc describe clusterrole admin</span><br><span class="line"></span><br><span class="line">  定义了一个admins组</span><br><span class="line"># oc adm groups new admins</span><br><span class="line">  将user2加入带这个组</span><br><span class="line"># oc adm groups add-users admins user2</span><br><span class="line">  并给admins组分配了集群超级管理员的角色</span><br><span class="line"># oc adm policy add-cluster-cluster-role-to-group cluster-admin admins</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong><code>serviceaccounts</code>服务账号</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oc get serviceaccounts</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong><code>GCC</code>权限分配管理</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  赐予服务账号hostnetwork-right:sareader anyuid权限</span><br><span class="line"># oadm policy add-scc-to-user anyuid system:serviceaccount:hostnetwork-right:sareader</span><br><span class="line">  赐予服务账户hostnetwork-right:sareader 特权privileged</span><br><span class="line"># oadm policy add-scc-to-user privileged system:serviceaccount:hostnetwork-right:sareader</span><br><span class="line">  赐予服务账户hostnetwork-right:sareader 集群访问权利cluster-reader</span><br><span class="line"># oadm policy add-cluster-role-to-user cluster-reader system:serviceaccount:hostnetwork-right:sareader</span><br><span class="line">  查看gcc</span><br><span class="line"># oc get scc</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>还原密码  查看一个密码配置文件中的<font color="red">base64</font>加密前的原密码</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># oc get secret --namespace myapp virtuous-echidna-redis -o jsonpath=&quot;&#123;.data.redis-password&#125;&quot; | base64 --decode</span><br><span class="line"># oc get secret webconsole-serving-cert --namespace openshift-web-console -o jsonpath=&quot;&#123;.data.tls\.key&#125;&quot; | base64</span><br><span class="line">  以输出json</span><br><span class="line"># oc get secret webconsole-serving-cert --namespace openshift-web-console -o json</span><br><span class="line">  以输出yaml</span><br><span class="line"># oc get secret webconsole-serving-cert --namespace openshift-web-console -o yaml </span><br><span class="line">  base64加密</span><br><span class="line"># echo &quot;要加密的原文&quot; | base64</span><br><span class="line">  base64解密</span><br><span class="line"># echo 5Yqg5a+G5a2X56ym5Y6f5paHCg== | base64 -d</span><br><span class="line">  查看令牌内容</span><br><span class="line"># oc describe secret router-token-uyuql</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>将<code>secrets</code>的配置内容保存成文件</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># oc secrets new &lt;配置名&gt;  datasources.env</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>给普通用户编译镜像的权利</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># oadm policy add-role-to-user system:registry user</span><br><span class="line"># oadm policy add-role-to-user system:image-builder user</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><br></p>
-<h2 id="4-项目操作命令"><a href="#4-项目操作命令" class="headerlink" title="4.项目操作命令"></a>4.项目操作命令</h2><ul>
-<li><p><strong><code>Templagte</code>模板</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  查看openshfit全局公共空间下的模板</span><br><span class="line"># oc get template -n openshift                </span><br><span class="line">  查看全部空间下的模板</span><br><span class="line"># oc get template --all-namespaces            </span><br><span class="line">  查看目标模板内容</span><br><span class="line"># oc get template cakephp-mysql-example -o json -n openshift </span><br><span class="line">  导出现有模板成为文件</span><br><span class="line"># oc export all -o yaml --as-template=kong-template &gt; ./kong-template.ymal</span><br><span class="line"> </span><br><span class="line">  导出svc内容为yaml</span><br><span class="line"># oc get svc gogs -o yaml</span><br><span class="line">  导出svc内容为json</span><br><span class="line"># oc get svc gogs -o json</span><br><span class="line">  查询svc内定义的clusterIP内容</span><br><span class="line"># oc get svc gogs -o template --template=&apos;&#123;&#123;.spec.clusterIP&#125;&#125;&apos;</span><br><span class="line">  查询temple中定义的route的host内容</span><br><span class="line"># oc get route jenkins -o template --template=&apos;&#123;&#123;.spec.host&#125;&#125;&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>新建 <code>删除项目</code> <code>进入项目</code> | <code>停止项目</code> | <code>开启项目</code> | 3种部署代码的方法</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># oc new-project &lt;项目名&gt;</span><br><span class="line"># oc delete project &lt;项目名&gt;</span><br><span class="line"># oc project &lt;项目名&gt;</span><br><span class="line"> --------------将一个应用的实例全部关闭掉------------------- </span><br><span class="line"># oc scale --replicas=0 dc &lt;dcname&gt;</span><br><span class="line"> --------------将关闭的应用项目打开------------------------- </span><br><span class="line"># oc scale --replicas=1 dc &lt;dcname&gt;</span><br><span class="line"> -------------镜像 + 代码 部署------------------------------</span><br><span class="line"># oc new-app 厂家/镜像语言平台~https://github.com/openshift/ruby-hello-world.git  --name=&apos;app-demo</span><br><span class="line">--------------镜像Ruby-20-centos7:latest + 目录的源代码-----</span><br><span class="line"># oc new-app openshift/ruby-20-centos7:latest~/home/user/code/my-ruby-app  --name=&apos;app-demo</span><br><span class="line">--------------镜像 + ENV参数--------------------------------</span><br><span class="line"># oc new-app openshift/postgresql-92-centos7 --env-file=postgresql.env  --name=&apos;app-demo</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>暂停 | 恢复 项目</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># oc rollout pause dc sonar</span><br><span class="line"># oc rollout resume dc sonar</span><br></pre></td></tr></table></figure>
-<p>  <strong>进入pods执行命令|查看日志</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># oc rsh &lt;pods name&gt;</span><br><span class="line"># oc logs &lt;pods name&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>删除指定app下的全部PODS,注意：rc会马上重建它们</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># oc delete pod -l app=nginx</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>设置项目使用的资源大小</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># oc set resources dc/sonar --limits=memory=2Gi --requests=memory=1Gi</span><br><span class="line"># oc set resources dc/minio --limits=cpu=4,memory=8Gi --requests=cpu=100m,memory=512Mi</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>使用挂载<code>pvc</code>存储 | 移除<code>pvc</code>存储</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 建立100G大小的pvc名字为minio-pvc-data 绑定到pod的minio-volume-1下对应是容器里面的/data/目录</span><br><span class="line"># oc volumes dc/minio --add \</span><br><span class="line">    --name &apos;minio-volume-1&apos; \</span><br><span class="line">    --type &apos;pvc&apos; \</span><br><span class="line">    --mount-path &apos;/data/&apos; \</span><br><span class="line">    --claim-name &apos;minio-pvc-data&apos; \</span><br><span class="line">    --claim-size &apos;100G&apos; \</span><br><span class="line">    --overwrite      </span><br><span class="line"># 从写挂载pvc到挂载点minio-volume-1上</span><br><span class="line"># oc volumes  --add dc/minio --name=minio-volume-1 -t pvc --claim-name=minio-pvc-data --overwrite</span><br><span class="line"></span><br><span class="line"># 移除minio-volume-1的存储挂载点</span><br><span class="line"># oc set volumes dc/minio --remove --name=minio-volume-1</span><br><span class="line"># 添加现有的pvc到对应的挂载位置    </span><br><span class="line"># oc set volumes dc/minio --add --name=minio-data --mount-path=/data/ --type persistentVolumeClaim --claim-name=minio-pvc-data</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>容器健康检查 <code>liveness</code>活性探针  <code>readiness</code>状态探针</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">    --liveness                     活性探针</span><br><span class="line">    --readiness                    状态探针</span><br><span class="line">     </span><br><span class="line">    --failure-threshold 3          做多失败次数3次</span><br><span class="line">    --initial-delay-seconds 5      容器首次启动时延迟5秒执行</span><br><span class="line">    --timeout-seconds 1            超时设置为2秒</span><br><span class="line">    --period-seconds 20            每个10秒监测一次</span><br><span class="line">    --get-url=http://:9000/minio/health/live  访问http协议 9000端口 地址 minio/health/live</span><br><span class="line">例子：</span><br><span class="line">    # 用来监控容器内服务是否健康</span><br><span class="line">    oc set probe dc/minio \</span><br><span class="line">        --readiness \</span><br><span class="line">        --failure-threshold 3 \</span><br><span class="line">        --initial-delay-seconds 5 \</span><br><span class="line">        --timeout-seconds 1 \</span><br><span class="line">        --period-seconds 20 \</span><br><span class="line">        --get-url=http://:9000/minio/health/ready</span><br><span class="line">   # 用来监控容器是否健康</span><br><span class="line">   # oc set probe dc/minio \</span><br><span class="line">        --liveness \</span><br><span class="line">        --failure-threshold 3 \</span><br><span class="line">        --initial-delay-seconds 5 \</span><br><span class="line">        --timeout-seconds 1 \</span><br><span class="line">        --period-seconds 20 \</span><br><span class="line">        --get-url=http://:9000/minio/health/live</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>获取<code>limits</code> | <code>Quotas</code> 等资源情况以及修改调整</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># oc get resourcequota 或 oc get quota</span><br><span class="line"># oc get limits 或  oc get limitranges</span><br><span class="line"># oc describe resourcequota &lt;名&gt; </span><br><span class="line"># oc describe limits &lt;名&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>获取具体项目内容配置名字</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> ----------------dc,rs,rs,po,sv,route等名字------------ </span><br><span class="line"># oc get all -o name</span><br><span class="line"># oc get routes --all-namespaces  查看全部路由服务</span><br><span class="line"> ----------------只要app名字=demo2的内容--------------- </span><br><span class="line">oc get all -o name --selector app=demo2</span><br><span class="line"> ----------------查看具体实时日志----------------------</span><br><span class="line"># oc logs build/jee-ex-1   --follow</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>根据已经部署的实例生成<code>template</code></strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># oc export dc,svc,route --as-template=minio.yaml &gt; minio5.yaml</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>部署一个容器应用</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># oc deploy hello-openshift --laster</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>手动调试启动目标部署这样就可以逐步排查问题了</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># oc debug dc/项目名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>查看<code>app</code>的部署进度状况</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># oc rollout status deployment &lt;app&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>删除一个app的全部内容</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># oc delete all --selector app=nettest</span><br><span class="line">  或  </span><br><span class="line">  这种删除方法最实用 删除app名字为nettest的全部集合</span><br><span class="line"># oc delete all -l app=nettest</span><br><span class="line"># oc delete dc,rc,po,routes,svc,bc,builds,is,pvc &lt;appname&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>分配privileged的gcc特权给目标项目下的服务账号</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># oc adm policy add-scc-to-user privileged system:serviceaccount:sysdig-account:sysdig</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>调整app内的参数方法|查看参数方法|修改参数方法</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> 调整dc/blog的某个参数</span><br><span class="line"># oc set env bc/blog UPGRADE_PIP_TO_LATEST=1</span><br><span class="line"> 查看全部env环境信息</span><br><span class="line"># oc set env dc/jenkins  --list     </span><br><span class="line"> 使用命令修改dc部署环境中的使用镜像名字</span><br><span class="line"># oc patch dc nginx -p &apos;&#123;&quot;spec&quot;:&#123;&quot;template&quot;:&#123;&quot;spec&quot;:&#123;&quot;containers&quot;:[&#123;&quot;name&quot;:&quot;nginx&quot;,&quot;image&quot;:&quot;harbor.apps.example.com/public/nginx:1.14&quot;&#125;]&#125;&#125;&#125;&#125;&apos;</span><br><span class="line"> 使用patch修正参数来向oauthclient/openshift-web-console -p参数增加一个数据</span><br><span class="line"># oc patch oauthclient/openshift-web-console -p &apos;&#123;&quot;redirectURIs&quot;:[&quot;https://localhost:9000&quot;]&#125;&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>手动命令暴露<code>Pod</code>一个新的<code>port</code>端口</strong> </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   给目标pods定义一个新的端口5000，并将端口暴露出来作为service，并建立路由</span><br><span class="line"># oc patch dc nexus -p &apos;&#123;&quot;spec&quot;:&#123;&quot;template&quot;:&#123;&quot;spec&quot;:&#123;&quot;containers&quot;:[&#123;&quot;name&quot;:&quot;nexus&quot;,&quot;ports&quot;:[&#123;&quot;containerPort&quot;: 5000,&quot;protocol&quot;:&quot;TCP&quot;,&quot;name&quot;:&quot;docker&quot;&#125;]&#125;]&#125;&#125;&#125;&#125;&apos;</span><br><span class="line"># oc expose dc nexus --name=nexus-registry --port=5000</span><br><span class="line"># oc create route edge nexus-registry --service=nexus-registry</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>查看<code>pods</code>的标签<code>lables</code>内容</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查看具体pods上的对应标签内容</span><br><span class="line"># oc get pods  --show-labels=true |grep jenkins</span><br><span class="line">NAME                        READY     STATUS        RESTARTS   AGE       LABELS</span><br><span class="line">jenkins-2-zkzrj             1/1       Running       0          1h        deployment=jenkins-2,deploymentconfig=jenkins,name=jenkins</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>强制替换现有的一个模板  replace <code>--force</code></strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># oc replace --force -f https://gitlab.com/oprudkyi/openshift-templates/raw/master/php-fpm/php-fpm.yaml -n openshift</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>测试一个项目是否可以实际部署成功</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># oc set build-hook bc/blog --pose-commit --script &quot;powershift image verify&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><br></p>
-<h2 id="5-S2I镜像build部分"><a href="#5-S2I镜像build部分" class="headerlink" title="5.S2I镜像build部分"></a>5.S2I镜像build部分</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  编译一个base镜像,dockerfile在git本目录下</span><br><span class="line"># oc new-build --strategy=docker --name=tomcat8-jdk8 \</span><br><span class="line">   https://github.com/debianmaster/openshift-s2i-example.git</span><br><span class="line">  或使用参数--context-dir 指定在git下那个目录</span><br><span class="line"># oc new-build --strategy=docker \</span><br><span class="line">    centos/httpd-24-centos7~http://gogs-cicd-mydemo.172.99.0.88.nip</span><br><span class="line">.io/gogs/xcloud-openshift-web.git  \</span><br><span class="line">    --context-dir=images/origin-web-console-builder/      </span><br><span class="line"></span><br><span class="line">  建立build 编译一个[image]+[source code]的S2I</span><br><span class="line"># oc new-build openshift/nodejs-010-centos7~https://github.com/openshift/nodejs-ex.git</span><br><span class="line">  使用一个分支build</span><br><span class="line"># oc new-build https://github.com/openshift/ruby-hello-world#beta2</span><br><span class="line">  本地dockerfile编译并指定构建参数RUN</span><br><span class="line"># oc new-build -D $&apos;FROM centos:7\nRUN yum install -y httpd&apos;</span><br><span class="line">  使用-e来设置buildconfig的参数</span><br><span class="line"># oc new-build https://github.com/openshift/ruby-hello-world -e RACK_ENV=development   </span><br><span class="line"> </span><br><span class="line">  Create a build config that gets its input from a remote repository and another Docker image</span><br><span class="line"># oc new-build https://github.com/openshift/ruby-hello-world --source-image=openshift/jenkins-1-centos7</span><br><span class="line">--source-image-path=/var/lib/jenkins:tmp</span><br><span class="line">   </span><br><span class="line">  S2I打包本地目录.代码 </span><br><span class="line"># oc new-build --strategy=docker  centos/httpd-24-centos7 .</span><br></pre></td></tr></table></figure>
-</code></pre><p><br></p>
-<h2 id="6-集群操作命令"><a href="#6-集群操作命令" class="headerlink" title="6.集群操作命令"></a>6.集群操作命令</h2><ul>
-<li><p><strong>看节点 输出标签 另一个是输出具体细节</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master-39-1 ~]# oc get node --show-labels=true </span><br><span class="line">[root@master-39-1 ~]# oc get nodes -o wide</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>给node节点 打标签label</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  给全部节点打上logging-infra-fluentd标签</span><br><span class="line"># oc label nodes --all logging-infra-fluentd=true</span><br><span class="line">  给一个节点打上logging-infra-fluentd标签</span><br><span class="line"># oc label nodes node1.example.com logging-infra-fluentd=true</span><br><span class="line">  给一个节点打上infra标签</span><br><span class="line"># oc label node node1.example.com infra=yes</span><br><span class="line">  给节点打上compute标签</span><br><span class="line"># oc label node &lt;节点名&gt; node-role.kubernetes.io/compute=true</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>查看每个节点分配的docker子网信息</strong></p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># oc get hostsubnets</span><br><span class="line">  查看消息事件</span><br><span class="line"># oc get event</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><br></p>
-<h2 id="7-项目应用数据备份类命令"><a href="#7-项目应用数据备份类命令" class="headerlink" title="7.项目应用数据备份类命令"></a>7.项目应用数据备份类命令</h2><ul>
-<li><strong>数据备份</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">  找到容器内的应用数据路径  例如找出jenkins的</span><br><span class="line"># oc get dc/jenkins -o jsonpath=&apos;&#123; .spec.template.spec.containers[?(@.name==&quot;jenkins&quot;)].volumeMounts[?(@.name==&quot;jenkins-data&quot;)].mountPath &#125;&apos;</span><br><span class="line">/var/lib/jenkins</span><br><span class="line"></span><br><span class="line">  找到应用容器名字</span><br><span class="line"># oc get pod --selector=deploymentconfig=jenkins -o jsonpath=&apos;&#123;.metadata.name &#125;&apos;</span><br><span class="line">jenkins-1-37nux</span><br><span class="line"></span><br><span class="line">  拷贝容器内容数据 到 宿主机本地目录</span><br><span class="line"># oc rsync 容器名:/目录  .本机目录</span><br><span class="line"></span><br><span class="line">  使用rsync同步出来容容器内数据备份到外面</span><br><span class="line"># oc rsync jenkins-1-37nux:/var/lib/jenkins /tmp/</span><br><span class="line"></span><br><span class="line">  向容器里面还原数据</span><br><span class="line"># oc rsync /tmp/jenkins-backup/jenkins jenkins-1-37nux:/var/lib</span><br><span class="line"></span><br><span class="line">  查看目标容器目录下的大小</span><br><span class="line"># oc rsh docker-registry-1-blpar &apos;du&apos;  &apos;sh&apos;  &apos;/registry&apos;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2018/09/06/Openshift-CLI笔记/#more">more >></a>
+        
       
 
       
@@ -451,189 +325,9 @@
       
         <p><img src="/img/sebastien-goldberg-1442353-unsplash.jpg" alt="图片说点什么"></p>
 <h3 id="1-参考链接"><a href="#1-参考链接" class="headerlink" title="1.参考链接"></a>1.参考链接</h3><p>Hadoop官方HA地址：<a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithNFS.html" target="_blank" rel="noopener">http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithNFS.html</a></p>
-<h3 id="2-Hadoop配置文件表"><a href="#2-Hadoop配置文件表" class="headerlink" title="2.Hadoop配置文件表"></a>2.Hadoop配置文件表</h3><table>
-<thead>
-<tr>
-<th style="text-align:left">ID</th>
-<th style="text-align:left">文件列表</th>
-<th style="text-align:left">描述内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">0</td>
-<td style="text-align:left">/hadoop/module/jdk1.8</td>
-<td style="text-align:left">java环境版本1.8</td>
-</tr>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">/hadoop/module/hadoop-2.7.6/cor-site.xml</td>
-<td style="text-align:left">hadoop的核心配置文件</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">/hadoop/module/hadoop-2.7.6/hadoop-env.sh</td>
-<td style="text-align:left">hadoop的环境变量脚本</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">/hadoop/module/hadoop-2.7.6/hdfs-site.xml</td>
-<td style="text-align:left">hdfs服务的核心配置文件</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">/hadoop/module/hadoop-2.7.6/mapred-site.xml</td>
-<td style="text-align:left">MapReducce服务的核心配置文件</td>
-</tr>
-<tr>
-<td style="text-align:left">5</td>
-<td style="text-align:left">/hadoop/module/hadoop-2.7.6/saves</td>
-<td style="text-align:left">Slaves数据节点的配置文件</td>
-</tr>
-<tr>
-<td style="text-align:left">6</td>
-<td style="text-align:left">/hadoop/module/hadoop-2.7.6/yarn-site</td>
-<td style="text-align:left">yarn服务的核心的配置文件</td>
-</tr>
-</tbody>
-</table>
-<h3 id="3-Zookeeper集群"><a href="#3-Zookeeper集群" class="headerlink" title="3.Zookeeper集群"></a>3.Zookeeper集群</h3><table>
-<thead>
-<tr>
-<th style="text-align:left">ID</th>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">0</td>
-<td style="text-align:left">官网地址</td>
-<td style="text-align:left"><a href="https://zookeeper.apache.org/" target="_blank" rel="noopener">https://zookeeper.apache.org/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">下载地址</td>
-<td style="text-align:left"><a href="http://mirror.bit.edu.cn/apache/zookeeper/" target="_blank" rel="noopener">http://mirror.bit.edu.cn/apache/zookeeper/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">部署笔记</td>
-<td style="text-align:left"><a href="https://github.com/mclitao/openshift/blob/master/BIGDATA/Zookeeper.md" target="_blank" rel="noopener">https://github.com/mclitao/openshift/blob/master/BIGDATA/Zookeeper.md</a></td>
-</tr>
-</tbody>
-</table>
-<h3 id="4-Hadoop组件说明"><a href="#4-Hadoop组件说明" class="headerlink" title="4.Hadoop组件说明"></a>4.Hadoop组件说明</h3><table>
-<thead>
-<tr>
-<th style="text-align:left">ID</th>
-<th style="text-align:left">Name</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">0</td>
-<td style="text-align:left">NameNode</td>
-<td style="text-align:left">管理组件-Boss</td>
-</tr>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">DFSZKFailoverController(zkfs)</td>
-<td style="text-align:left">HA组件</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">JournalNode</td>
-<td style="text-align:left">NameNode之间用来通信的进程维护者edit log的变化</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">ResourceManager</td>
-<td style="text-align:left">集群的资源管理和调度分配例如YARN-regional manager</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">NodeManager</td>
-<td style="text-align:left">节点代理-department manager</td>
-</tr>
-<tr>
-<td style="text-align:left">5</td>
-<td style="text-align:left">DataNode</td>
-<td style="text-align:left">数据服务组件-staff</td>
-</tr>
-<tr>
-<td style="text-align:left">6</td>
-<td style="text-align:left">QuorumPeerMain</td>
-<td style="text-align:left">zookeeper的选举</td>
-</tr>
-</tbody>
-</table>
-<h3 id="5-HadoopHA的转变流程图"><a href="#5-HadoopHA的转变流程图" class="headerlink" title="5.HadoopHA的转变流程图"></a>5.HadoopHA的转变流程图</h3><p>这里有两个NameNode，一个处于active状态，一个处于standby状态。ActiveNamenode对外提供服务，而StandbyNamenode则不对外提供服务，仅同步active namenode的状态，以便在故障时快速进行切换。hadoop2.0提供了两种HDFS HA的解决方案，NFS和QJM，这里我们使用QJM。在该方案中两个namenode间通过JournalNode同步元数据信息，一条数据只要写入JournalNode即认为写入成功。通常配置奇数个JournalNode，依靠zookeeper来协调。这里还配置了一个zookeeper集群，用于ZKFC故障转移。ResourceManager也是有一个Active，一个Standby，状态由zookeeper进行协调。<br><br><br><img src="https://github.com/mclitao/openshift/blob/master/BIGDATA/HadoopHA.png?raw=true" alt width="600"><br><br></p>
-<h3 id="6-Hadoop集群节点服务列表"><a href="#6-Hadoop集群节点服务列表" class="headerlink" title="6.Hadoop集群节点服务列表"></a>6.Hadoop集群节点服务列表</h3><table>
-<thead>
-<tr>
-<th style="text-align:left">ID</th>
-<th style="text-align:left">NAME</th>
-<th style="text-align:left">IP</th>
-<th style="text-align:left">Node Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">0</td>
-<td style="text-align:left">ha1</td>
-<td style="text-align:left">192.168.23.205</td>
-<td style="text-align:left">NameNode<br>DFSZKFailoverController</td>
-</tr>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">ha2</td>
-<td style="text-align:left">192.168.23.206</td>
-<td style="text-align:left">NameNode<br>DFSZKFailoverController</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">ha3</td>
-<td style="text-align:left">192.168.23.207</td>
-<td style="text-align:left">ResourceManager</td>
-</tr>
-<tr>
-<td style="text-align:left">3</td>
-<td style="text-align:left">ha4</td>
-<td style="text-align:left">192.168.23.208</td>
-<td style="text-align:left">ResourceManager</td>
-</tr>
-<tr>
-<td style="text-align:left">4</td>
-<td style="text-align:left">ha5</td>
-<td style="text-align:left">192.168.23.209</td>
-<td style="text-align:left">NodeManager<br>DataNode<br>JournalNode<br>QuorumPeerMain</td>
-</tr>
-<tr>
-<td style="text-align:left">5</td>
-<td style="text-align:left">ha6</td>
-<td style="text-align:left">192.168.23.230</td>
-<td style="text-align:left">NodeManager<br>DataNode<br>JournalNode<br>QuorumPeerMain</td>
-</tr>
-<tr>
-<td style="text-align:left">6</td>
-<td style="text-align:left">ha7</td>
-<td style="text-align:left">192.168.23.231</td>
-<td style="text-align:left">NodeManager<br>DataNode<br>JournalNode<br>QuorumPeerMain</td>
-</tr>
-</tbody>
-</table>
-<p>注意： 启动Yarn时Namenode和ResourceManger如果不是同一台机器，不能在NameNode上启动 yarn，应该在ResouceManager所在的机器上启动yarn。</p>
-<h3 id="7-Hadoop的部署"><a href="#7-Hadoop的部署" class="headerlink" title="7.Hadoop的部署"></a>7.Hadoop的部署</h3><ul>
-<li>第一步：基础环境配置操作：参考hadoop的安装方法</li>
-<li><p>第二步：配置HA的Hadoop操作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line">修改hadoop-env.sh环境脚本</span><br><span class="line"># hadoop]$ vi hadoop-env.sh </span><br><span class="line">  export JAVA_HOME=/hadoop/module/jdk1.8 该这行</span><br><span class="line"></span><br><span class="line"># vi core-site.xml</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">&lt;!-- 指定HDFS中NameNode的地址为bigdata，两个namenode的逻辑名字 --&gt;</span><br><span class="line">     &lt;property&gt;</span><br><span class="line">     &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">         &lt;value&gt;hdfs://bigdata&lt;/value&gt;</span><br><span class="line">     &lt;/property&gt;</span><br><span class="line">&lt;!-- 指定hadoop运行时产生临时文件的目录 --&gt;</span><br><span class="line">     &lt;property&gt;</span><br><span class="line">     &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;/hadoop/module/hadoop-2.7.6/data/full/tmp&lt;/value&gt;</span><br><span class="line">     &lt;/property&gt;</span><br><span class="line"> &lt;!-- 指定zookeeper地址，ha机制依赖于zookeeper 关键的一步就是这里 --&gt;</span><br><span class="line">     &lt;property&gt;</span><br><span class="line">     &lt;name&gt;ha.zookeeper.quorum&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;ha5:2181,ha6:2181,ha7:2181&lt;/value&gt;</span><br><span class="line">     &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line">修改hdfs-site.xml</span><br><span class="line"># vi hdfs-site.xml</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">&lt;!--指定hdfs的nameservice为bigdata，需要和core-site.xml中的保持一致 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.nameservices&lt;/name&gt;</span><br><span class="line">&lt;value&gt;bigdata&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- bigdata的HA下面有两个NameNode，分别是nn1，nn2 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.ha.namenodes.bigdata&lt;/name&gt;</span><br><span class="line">&lt;value&gt;nn1,nn2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- nn1的RPC通信地址 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.namenode.rpc-address.bigdata.nn1&lt;/name&gt;</span><br><span class="line">&lt;value&gt;ha1:9000&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- nn1的http通信地址 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.namenode.http-address.bigdata.nn1&lt;/name&gt;</span><br><span class="line">&lt;value&gt;ha1:50070&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- nn2的RPC通信地址 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.namenode.rpc-address.bigdata.nn2&lt;/name&gt;</span><br><span class="line">&lt;value&gt;ha2:9000&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- nn2的http通信地址 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.namenode.http-address.bigdata.nn2&lt;/name&gt;</span><br><span class="line">&lt;value&gt;ha2:50070&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 指定NameNode的edits元数据在JournalNode上的存放位置 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.namenode.shared.edits.dir&lt;/name&gt;</span><br><span class="line">&lt;value&gt;qjournal://ha5:8485;ha6:8485;ha7:8485/bigdata&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 指定JournalNode在本地磁盘存放数据的位置 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.journalnode.edits.dir&lt;/name&gt;</span><br><span class="line">&lt;value&gt;/home/hadoop/journaldata&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 开启NameNode失败自动切换 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.ha.automatic-failover.enabled&lt;/name&gt;</span><br><span class="line">&lt;value&gt;true&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 配置失败自动切换实现方式 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.client.failover.proxy.provider.bigdata&lt;/name&gt;</span><br><span class="line">&lt;value&gt;org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 配置隔离机制方法，多个机制用换行分割，即每个机制暂用一行，防止脑裂--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.ha.fencing.methods&lt;/name&gt;</span><br><span class="line">&lt;value&gt;</span><br><span class="line">sshfence</span><br><span class="line">shell(/bin/true)</span><br><span class="line">&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 使用sshfence隔离机制时需要ssh免登陆 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.ha.fencing.ssh.private-key-files&lt;/name&gt;</span><br><span class="line">&lt;value&gt;/home/hadoop/.ssh/id_rsa&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 配置sshfence隔离机制超时时间，超时则执行shell脚本 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;dfs.ha.fencing.ssh.connect-timeout&lt;/name&gt;</span><br><span class="line">&lt;value&gt;30000&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line">#vi yarn-site.xml</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">&lt;!-- 开启RM高可用 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.resourcemanager.ha.enabled&lt;/name&gt;</span><br><span class="line">&lt;value&gt;true&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 指定RM的cluster id --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.resourcemanager.cluster-id&lt;/name&gt;</span><br><span class="line">&lt;value&gt;yrc&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 指定RM的名字 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.resourcemanager.ha.rm-ids&lt;/name&gt;</span><br><span class="line">&lt;value&gt;rm1,rm2&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 分别指定RM的地址 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.resourcemanager.hostname.rm1&lt;/name&gt;</span><br><span class="line">&lt;value&gt;ha3&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.resourcemanager.hostname.rm2&lt;/name&gt;</span><br><span class="line">&lt;value&gt;ha4&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;!-- 指定zk集群地址，yarn的高可用借助zookeeper实现 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.resourcemanager.zk-address&lt;/name&gt;</span><br><span class="line">&lt;value&gt;ha5:2181,ha6:2181,ha7:2181&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">&lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line"># vi slaves（datanode，nodemanager的主机）</span><br><span class="line">    ha5</span><br><span class="line">    ha6</span><br><span class="line">    ha7</span><br><span class="line">            </span><br><span class="line">配置文件改好后，将hadoop拷贝到其他节点..</span><br><span class="line"># scp -r /hadoop ha2:/</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第三步：启动hadoop集群并初始化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">  启动JournalNode</span><br><span class="line"># cd /hadoop/hadoop-2.6.4</span><br><span class="line"># sbin/hadoop-daemon.sh start journalnode</span><br><span class="line"></span><br><span class="line">  启动格式化hdfs</span><br><span class="line"># hdfs namenode -format</span><br><span class="line">  然后拷到另一个namenode下</span><br><span class="line"># scp -r tmp/ hadoop02:/home/hadoop/app/hadoop-2.6.4/</span><br><span class="line">  （hdfs namenode -bootstrapStandby）</span><br><span class="line">  </span><br><span class="line">    生成了hdpdata的数据 格式化zkfc（在ha1上执行一次即可）</span><br><span class="line"># hdfs zkfc -formatZK</span><br><span class="line">可以/zookeeper/bin/zkCli.sh连上去查看</span><br><span class="line"></span><br><span class="line">    启动hdfs</span><br><span class="line"># start-dfs.sh</span><br><span class="line">    启动yarn</span><br><span class="line"># start-yarn.sh</span><br><span class="line">    </span><br><span class="line">    启动yarn时还需要手动起ha4主机上的resourcemanager</span><br><span class="line"># yarn-daemon.sh start resourcemanager</span><br><span class="line">高可用的hadoop集群在这里配置完毕！</span><br></pre></td></tr></table></figure></li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2017/03/06/Hadoop笔记/#more">more >></a>
+        
       
 
       
