@@ -189,117 +189,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-本地USB重镜像到KVM虚拟机方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/21/本地USB重镜像到KVM虚拟机方式/">本地USB重镜像到KVM虚拟机方式</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/21/本地USB重镜像到KVM虚拟机方式/" class="archive-article-date">
-  	<time datetime="2019-03-21T01:56:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-21</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/img/daniel-korpai-1302050-unsplash.jpg" alt></p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><pre><code>spice：https://www.spice-space.org/usbredir.html
-virt-viewer：https://releases.pagure.org/virt-viewer/
-注意：virt-viewer6.0才支持UsbDk驱动实现重定向，推荐UsbDK_1.0.19
-</code></pre><h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><pre><code>1.给虚拟机添加USB设备定义
-2.基于spice通讯协议完成本地usb device的远程镜像链接
-注意：此方法仅限于以KVM为虚拟机化方案的场景。
-</code></pre>
-        
-          <a class="article-more-a" href="/2019/03/21/本地USB重镜像到KVM虚拟机方式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">KVM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Libvirt</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">USB</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/21/本地USB重镜像到KVM虚拟机方式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-心中心法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -496,6 +385,117 @@ virt-viewer：https://releases.pagure.org/virt-viewer/
 
 
   
+    <article id="post-本地USB重镜像到KVM虚拟机方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/21/本地USB重镜像到KVM虚拟机方式/">本地USB重镜像到KVM虚拟机方式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/21/本地USB重镜像到KVM虚拟机方式/" class="archive-article-date">
+  	<time datetime="2017-03-21T01:56:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/daniel-korpai-1302050-unsplash.jpg" alt></p>
+<h3 id="一、参考资料"><a href="#一、参考资料" class="headerlink" title="一、参考资料"></a>一、参考资料</h3><pre><code>spice：https://www.spice-space.org/usbredir.html
+virt-viewer：https://releases.pagure.org/virt-viewer/
+注意：virt-viewer6.0才支持UsbDk驱动实现重定向，推荐UsbDK_1.0.19
+</code></pre><h3 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h3><pre><code>1.给虚拟机添加USB设备定义
+2.基于spice通讯协议完成本地usb device的远程镜像链接
+注意：此方法仅限于以KVM为虚拟机化方案的场景。
+</code></pre>
+        
+          <a class="article-more-a" href="/2017/03/21/本地USB重镜像到KVM虚拟机方式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">KVM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Libvirt</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">USB</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/21/本地USB重镜像到KVM虚拟机方式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Hadoop笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -560,6 +560,224 @@ virt-viewer：https://releases.pagure.org/virt-viewer/
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/03/06/Hadoop笔记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hadoop集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/06/Hadoop集群/">Hadoop集群</a>
+    </h1>
+  
+
+        
+        <a href="/2016/12/06/Hadoop集群/" class="archive-article-date">
+  	<time datetime="2016-12-06T02:20:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/hadoop.jpg" alt></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>Hadoop官方：<a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/" target="_blank" rel="noopener">http://hadoop.apache.org/docs/stable/hadoop-project-dist/</a></p>
+        
+          <a class="article-more-a" href="/2016/12/06/Hadoop集群/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">bigdata</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/06/Hadoop集群/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Docker常用命令与问题记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/06/Docker常用命令与问题记录/">Docker常用命令与问题记录</a>
+    </h1>
+  
+
+        
+        <a href="/2016/09/06/Docker常用命令与问题记录/" class="archive-article-date">
+  	<time datetime="2016-09-06T01:40:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-06</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/timg.jpg" alt></p>
+<h2 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h2><ul>
+<li><h5 id="1-使用root登录容器"><a href="#1-使用root登录容器" class="headerlink" title="1.使用root登录容器"></a>1.使用root登录容器</h5><blockquote>
+<p>$ docker exec -it -u 0 mon bash<br>$ docker exec -it -u root mon bash</p>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<h2 id="二、重要参数"><a href="#二、重要参数" class="headerlink" title="二、重要参数"></a>二、重要参数</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">文件列表</th>
+<th style="text-align:left">描述内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">–oom-kill-disable=true</td>
+<td style="text-align:left">禁止内核没有内存时杀该容器 <br></td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">–log-opt max-size=10m <br>–log-opt max-file=3</td>
+<td style="text-align:left">设置日志大小和最多保留3个日志文件</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">–log-driver=syslog<br>–log-opt syslog-address=tcp://<syslogserverip>:5000<br>–log-opt syslog-facility=daemon</syslogserverip></td>
+<td style="text-align:left">日志驱动<br>日志提交地址<br></td>
+</tr>
+</tbody>
+</table>
+        
+          <a class="article-more-a" href="/2016/09/06/Docker常用命令与问题记录/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/09/06/Docker常用命令与问题记录/">展开全文 >></a>
         </p>
       
 
@@ -682,23 +900,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">bigdata</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">pass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Openshift</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,6 +921,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">USB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">bigdata</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">pass</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Openshift</a>
               </li>
             
             <div class="clearfix"></div>

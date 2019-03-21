@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/3 | 寂而常乐</title>
+  <title>Docker常用命令与问题记录 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="妙无立，无所不立！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="寂而常乐">
-<meta property="og:url" content="http://yoursite.com/archives/2019/03/index.html">
+  <meta name="description" content="一、常用命令 1.使用root登录容器 $ docker exec -it -u 0 mon bash$ docker exec -it -u root mon bash     二、重要参数   ID 文件列表 描述内容     0 –oom-kill-disable=true 禁止内核没有内存时杀该容器    1 –log-opt max-size=10m –log-opt max-file">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker常用命令与问题记录">
+<meta property="og:url" content="http://yoursite.com/2016/09/06/Docker常用命令与问题记录/index.html">
 <meta property="og:site_name" content="寂而常乐">
-<meta property="og:description" content="妙无立，无所不立！">
+<meta property="og:description" content="一、常用命令 1.使用root登录容器 $ docker exec -it -u 0 mon bash$ docker exec -it -u root mon bash     二、重要参数   ID 文件列表 描述内容     0 –oom-kill-disable=true 禁止内核没有内存时杀该容器    1 –log-opt max-size=10m –log-opt max-file">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/timg.jpg">
+<meta property="og:image" content="http://yoursite.com/2016/09/06/Docker常用命令与问题记录/1.png">
+<meta property="og:image" content="http://yoursite.com/2016/09/06/Docker常用命令与问题记录/2.png">
+<meta property="og:updated_time" content="2019-03-21T07:13:35.430Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="寂而常乐">
-<meta name="twitter:description" content="妙无立，无所不立！">
+<meta name="twitter:title" content="Docker常用命令与问题记录">
+<meta name="twitter:description" content="一、常用命令 1.使用root登录容器 $ docker exec -it -u 0 mon bash$ docker exec -it -u root mon bash     二、重要参数   ID 文件列表 描述内容     0 –oom-kill-disable=true 禁止内核没有内存时杀该容器    1 –log-opt max-size=10m –log-opt max-file">
+<meta name="twitter:image" content="http://yoursite.com/img/timg.jpg">
   
     <link rel="alternative" href="/atom.xml" title="寂而常乐" type="application/atom+xml">
   
@@ -187,71 +193,326 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Docker常用命令与问题记录" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/20/心中心法/" class="archive-article-date">
-  	<time datetime="2019-03-20T08:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/20/心中心法/">心中心法</a>
+    <h1 class="article-title" itemprop="name">
+      Docker常用命令与问题记录
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2016/09/06/Docker常用命令与问题记录/" class="archive-article-date">
+  	<time datetime="2016-09-06T01:40:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-06</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                  <span class="btn-bg"></span>
+                  <span class="btn-text">文章导航</span>
+                  </p>
+          <div id="toc-article" class="toc-article">
+              <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+            <strong class="toc-title">文章目录</strong>
+                   <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、常用命令"><span class="toc-number">1.</span> <span class="toc-text">一、常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-使用root登录容器"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">1.使用root登录容器</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#二、重要参数"><span class="toc-number">2.</span> <span class="toc-text">二、重要参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、使用记录"><span class="toc-number">3.</span> <span class="toc-text">三、使用记录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-查看目标仓库的image列表及tag列"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">1.查看目标仓库的image列表及tag列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Docker容器内命令映射到宿主机使用"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">2.Docker容器内命令映射到宿主机使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-清理生产中的资源（不用的垃圾）"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">3.清理生产中的资源（不用的垃圾）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-移除容器网络"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">4.移除容器网络</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-移除none镜像"><span class="toc-number">3.0.0.5.</span> <span class="toc-text">5.移除none镜像</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-移除没有活动容器的Image"><span class="toc-number">3.0.0.6.</span> <span class="toc-text">6.移除没有活动容器的Image</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-调整docker-vm-磁盘空间大小-Resize-disk-space-for-docker-vm"><span class="toc-number">3.0.0.7.</span> <span class="toc-text">7.调整docker vm 磁盘空间大小 Resize disk space for docker vm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#查看异常容器镜像"><span class="toc-number">3.0.0.8.</span> <span class="toc-text">查看异常容器镜像</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-批量保存镜像脚本"><span class="toc-number">3.0.0.9.</span> <span class="toc-text">8.批量保存镜像脚本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9-批量导入镜像脚本"><span class="toc-number">3.0.0.10.</span> <span class="toc-text">9.批量导入镜像脚本</span></a></li></ol></li>
+                 </div>
+           <script type="text/javascript">
+          function showToc(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:block");
+            show_toc_btn.setAttribute("style","display:none");
+            };
+          function showBtn(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:none");
+            show_toc_btn.setAttribute("style","display:block");
+            };
+           </script>
+                 
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/timg.jpg" alt></p>
+<h2 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h2><ul>
+<li><h5 id="1-使用root登录容器"><a href="#1-使用root登录容器" class="headerlink" title="1.使用root登录容器"></a>1.使用root登录容器</h5><blockquote>
+<p>$ docker exec -it -u 0 mon bash<br>$ docker exec -it -u root mon bash</p>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<h2 id="二、重要参数"><a href="#二、重要参数" class="headerlink" title="二、重要参数"></a>二、重要参数</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">文件列表</th>
+<th style="text-align:left">描述内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">–oom-kill-disable=true</td>
+<td style="text-align:left">禁止内核没有内存时杀该容器 <br></td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">–log-opt max-size=10m <br>–log-opt max-file=3</td>
+<td style="text-align:left">设置日志大小和最多保留3个日志文件</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">–log-driver=syslog<br>–log-opt syslog-address=tcp://<syslogserverip>:5000<br>–log-opt syslog-facility=daemon</syslogserverip></td>
+<td style="text-align:left">日志驱动<br>日志提交地址<br></td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p><br></p>
+<h2 id="三、使用记录"><a href="#三、使用记录" class="headerlink" title="三、使用记录"></a>三、使用记录</h2><ul>
+<li><h5 id="1-查看目标仓库的image列表及tag列"><a href="#1-查看目标仓库的image列表及tag列" class="headerlink" title="1.查看目标仓库的image列表及tag列"></a>1.查看目标仓库的image列表及tag列</h5><blockquote>
+<p>$ yum install -y jq<br>$ curl ‘<a href="https://registry.hub.docker.com/v2/repositories/library/debian/tags/&#39;|jq" target="_blank" rel="noopener">https://registry.hub.docker.com/v2/repositories/library/debian/tags/&#39;|jq</a> ‘.”results”[][“name”]’</p>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li><h5 id="2-Docker容器内命令映射到宿主机使用"><a href="#2-Docker容器内命令映射到宿主机使用" class="headerlink" title="2.Docker容器内命令映射到宿主机使用"></a>2.Docker容器内命令映射到宿主机使用</h5><blockquote>
+<p>$ echo ‘alias ceph=”docker exec mon ceph”‘ &gt;&gt; /etc/profile<br>$ source /etc/profile</p>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li><h5 id="3-清理生产中的资源（不用的垃圾）"><a href="#3-清理生产中的资源（不用的垃圾）" class="headerlink" title="3.清理生产中的资源（不用的垃圾）"></a>3.清理生产中的资源（不用的垃圾）</h5><blockquote>
+<p>see: <a href="https://github.com/chadoe/docker-cleanup-volumes" target="_blank" rel="noopener">https://github.com/chadoe/docker-cleanup-volumes</a><br>$ docker volume rm $(docker volume ls -qf dangling=true)<br>$ docker volume ls -qf dangling=true | xargs -r docker volume rm</p>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li><h5 id="4-移除容器网络"><a href="#4-移除容器网络" class="headerlink" title="4.移除容器网络"></a>4.移除容器网络</h5><blockquote>
+<p>$ docker network ls | grep “bridge”<br>$ docker network rm $(docker network ls | grep “bridge” | awk ‘/ / { print $1 }’)</p>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li><h5 id="5-移除none镜像"><a href="#5-移除none镜像" class="headerlink" title="5.移除none镜像"></a>5.移除none镜像</h5><blockquote>
+<p>$ docker rmi $(docker images –filter “dangling=true” -q –no-trunc)<br>$ docker images | grep “none”<br>$ docker rmi $(docker images | grep “none” | awk ‘/ / { print $3 }’)<br> 使用命令修剪docker<br>$ docker system prune -a</p>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li><h5 id="6-移除没有活动容器的Image"><a href="#6-移除没有活动容器的Image" class="headerlink" title="6.移除没有活动容器的Image"></a>6.移除没有活动容器的Image</h5><blockquote>
+<p>$ docker rm $(docker ps -qa –no-trunc –filter “status=exited”)</p>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li><h5 id="7-调整docker-vm-磁盘空间大小-Resize-disk-space-for-docker-vm"><a href="#7-调整docker-vm-磁盘空间大小-Resize-disk-space-for-docker-vm" class="headerlink" title="7.调整docker vm 磁盘空间大小 Resize disk space for docker vm"></a>7.调整docker vm 磁盘空间大小 Resize disk space for docker vm</h5><blockquote>
+<p>$ docker-machine create –driver virtualbox –virtualbox-disk-size “40000” default</p>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li><h5 id="查看异常容器镜像"><a href="#查看异常容器镜像" class="headerlink" title="查看异常容器镜像"></a>查看异常容器镜像</h5><blockquote>
+<p>$ docker ps -a –filter status=exited –filter status=restarting</p>
+</blockquote>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li><h5 id="8-批量保存镜像脚本"><a href="#8-批量保存镜像脚本" class="headerlink" title="8.批量保存镜像脚本"></a>8.批量保存镜像脚本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># vi docker_saves</span><br><span class="line">#！/bin/bash</span><br><span class="line">echo -e &quot;\033[32m ################################################ \033[0m&quot;</span><br><span class="line">echo -e &quot;\033[31m ###           www.XcoloundLive.com          #### \033[0m&quot;</span><br><span class="line">echo -e &quot;\033[33;5m ###    docker saveing all image starting    #### \033[0m&quot;</span><br><span class="line">echo -e &quot;\033[32m ################################################ \033[0m&quot;</span><br><span class="line">docker images --filter &quot;dangling=false&quot; |grep -v &quot;REPOSITORY&quot;|awk &apos;&#123;print $1&quot;:&quot;$2&#125;&apos; &gt;docker_images.txt</span><br><span class="line">echo -e &quot;\033[32m ###              docker image list          #### \033[0m&quot;</span><br><span class="line">cat -n docker_images.txt</span><br><span class="line">if  [ -f docker_images.txt ]</span><br><span class="line">then</span><br><span class="line">        while read LINE</span><br><span class="line">        do</span><br><span class="line">                echo -e &quot;\033[32m ### saveing.....[ $&#123;LINE&#125; ]... \033[0m&quot;</span><br><span class="line">                FH_1=$&#123;LINE//\//_&#125;</span><br><span class="line">                FH_2=$&#123;FH_1//:/-&#125;</span><br><span class="line">                docker save $LINE &gt; $&#123;FH_2&#125;.tar</span><br><span class="line">                done &lt; docker_images.txt</span><br><span class="line">        echo -e &quot;\033[32;5m ###        docker saver all image finish      #### \033[0m&quot;</span><br><span class="line">else</span><br><span class="line">        echo -e &quot;\033[31;5m ###          docker_images.txt not find       #### \033[0m&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="1.png" alt></p>
+<ul>
+<li><h5 id="9-批量导入镜像脚本"><a href="#9-批量导入镜像脚本" class="headerlink" title="9.批量导入镜像脚本"></a>9.批量导入镜像脚本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># vi docker_load</span><br><span class="line">#!/bin/sh</span><br><span class="line">if  [ -f docker_images.txt ]</span><br><span class="line">then</span><br><span class="line">        echo -e &quot;\033[32m ################################################ \033[0m&quot;</span><br><span class="line">        echo -e &quot;\033[31m ###           www.XcoloundLive.com          #### \033[0m&quot;</span><br><span class="line">        echo -e &quot;\033[33;5m ###       docker load image starting        #### \033[0m&quot;</span><br><span class="line">        echo -e &quot;\033[32m ################################################ \033[0m&quot;</span><br><span class="line">        echo -e &quot;\033[32m ###              docke_image.txt           #### \033[0m&quot;</span><br><span class="line">        cat -n docker_images.txt</span><br><span class="line">        while read LINE</span><br><span class="line">        do</span><br><span class="line">          echo -e &quot;\033[32m ### loading.....[ $&#123;LINE&#125; ]... \033[0m&quot;</span><br><span class="line">          FH_1=$&#123;LINE//\//\_&#125;</span><br><span class="line">          FH_2=$&#123;FH_1//:/-&#125;</span><br><span class="line">          #docker load &lt; $&#123;LINE//\//\_&#125;.tar</span><br><span class="line">          docker load &lt; $&#123;FH_2&#125;.tar</span><br><span class="line">          done &lt; docker_images.txt</span><br><span class="line">          echo -e &quot;\033[32;5m ###        docker load all image finish      #### \033[0m&quot;</span><br><span class="line">else</span><br><span class="line">     echo -e &quot;\033[31;5m ###          docker_images.txt not find       #### \033[0m&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="2.png" alt></p>
+<p><br></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢您的打赏支持！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">禅净密</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2016/09/06/Docker常用命令与问题记录/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/06/Hadoop集群/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hadoop集群
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、常用命令"><span class="toc-number">1.</span> <span class="toc-text">一、常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-使用root登录容器"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">1.使用root登录容器</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#二、重要参数"><span class="toc-number">2.</span> <span class="toc-text">二、重要参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、使用记录"><span class="toc-number">3.</span> <span class="toc-text">三、使用记录</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-查看目标仓库的image列表及tag列"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">1.查看目标仓库的image列表及tag列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Docker容器内命令映射到宿主机使用"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">2.Docker容器内命令映射到宿主机使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-清理生产中的资源（不用的垃圾）"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">3.清理生产中的资源（不用的垃圾）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-移除容器网络"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">4.移除容器网络</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-移除none镜像"><span class="toc-number">3.0.0.5.</span> <span class="toc-text">5.移除none镜像</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-移除没有活动容器的Image"><span class="toc-number">3.0.0.6.</span> <span class="toc-text">6.移除没有活动容器的Image</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-调整docker-vm-磁盘空间大小-Resize-disk-space-for-docker-vm"><span class="toc-number">3.0.0.7.</span> <span class="toc-text">7.调整docker vm 磁盘空间大小 Resize disk space for docker vm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#查看异常容器镜像"><span class="toc-number">3.0.0.8.</span> <span class="toc-text">查看异常容器镜像</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#8-批量保存镜像脚本"><span class="toc-number">3.0.0.9.</span> <span class="toc-text">8.批量保存镜像脚本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#9-批量导入镜像脚本"><span class="toc-number">3.0.0.10.</span> <span class="toc-text">9.批量导入镜像脚本</span></a></li></ol></li>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -274,8 +535,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

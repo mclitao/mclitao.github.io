@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/3 | 寂而常乐</title>
+  <title>Hadoop集群 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="妙无立，无所不立！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="寂而常乐">
-<meta property="og:url" content="http://yoursite.com/archives/2019/03/index.html">
+  <meta name="description" content="参考链接Hadoop官方：http://hadoop.apache.org/docs/stable/hadoop-project-dist/">
+<meta name="keywords" content="bigdata">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop集群">
+<meta property="og:url" content="http://yoursite.com/2016/12/06/Hadoop集群/index.html">
 <meta property="og:site_name" content="寂而常乐">
-<meta property="og:description" content="妙无立，无所不立！">
+<meta property="og:description" content="参考链接Hadoop官方：http://hadoop.apache.org/docs/stable/hadoop-project-dist/">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/hadoop.jpg">
+<meta property="og:updated_time" content="2019-03-21T07:36:29.767Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="寂而常乐">
-<meta name="twitter:description" content="妙无立，无所不立！">
+<meta name="twitter:title" content="Hadoop集群">
+<meta name="twitter:description" content="参考链接Hadoop官方：http://hadoop.apache.org/docs/stable/hadoop-project-dist/">
+<meta name="twitter:image" content="http://yoursite.com/img/hadoop.jpg">
   
     <link rel="alternative" href="/atom.xml" title="寂而常乐" type="application/atom+xml">
   
@@ -187,71 +191,395 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Hadoop集群" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/20/心中心法/" class="archive-article-date">
-  	<time datetime="2019-03-20T08:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/20/心中心法/">心中心法</a>
+    <h1 class="article-title" itemprop="name">
+      Hadoop集群
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2016/12/06/Hadoop集群/" class="archive-article-date">
+  	<time datetime="2016-12-06T02:20:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                  <span class="btn-bg"></span>
+                  <span class="btn-text">文章导航</span>
+                  </p>
+          <div id="toc-article" class="toc-article">
+              <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+            <strong class="toc-title">文章目录</strong>
+                   <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-number">1.</span> <span class="toc-text">参考链接</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、Hadoop配置文件表"><span class="toc-number">1.0.1.</span> <span class="toc-text">一、Hadoop配置文件表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、Zookeeper集群"><span class="toc-number">1.0.2.</span> <span class="toc-text">二、Zookeeper集群</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、Hadoop集群节点服务列表"><span class="toc-number">1.0.3.</span> <span class="toc-text">三、Hadoop集群节点服务列表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、针对不同场景Hadoop的硬件选择"><span class="toc-number">1.0.4.</span> <span class="toc-text">四、针对不同场景Hadoop的硬件选择</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#七、Hadoop的部署"><span class="toc-number">1.0.5.</span> <span class="toc-text">七、Hadoop的部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#八、基础服务命令"><span class="toc-number">1.0.6.</span> <span class="toc-text">八、基础服务命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#九、HDFS命令"><span class="toc-number">1.0.7.</span> <span class="toc-text">九、HDFS命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#十、MapReduce命令"><span class="toc-number">1.0.8.</span> <span class="toc-text">十、MapReduce命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#十一、hdfs系统检查工具fsck"><span class="toc-number">1.0.9.</span> <span class="toc-text">十一、hdfs系统检查工具fsck</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#十二、运行pipies作业"><span class="toc-number">1.0.10.</span> <span class="toc-text">十二、运行pipies作业</span></a></li></ol></li></ol>
+                 </div>
+           <script type="text/javascript">
+          function showToc(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:block");
+            show_toc_btn.setAttribute("style","display:none");
+            };
+          function showBtn(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:none");
+            show_toc_btn.setAttribute("style","display:block");
+            };
+           </script>
+                 
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/hadoop.jpg" alt></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>Hadoop官方：<a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/" target="_blank" rel="noopener">http://hadoop.apache.org/docs/stable/hadoop-project-dist/</a></p>
+<a id="more"></a>
+<h5 id="一、Hadoop配置文件表"><a href="#一、Hadoop配置文件表" class="headerlink" title="一、Hadoop配置文件表"></a>一、<em>Hadoop配置文件表</em></h5><table>
+<thead>
+<tr>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">文件列表</th>
+<th style="text-align:left">描述内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">/hadoop/module/jdk1.8</td>
+<td style="text-align:left">java环境版本1.8</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">/hadoop/module/hadoop-2.7.6/cor-site.xml</td>
+<td style="text-align:left">hadoop的核心配置文件</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">/hadoop/module/hadoop-2.7.6/hadoop-env.sh</td>
+<td style="text-align:left">hadoop的环境变量脚本</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">/hadoop/module/hadoop-2.7.6/hdfs-site.xml</td>
+<td style="text-align:left">hdfs服务的核心配置文件</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">/hadoop/module/hadoop-2.7.6/mapred-site.xml</td>
+<td style="text-align:left">MapReducce服务的核心配置文件</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">/hadoop/module/hadoop-2.7.6/saves</td>
+<td style="text-align:left">Slaves数据节点的配置文件</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">/hadoop/module/hadoop-2.7.6/yarn-site</td>
+<td style="text-align:left">yarn服务的核心的配置文件</td>
+</tr>
+</tbody>
+</table>
+<h5 id="二、Zookeeper集群"><a href="#二、Zookeeper集群" class="headerlink" title="二、Zookeeper集群"></a>二、<em>Zookeeper集群</em></h5><table>
+<thead>
+<tr>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">官网地址</td>
+<td style="text-align:left"><a href="https://zookeeper.apache.org/" target="_blank" rel="noopener">https://zookeeper.apache.org/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">下载地址</td>
+<td style="text-align:left"><a href="http://mirror.bit.edu.cn/apache/zookeeper/" target="_blank" rel="noopener">http://mirror.bit.edu.cn/apache/zookeeper/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">部署笔记</td>
+<td style="text-align:left"><a href="https://github.com/mclitao/openshift/blob/master/BIGDATA/Zookeeper.md" target="_blank" rel="noopener">https://github.com/mclitao/openshift/blob/master/BIGDATA/Zookeeper.md</a></td>
+</tr>
+</tbody>
+</table>
+<h5 id="三、Hadoop集群节点服务列表"><a href="#三、Hadoop集群节点服务列表" class="headerlink" title="三、Hadoop集群节点服务列表"></a>三、<em>Hadoop集群节点服务列表</em></h5><table>
+<thead>
+<tr>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">NAME</th>
+<th style="text-align:left">IP</th>
+<th style="text-align:left">Node Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">node1</td>
+<td style="text-align:left">192.168.100.21</td>
+<td style="text-align:left">NameNode<br>SecondaryNameNode<br>ResourceManager</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">node2</td>
+<td style="text-align:left">192.168.100.22</td>
+<td style="text-align:left">NodeManager<br>存储:12TB CPU:8 Memory:32GB</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">node3</td>
+<td style="text-align:left">192.168.100.23</td>
+<td style="text-align:left">NodeManager<br>存储:12TB CPU:8 Memory:32GB</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">node4</td>
+<td style="text-align:left">192.168.100.24</td>
+<td style="text-align:left">NodeManager<br>存储:12TB CPU:8 Memory:32GB</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">每台机器上有15个映射/化简任务</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意：<br>     启动Yarn时Namenode和ResourceManger如果不是同一台机器，不能在NameNode上启动 yarn，应该在ResouceManager所在的机器上启动yarn。</p>
+</blockquote>
+<h5 id="四、针对不同场景Hadoop的硬件选择"><a href="#四、针对不同场景Hadoop的硬件选择" class="headerlink" title="四、针对不同场景Hadoop的硬件选择"></a>四、<em>针对不同场景Hadoop的硬件选择</em></h5><table>
+<thead>
+<tr>
+<th style="text-align:left">ID</th>
+<th style="text-align:left">场景</th>
+<th style="text-align:left">配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">轻量处理的配置<br>(1U的机器）</td>
+<td style="text-align:left">两个16核的CPU，24-64GB的内存以及8张硬盘（每张1TB或者2TB)</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">负载均衡的配置<br>(1U的机器）</td>
+<td style="text-align:left">两个16核的CPU，48-128GB的内存以及由主板控制器直接连接的12-16张硬盘（每张1TB或者2TB)。<br>通常在一个2U的柜子里使用2个主板和24张硬盘实现相互备份。</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">超大存储的配置<br>(2U的机器）</td>
+<td style="text-align:left">两个16核的CPU，48-96GB的内存以及16-26张硬盘（每张2TB-4TB)。<br>这种配置在多个节点/机架失效时会产生大量的网络流量。</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">强力运算的配置<br>(2U的机器）</td>
+<td style="text-align:left">两个16核的CPU，64-512GB的内存以及4-8张硬盘（每张1TB或者2TB)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="七、Hadoop的部署"><a href="#七、Hadoop的部署" class="headerlink" title="七、Hadoop的部署"></a>七、<strong><em>Hadoop的部署</em></strong></h5><ul>
+<li><p><strong>第一步：基础环境配置操作：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">  添加hadoop用户   </span><br><span class="line"># useradd hadoop </span><br><span class="line"># passwd  hadoop</span><br><span class="line"></span><br><span class="line">   设置sudo的使用权利</span><br><span class="line"># vi /etc/sudoers</span><br><span class="line">    ## Allow root to run any commands anywhere</span><br><span class="line">    root    ALL=(ALL)     ALL</span><br><span class="line">    hadoop   ALL=(ALL)     ALL</span><br><span class="line">    现在可以用hadoop帐号登录，然后用命令 su - ，切换用户即可获得root权限进行操作。　</span><br><span class="line">    </span><br><span class="line">    建立hadoop使用目录,并给好权限。    </span><br><span class="line"># mkdir -p /hadoop/module</span><br><span class="line"># mkdir -p /hadoop/software</span><br><span class="line"># chown hadoop:hadoop /hadoop/module</span><br><span class="line"># chown hadoop:hadoop /hadoop/software</span><br><span class="line"></span><br><span class="line">    查询是否安装java和版本</span><br><span class="line"># rpm -qa|grep java</span><br><span class="line"></span><br><span class="line">    如果安装的版本低于1.7，卸载该jdk</span><br><span class="line"># rpm -e –nodeps</span><br><span class="line"></span><br><span class="line">    安装jdk</span><br><span class="line"># cd /hadoop/software</span><br><span class="line"># wget --no-check-certificate --no-cookies --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; http://download.oracle.com/otn/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.tar.gz</span><br><span class="line"># tar zxvf  jdk-8u171-linux-x64.tar.gz  -C  /hadoop/module</span><br><span class="line"># mv /hadoop/module/jdk1.8.0_171 /hadoop/module/jdk1.8</span><br><span class="line"></span><br><span class="line">    设置JAVA_HOME  </span><br><span class="line"># vi /etc/profile</span><br><span class="line">    export  JAVA_HOME=/hadoop/module/jdk1.8</span><br><span class="line">    export  PATH=$PATH:$JAVA_HOME/bin:$JAVA_HOME/sbin</span><br><span class="line">    source  /etc/profile</span><br><span class="line"></span><br><span class="line"># 向其他节点复制jdk</span><br><span class="line"># scp -r /hadoop/module/jdk1.8 root@node22:`pwd`</span><br><span class="line"># scp -r /hadoop/module/jdk1.8 root@node23:`pwd`</span><br><span class="line"># scp -r /hadoop/module/jdk1.8 root@node24:`pwd`</span><br><span class="line"># scp /etc/profile root@node22:/etc/</span><br><span class="line"># scp /etc/profile root@node23:/etc/</span><br><span class="line"># scp /etc/profile root@node24:/etc/</span><br><span class="line"></span><br><span class="line">  在每个主机上都重新载入一下/etc/profile</span><br><span class="line"># source /etc/profile</span><br><span class="line">    测试  java -version</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>第二步：部署Hadoop操作：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># cd /hadoop/module    </span><br><span class="line"># vi core-site.xml</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">    &lt;!-- 指定HDFS中NameNode的地址 --&gt;</span><br><span class="line">         &lt;property&gt;</span><br><span class="line">         &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">             &lt;value&gt;hdfs://node21:9000&lt;/value&gt;</span><br><span class="line">         &lt;/property&gt;</span><br><span class="line">    &lt;!-- 指定hadoop运行时产生文件的存储目录 --&gt;</span><br><span class="line">         &lt;property&gt;</span><br><span class="line">         &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">         &lt;value&gt;/hadoop/module/hadoop-2.7.6/data/full/tmp&lt;/value&gt;</span><br><span class="line">         &lt;/property&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line">        修改hadoop-env.sh环境脚本</span><br><span class="line">    # hadoop]$ vi hadoop-env.sh </span><br><span class="line">      export JAVA_HOME=/hadoop/module/jdk1.8 该这行</span><br><span class="line"></span><br><span class="line">        修改hdfs-site.xml</span><br><span class="line">    # vi hdfs-site.xml</span><br><span class="line">        &lt;configuration&gt;</span><br><span class="line">        &lt;!-- 设置dfs副本数，不设置默认是3个   --&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;2&lt;/value&gt; 2副本数</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">        &lt;!-- 设置secondname的端口   --&gt;</span><br><span class="line">            &lt;property&gt;</span><br><span class="line">                &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;node21:50090&lt;/value&gt;</span><br><span class="line">            &lt;/property&gt;</span><br><span class="line">        &lt;/configuration&gt;</span><br><span class="line">    </span><br><span class="line">分发hadoop到节点</span><br><span class="line"># scp -r hadoop-2.7.6/ admin@node22:`pwd`</span><br><span class="line"># scp -r hadoop-2.7.6/ admin@node23:`pwd`</span><br><span class="line"># scp -r hadoop-2.7.6/ admin@node24:`pwd`</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>第三步：启动hadoop集群并初始化：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">    如果集群是第一次启动，需要格式化namenode</span><br><span class="line"># hdfs namenode -format</span><br><span class="line">    启动hdfs</span><br><span class="line"># start-dfs.sh</span><br><span class="line">    启动yarn</span><br><span class="line"># start-yarn.sh</span><br><span class="line">    </span><br><span class="line">    每台节点查看jps进程\管理节点多一些服务</span><br><span class="line">[hadoop@node1 ~]# jps</span><br><span class="line">1339 ResourceManager</span><br><span class="line">1198 SecondaryNameNode</span><br><span class="line">1439 NodeManager</span><br><span class="line">1440 NameNode</span><br><span class="line">1912 Jps</span><br><span class="line"></span><br><span class="line">[hadoop@node2 ~]# jps</span><br><span class="line">1362 Jps</span><br><span class="line">1149 DataNode</span><br><span class="line">1262 NodeManager</span><br><span class="line"></span><br><span class="line">[hadoop@node2 ~]# jps</span><br><span class="line">1362 Jps</span><br><span class="line">1149 DataNode</span><br><span class="line">1262 NodeManager</span><br><span class="line"></span><br><span class="line">[hadoop@node4 ~]# jps</span><br><span class="line">1362 Jps</span><br><span class="line">1149 DataNode</span><br><span class="line">1262 NodeManager</span><br><span class="line"></span><br><span class="line">WEBURL:node1:50070</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="八、基础服务命令"><a href="#八、基础服务命令" class="headerlink" title="八、基础服务命令"></a>八、<strong>基础服务命令</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">  格式化 HDFS 集群</span><br><span class="line"># bin/hdfs namenode -format</span><br><span class="line"></span><br><span class="line">  启动 hdfs 集群</span><br><span class="line"># sbin/start-dfs.sh</span><br><span class="line"></span><br><span class="line">  停止hdfs 集群</span><br><span class="line"># sbin/stop-dfs.sh</span><br><span class="line"></span><br><span class="line">  格式化 zookeeper</span><br><span class="line"># bin/hdfs zkfc -formatZK</span><br><span class="line"></span><br><span class="line">  启动namenode</span><br><span class="line"># sbin/hadoop-daemon.sh start namenode</span><br><span class="line"></span><br><span class="line">  启动 yarn 服务</span><br><span class="line"># sbin/start-yarn.sh</span><br><span class="line"></span><br><span class="line">  关闭 yarn 服务</span><br><span class="line"># sbin/stop-yarn.sh</span><br><span class="line"> </span><br><span class="line">  启动resourcemanager</span><br><span class="line"># sbin/yarn-daemon.sh start resourcemanager</span><br></pre></td></tr></table></figure>
+<h5 id="九、HDFS命令"><a href="#九、HDFS命令" class="headerlink" title="九、HDFS命令"></a>九、<strong>HDFS命令</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">第一类：文件路径增删改查系列：</span><br><span class="line"># hdfs dfs -mkdir dir  创建文件夹</span><br><span class="line"># hdfs dfs -rmr dir  删除文件夹dir</span><br><span class="line"># hdfs dfs -ls  查看目录文件信息</span><br><span class="line"># hdfs dfs -lsr  递归查看文件目录信息</span><br><span class="line"># hdfs dfs -stat path 返回指定路径的信息</span><br><span class="line"></span><br><span class="line">第二类：空间大小查看系列命令：</span><br><span class="line"># hdfs dfs -du -h dir 按照适合阅读的形式人性化显示文件大小</span><br><span class="line"># hdfs dfs -dus uri  递归显示目标文件的大小</span><br><span class="line"># hdfs dfs -du path/file显示目标文件file的大小</span><br><span class="line"></span><br><span class="line">第三类:权限管理类：</span><br><span class="line"># hdfs dfs -chgrp  group path  改变文件所属组</span><br><span class="line"># hdfs dfs -chgrp -R /dir  递归更改dir目录的所属组</span><br><span class="line"># hdfs dfs -chmod [-R] 权限 -path  改变文件的权限 </span><br><span class="line"># hdfs dfs -chown owner[-group] /dir 改变文件的所有者</span><br><span class="line"># hdfs dfs -chown -R  owner[-group] /dir  递归更改dir目录的所属用户</span><br><span class="line"></span><br><span class="line">第四类：文件操作（上传下载复制）系列：</span><br><span class="line"># hdfs dfs -touchz a.txt 创建长度为0的空文件a.txt</span><br><span class="line"># hdfs dfs -rm file   删除文件file</span><br><span class="line"># hdfs dfs -put file dir  向dir文件上传file文件</span><br><span class="line"># hdfs dfs -put filea dir/fileb 向dir上传文件filea并且把filea改名为fileb</span><br><span class="line"># hdfs dfs -get file dir  下载file到本地文件夹</span><br><span class="line"># hdfs dfs -getmerge hdfs://Master:9000/data/SogouResult.txt CombinedResult  把hdfs里面的多个文件合并成一个文件，合并后文件位于本地系统</span><br><span class="line"># hdfs dfs -cat file   查看文件file</span><br><span class="line"># hdfs fs -text /dir/a.txt  如果文件是文本格式，相当于cat，如果文件是压缩格式，则会先解压，再查看</span><br><span class="line"># hdfs fs -tail /dir/a.txt查看dir目录下面a.txt文件的最后1000字节</span><br><span class="line"># hdfs dfs -copyFromLocal localsrc path 从本地复制文件</span><br><span class="line"># hdfs dfs -copyToLocal /hdfs/a.txt /local/a.txt  从hdfs拷贝到本地</span><br><span class="line"># hdfs dfs -copyFromLocal /dir/source /dir/target  把文件从原路径拷贝到目标路径</span><br><span class="line"># hdfs dfs -mv /path/a.txt /path/b.txt 把文件从a目录移动到b目录，可用于回收站恢复文件</span><br><span class="line"></span><br><span class="line">第五类：判断系列：</span><br><span class="line"># hdfs fs -test -e /dir/a.txt 判断文件是否存在，正0负1</span><br><span class="line"># hdfs fs -test -d /dir  判断dir是否为目录，正0负1</span><br><span class="line"># hdfs fs -test -z /dir/a.txt  判断文件是否为空，正0负1</span><br><span class="line"></span><br><span class="line">第六类：系统功能管理类：</span><br><span class="line"># hdfs dfs -expunge 清空回收站</span><br><span class="line"># hdfs dfsadmin -safemode enter 进入安全模式</span><br><span class="line"># hdfs dfsadmin -sfaemode leave 离开安全模式</span><br><span class="line"># hdfs dfsadmin -decommission datanodename 关闭某个datanode节点</span><br><span class="line"># hdfs dfsadmin -finalizeUpgrade 终结升级操作</span><br><span class="line"># hdfs dfsadmin -upgradeProcess status 查看升级操作状态</span><br><span class="line"># hdfs version 查看hdfs版本</span><br><span class="line"># hdfs daemonlog -getlevel &lt;host:port&gt; &lt;name&gt;  打印运行在&lt;host:port&gt;的守护进程的日志级别</span><br><span class="line"># hdfs daemonlog -setlevel &lt;host:port&gt; &lt;name&gt; &lt;level&gt;  设置运行在&lt;host:port&gt;的守护进程的日志级别</span><br><span class="line"># hdfs dfs -setrep -w 副本数 -R path 设置文件的副本数</span><br></pre></td></tr></table></figure>
+<h5 id="十、MapReduce命令"><a href="#十、MapReduce命令" class="headerlink" title="十、MapReduce命令"></a>十、<strong>MapReduce命令</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># hdfs jar file.jar 执行jar包程序</span><br><span class="line"># # hdfs job -kill job_201005310937_0053  杀死正在执行的jar包程序</span><br><span class="line"># hdfs job -submit &lt;job-file&gt;  提交作业</span><br><span class="line"># hdfs job -status &lt;job-id&gt;   打印map和reduce完成百分比和所有计数器。</span><br><span class="line"># hdfs job -counter &lt;job-id&gt; &lt;group-name&gt; &lt;counter-name&gt;  打印计数器的值。</span><br><span class="line"># hdfs job -kill &lt;job-id&gt;  杀死指定作业。</span><br><span class="line"># hdfs job -events &lt;job-id&gt; &lt;from-event-#&gt; &lt;#-of-events&gt; 打印给定范围内jobtracker接收到的事件细节。</span><br><span class="line"># hdfs job -history [all] &lt;jobOutputDir&gt;     </span><br><span class="line"># hdfs job -history &lt;jobOutputDir&gt; 打印作业的细节、失败及被杀死原因的细节。更多的关于一个作业的细节比如成功的任务，做过的任务尝试等信息可以通过指定[all]选项查看。</span><br><span class="line"># hdfs job -list [all]  显示所有作业。-list只显示将要完成的作业。</span><br><span class="line"># hdfs job -kill -task &lt;task-id&gt;   杀死任务。被杀死的任务不会不利于失败尝试。</span><br><span class="line"># hdfs job -fail -task &lt;task-id&gt;   使任务失败。被失败的任务会对失败尝试不利。</span><br></pre></td></tr></table></figure>
+<h5 id="十一、hdfs系统检查工具fsck"><a href="#十一、hdfs系统检查工具fsck" class="headerlink" title="十一、hdfs系统检查工具fsck"></a>十一、<strong>hdfs系统检查工具fsck</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># hdfs fsck &lt;path&gt; -move           移动受损文件到/lost+found</span><br><span class="line"># hdfs fsck &lt;path&gt; -delete         删除受损文件。</span><br><span class="line"># hdfs fsck &lt;path&gt; -openforwrite   打印出写打开的文件。</span><br><span class="line"># hdfs fsck &lt;path&gt; -files          打印出正被检查的文件。</span><br><span class="line"># hdfs fsck &lt;path&gt; -blocks         打印出块信息报告。</span><br><span class="line"># hdfs fsck &lt;path&gt; -locations      打印出每个块的位置信息。</span><br><span class="line"># hdfs fsck &lt;path&gt; -racks          打印出data-node的网络拓扑结构。</span><br></pre></td></tr></table></figure>
+<h5 id="十二、运行pipies作业"><a href="#十二、运行pipies作业" class="headerlink" title="十二、运行pipies作业"></a>十二、<strong>运行pipies作业</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># hdfs pipes -conf &lt;path&gt;          作业的配置</span><br><span class="line"># hdfs pipes -jobconf &lt;key=value&gt;, &lt;key=value&gt;, ...  增加/覆盖作业的配置项</span><br><span class="line"># hdfs pipes -input &lt;path&gt;         输入目录</span><br><span class="line"># hdfs pipes -output &lt;path&gt;        输出目录</span><br><span class="line"># hdfs pipes -jar &lt;jar file&gt;       Jar文件名</span><br><span class="line"># hdfs pipes -inputformat &lt;class&gt;  InputFormat类</span><br><span class="line"># hdfs pipes -map &lt;class&gt;          Java Map类</span><br><span class="line"># hdfs pipes -partitioner &lt;class&gt;  Java Partitioner</span><br><span class="line"># hdfs pipes -reduce &lt;class&gt;       Java Reduce类</span><br><span class="line"># hdfs pipes -writer &lt;class&gt;       Java RecordWriter</span><br><span class="line"># hdfs pipes -program &lt;executable&gt; 可执行程序的URI</span><br><span class="line"># hdfs pipes -reduces &lt;num&gt;        reduce个数</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢您的打赏支持！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">禅净密</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">bigdata</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2016/12/06/Hadoop集群/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/03/06/Hadoop笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          HadoopHA搭建笔记
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2016/09/06/Docker常用命令与问题记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Docker常用命令与问题记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-number">1.</span> <span class="toc-text">参考链接</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、Hadoop配置文件表"><span class="toc-number">1.0.1.</span> <span class="toc-text">一、Hadoop配置文件表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、Zookeeper集群"><span class="toc-number">1.0.2.</span> <span class="toc-text">二、Zookeeper集群</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、Hadoop集群节点服务列表"><span class="toc-number">1.0.3.</span> <span class="toc-text">三、Hadoop集群节点服务列表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、针对不同场景Hadoop的硬件选择"><span class="toc-number">1.0.4.</span> <span class="toc-text">四、针对不同场景Hadoop的硬件选择</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#七、Hadoop的部署"><span class="toc-number">1.0.5.</span> <span class="toc-text">七、Hadoop的部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#八、基础服务命令"><span class="toc-number">1.0.6.</span> <span class="toc-text">八、基础服务命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#九、HDFS命令"><span class="toc-number">1.0.7.</span> <span class="toc-text">九、HDFS命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#十、MapReduce命令"><span class="toc-number">1.0.8.</span> <span class="toc-text">十、MapReduce命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#十一、hdfs系统检查工具fsck"><span class="toc-number">1.0.9.</span> <span class="toc-text">十一、hdfs系统检查工具fsck</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#十二、运行pipies作业"><span class="toc-number">1.0.10.</span> <span class="toc-text">十二、运行pipies作业</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -274,8 +602,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
