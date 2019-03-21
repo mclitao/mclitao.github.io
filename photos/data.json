@@ -1,1 +1,1 @@
-{"list":[{"arr":{"link":["2017-03-01_图片1.jpg","2017-03-01_图片2.jpg"],"text":["图片1","图片2"],"month":3,"type":["image","image"],"year":2017},"date":"2017-03"},{"arr":{"link":["2016-11-03_夕阳无限好，只是近黄昏.jpg"],"text":["夕阳无限好，只是近黄昏"],"month":11,"type":["image"],"year":2016},"date":"2016-11"}]}
+{"list":[{"arr":{"link":["2017-03-01_BigData.jpg","2018-03-01_AI.jpeg"],"text":["大数据","人工智能"],"month":3,"type":["image","jpeg"],"year":2017},"date":"2017-03"},{"arr":{"link":["2016-04-25_docker.jpg"],"text":["Docker未来你会更好"],"month":4,"type":["image"],"year":2016},"date":"2016-4"}]}
