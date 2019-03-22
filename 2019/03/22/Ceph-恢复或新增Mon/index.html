@@ -8,20 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Ceph 恢复或新增Mon | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="条件： 至少存活一个mon是健康完整的状态。 从mon上获取map和key,有这2个东西就可以恢复mon">
+  <meta name="description" content="条件： 至少存活一个mon是健康完整的状态。 从mon上获取map和key,有这2个东西就可以恢复或新增mon以及其它节点。">
 <meta name="keywords" content="bigdata,ceph,storage">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ceph 恢复或新增Mon">
 <meta property="og:url" content="http://yoursite.com/2019/03/22/Ceph-恢复或新增Mon/index.html">
 <meta property="og:site_name" content="寂而常乐">
-<meta property="og:description" content="条件： 至少存活一个mon是健康完整的状态。 从mon上获取map和key,有这2个东西就可以恢复mon">
+<meta property="og:description" content="条件： 至少存活一个mon是健康完整的状态。 从mon上获取map和key,有这2个东西就可以恢复或新增mon以及其它节点。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/22/ffffd170-4c54-11e9-97a0-d35cf0d4b852.jpg">
 <meta property="og:image" content="http://yoursite.com/img/fdsafd111.jpg">
-<meta property="og:updated_time" content="2019-03-22T03:55:02.009Z">
+<meta property="og:updated_time" content="2019-03-22T05:35:08.972Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ceph 恢复或新增Mon">
-<meta name="twitter:description" content="条件： 至少存活一个mon是健康完整的状态。 从mon上获取map和key,有这2个东西就可以恢复mon">
-<meta name="twitter:image" content="http://yoursite.com/img/fdsafd111.jpg">
+<meta name="twitter:description" content="条件： 至少存活一个mon是健康完整的状态。 从mon上获取map和key,有这2个东西就可以恢复或新增mon以及其它节点。">
+<meta name="twitter:image" content="http://yoursite.com/images/2019/03/22/ffffd170-4c54-11e9-97a0-d35cf0d4b852.jpg">
   
     <link rel="alternative" href="/atom.xml" title="寂而常乐" type="application/atom+xml">
   
@@ -56,7 +57,7 @@
 		  <h1 class="header-author"><a href="/">开心波罗蜜</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">极乐净土中醒酒...</p>
+		<p class="header-subtitle">极乐净土中Coding...</p>
 		
 
 		<nav class="header-menu">
@@ -128,7 +129,7 @@
 			  <h1 class="header-author js-header-author">开心波罗蜜</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>极乐净土中醒酒...<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>极乐净土中Coding...<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -191,7 +192,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Ceph-恢复或新增Mon" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Ceph-恢复或新增Mon" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -204,7 +205,7 @@
 
         
         <a href="/2019/03/22/Ceph-恢复或新增Mon/" class="archive-article-date">
-  	<time datetime="2019-03-22T03:46:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
+  	<time datetime="2019-03-22T02:20:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
 </a>
         
 
@@ -216,16 +217,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/fdsafd111.jpg" alt="fdsafd111.jpg"></p>
+        <p><img src="/images/2019/03/22/ffffd170-4c54-11e9-97a0-d35cf0d4b852.jpg" alt></p>
 <h5 id="条件："><a href="#条件：" class="headerlink" title="条件："></a>条件：</h5><ul>
 <li>至少存活一个mon是健康完整的状态。</li>
-<li>从mon上获取map和key,有这2个东西就可以恢复mon</li>
-</ul>
+<li><p>从mon上获取map和key,有这2个东西就可以恢复或新增mon以及其它节点。</p>
 <a id="more"></a>
-<h5 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h5><p>1.使用monmaptool导出现在健康的mon地图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@control1 ~]# ceph mon getmap -o /tmp/monmap.txt</span><br><span class="line">[root@control1 ~]# monmaptool --print /tmp/monmap.txt </span><br><span class="line">monmaptool: monmap file /root/monmap.txt</span><br><span class="line">epoch 3</span><br><span class="line">fsid 297db882-ed2a-4f7a-9202-0e77e7992c79</span><br><span class="line">last_changed 2019-01-21 16:12:12.522609</span><br><span class="line">created 2019-01-21 16:09:35.552980</span><br><span class="line">0: 172.99.0.101:6789/0 mon.control1</span><br><span class="line">1: 172.99.0.102:6789/0 mon.control2</span><br><span class="line">2: 172.99.0.103:6789/0 mon.control3</span><br></pre></td></tr></table></figure></p>
-<p>2.将生成的monmap和mon keyring 远程复制到目标机器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@control1 ~]# scp -r /tmp/monmap.txt root@control2:/tmp/monmap.txt</span><br><span class="line">[root@control1 ~]# scp -r /etc/ceph/* root@control2:/etc/ceph/</span><br></pre></td></tr></table></figure></p>
-<p>3.通过新的map地图将本机的mon服务加入到集群中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通过monmap地图加入到集群</span><br><span class="line">[root@control2 ~]# ceph-mon -i control2 --inject-monmap /tmp/monmap.txt</span><br></pre></td></tr></table></figure></p>
-<p>4.新节点上启动ceph的服务并检查<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">启动服务这里就不写了...</span><br><span class="line">加入后查看一下集群中现有的mon</span><br><span class="line">[root@control2 ~]# ceph quorum_status --format json-pretty</span><br><span class="line">&#123;</span><br><span class="line">    &quot;election_epoch&quot;: 406,</span><br><span class="line">    &quot;quorum&quot;: [</span><br><span class="line">        0,</span><br><span class="line">        1</span><br><span class="line">    ],</span><br><span class="line">    &quot;quorum_names&quot;: [</span><br><span class="line">        &quot;control1&quot;,</span><br><span class="line">        &quot;control2&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;quorum_leader_name&quot;: &quot;control1&quot;,</span><br><span class="line">    &quot;monmap&quot;: &#123;</span><br><span class="line">        &quot;epoch&quot;: 2,</span><br><span class="line">        &quot;fsid&quot;: &quot;297db882-ed2a-4f7a-9202-0e77e7992c79&quot;,</span><br><span class="line">        &quot;modified&quot;: &quot;2019-01-21 16:12:12.522609&quot;,</span><br><span class="line">        &quot;created&quot;: &quot;2019-01-21 16:09:35.552980&quot;,</span><br><span class="line">        &quot;features&quot;: &#123;</span><br><span class="line">            &quot;persistent&quot;: [</span><br><span class="line">                &quot;kraken&quot;,</span><br><span class="line">                &quot;luminous&quot;,</span><br><span class="line">                &quot;mimic&quot;,</span><br><span class="line">                &quot;osdmap-prune&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;optional&quot;: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;mons&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;rank&quot;: 0,</span><br><span class="line">                &quot;name&quot;: &quot;control1&quot;,</span><br><span class="line">                &quot;addr&quot;: &quot;172.99.0.101:6789/0&quot;,</span><br><span class="line">                &quot;public_addr&quot;: &quot;172.99.0.101:6789/0&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;rank&quot;: 1,</span><br><span class="line">                &quot;name&quot;: &quot;control2&quot;,</span><br><span class="line">                &quot;addr&quot;: &quot;172.99.0.102:6789/0&quot;,</span><br><span class="line">                &quot;public_addr&quot;: &quot;172.99.0.102:6789/0&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h5><p>1.使用monmaptool导出现在健康的mon地图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@control1 ~]# ceph mon getmap -o /tmp/monmap.txt</span><br><span class="line">[root@control1 ~]# monmaptool --print /tmp/monmap.txt </span><br><span class="line">monmaptool: monmap file /root/monmap.txt</span><br><span class="line">epoch 3</span><br><span class="line">fsid 297db882-ed2a-4f7a-9202-0e77e7992c79</span><br><span class="line">last_changed 2019-01-21 16:12:12.522609</span><br><span class="line">created 2019-01-21 16:09:35.552980</span><br><span class="line">0: 172.99.0.101:6789/0 mon.control1</span><br><span class="line">1: 172.99.0.102:6789/0 mon.control2</span><br><span class="line">2: 172.99.0.103:6789/0 mon.control3</span><br></pre></td></tr></table></figure>
+<p>2.将生成的monmap和mon keyring 远程复制到目标机器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@control1 ~]# scp -r /tmp/monmap.txt root@control2:/tmp/monmap.txt</span><br><span class="line">[root@control1 ~]# scp -r /etc/ceph/* root@control2:/etc/ceph/</span><br></pre></td></tr></table></figure>
+<p>3.通过新的map地图将本机的mon服务加入到集群中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通过monmap地图加入到集群</span><br><span class="line">[root@control2 ~]# ceph-mon -i control2 --inject-monmap /tmp/monmap.txt</span><br></pre></td></tr></table></figure>
+<p>4.新节点上启动ceph的服务并检查</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">启动服务这里就不写了...</span><br><span class="line">加入后查看一下集群中现有的mon</span><br><span class="line">[root@control2 ~]# ceph quorum_status --format json-pretty</span><br><span class="line">&#123;</span><br><span class="line">    &quot;election_epoch&quot;: 406,</span><br><span class="line">    &quot;quorum&quot;: [</span><br><span class="line">        0,</span><br><span class="line">        1</span><br><span class="line">    ],</span><br><span class="line">    &quot;quorum_names&quot;: [</span><br><span class="line">        &quot;control1&quot;,</span><br><span class="line">        &quot;control2&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;quorum_leader_name&quot;: &quot;control1&quot;,</span><br><span class="line">    &quot;monmap&quot;: &#123;</span><br><span class="line">        &quot;epoch&quot;: 2,</span><br><span class="line">        &quot;fsid&quot;: &quot;297db882-ed2a-4f7a-9202-0e77e7992c79&quot;,</span><br><span class="line">        &quot;modified&quot;: &quot;2019-01-21 16:12:12.522609&quot;,</span><br><span class="line">        &quot;created&quot;: &quot;2019-01-21 16:09:35.552980&quot;,</span><br><span class="line">        &quot;features&quot;: &#123;</span><br><span class="line">            &quot;persistent&quot;: [</span><br><span class="line">                &quot;kraken&quot;,</span><br><span class="line">                &quot;luminous&quot;,</span><br><span class="line">                &quot;mimic&quot;,</span><br><span class="line">                &quot;osdmap-prune&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;optional&quot;: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;mons&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;rank&quot;: 0,</span><br><span class="line">                &quot;name&quot;: &quot;control1&quot;,</span><br><span class="line">                &quot;addr&quot;: &quot;172.99.0.101:6789/0&quot;,</span><br><span class="line">                &quot;public_addr&quot;: &quot;172.99.0.101:6789/0&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;rank&quot;: 1,</span><br><span class="line">                &quot;name&quot;: &quot;control2&quot;,</span><br><span class="line">                &quot;addr&quot;: &quot;172.99.0.102:6789/0&quot;,</span><br><span class="line">                &quot;public_addr&quot;: &quot;172.99.0.102:6789/0&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="相关命令："><a href="#相关命令：" class="headerlink" title="相关命令："></a>相关命令：</h5><blockquote>
 <h6 id="打印地图"><a href="#打印地图" class="headerlink" title="打印地图"></a>打印地图</h6><p>$ monmaptool –print monmap.txt</p>
 </blockquote>
@@ -236,7 +240,33 @@
 <h6 id="通过地图加入一台的节点到集群中-包括mon和数据节点等服务器"><a href="#通过地图加入一台的节点到集群中-包括mon和数据节点等服务器" class="headerlink" title="通过地图加入一台的节点到集群中(包括mon和数据节点等服务器)"></a>通过地图加入一台的节点到集群中(包括mon和数据节点等服务器)</h6><p>$ ceph-mon -i <control5> –inject-monmap monmap.txt</control5></p>
 </blockquote>
 <blockquote>
-<h6 id="monmap通过ceph-conf配置文件生成新的monmap文件"><a href="#monmap通过ceph-conf配置文件生成新的monmap文件" class="headerlink" title="monmap通过ceph.conf配置文件生成新的monmap文件"></a>monmap通过ceph.conf配置文件生成新的monmap文件</h6><p>$ monmaptool –create –generate -c /etc/ceph/ceph.conf /etc/ceph/monmap.txt</p>
+<h6 id="monmap通过ceph-conf配置文件生成新的monmap文件"><a href="#monmap通过ceph-conf配置文件生成新的monmap文件" class="headerlink" title="monmap通过ceph.conf配置文件生成新的monmap文件"></a>monmap通过ceph.conf配置文件生成新的monmap文件</h6><p>$ monmaptool –create –generate -c /etc/ceph/ceph.conf /etc/ceph/monmap.txt<br>categories:</p>
+</blockquote>
+</li>
+<li>工作<br>toc: false<br>date: 2019-03-22 11:46:13</li>
+</ul>
+<hr>
+<p><img src="/img/fdsafd111.jpg" alt></p>
+<h5 id="条件：-1"><a href="#条件：-1" class="headerlink" title="条件："></a>条件：</h5><ul>
+<li>至少存活一个mon是健康完整的状态。</li>
+<li>从mon上获取map和key,有这2个东西就可以恢复或新增mon以及其它节点。</li>
+</ul>
+<!--more-->
+<h5 id="步骤：-1"><a href="#步骤：-1" class="headerlink" title="步骤："></a>步骤：</h5><p>1.使用monmaptool导出现在健康的mon地图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@control1 ~]# ceph mon getmap -o /tmp/monmap.txt</span><br><span class="line">[root@control1 ~]# monmaptool --print /tmp/monmap.txt </span><br><span class="line">monmaptool: monmap file /root/monmap.txt</span><br><span class="line">epoch 3</span><br><span class="line">fsid 297db882-ed2a-4f7a-9202-0e77e7992c79</span><br><span class="line">last_changed 2019-01-21 16:12:12.522609</span><br><span class="line">created 2019-01-21 16:09:35.552980</span><br><span class="line">0: 172.99.0.101:6789/0 mon.control1</span><br><span class="line">1: 172.99.0.102:6789/0 mon.control2</span><br><span class="line">2: 172.99.0.103:6789/0 mon.control3</span><br></pre></td></tr></table></figure></p>
+<p>2.将生成的monmap和mon keyring 远程复制到目标机器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@control1 ~]# scp -r /tmp/monmap.txt root@control2:/tmp/monmap.txt</span><br><span class="line">[root@control1 ~]# scp -r /etc/ceph/* root@control2:/etc/ceph/</span><br></pre></td></tr></table></figure></p>
+<p>3.通过新的map地图将本机的mon服务加入到集群中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">通过monmap地图加入到集群</span><br><span class="line">[root@control2 ~]# ceph-mon -i control2 --inject-monmap /tmp/monmap.txt</span><br></pre></td></tr></table></figure></p>
+<p>4.新节点上启动ceph的服务并检查<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">启动服务这里就不写了...</span><br><span class="line">加入后查看一下集群中现有的mon</span><br><span class="line">[root@control2 ~]# ceph quorum_status --format json-pretty</span><br><span class="line">&#123;</span><br><span class="line">    &quot;election_epoch&quot;: 406,</span><br><span class="line">    &quot;quorum&quot;: [</span><br><span class="line">        0,</span><br><span class="line">        1</span><br><span class="line">    ],</span><br><span class="line">    &quot;quorum_names&quot;: [</span><br><span class="line">        &quot;control1&quot;,</span><br><span class="line">        &quot;control2&quot;</span><br><span class="line">    ],</span><br><span class="line">    &quot;quorum_leader_name&quot;: &quot;control1&quot;,</span><br><span class="line">    &quot;monmap&quot;: &#123;</span><br><span class="line">        &quot;epoch&quot;: 2,</span><br><span class="line">        &quot;fsid&quot;: &quot;297db882-ed2a-4f7a-9202-0e77e7992c79&quot;,</span><br><span class="line">        &quot;modified&quot;: &quot;2019-01-21 16:12:12.522609&quot;,</span><br><span class="line">        &quot;created&quot;: &quot;2019-01-21 16:09:35.552980&quot;,</span><br><span class="line">        &quot;features&quot;: &#123;</span><br><span class="line">            &quot;persistent&quot;: [</span><br><span class="line">                &quot;kraken&quot;,</span><br><span class="line">                &quot;luminous&quot;,</span><br><span class="line">                &quot;mimic&quot;,</span><br><span class="line">                &quot;osdmap-prune&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;optional&quot;: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;mons&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;rank&quot;: 0,</span><br><span class="line">                &quot;name&quot;: &quot;control1&quot;,</span><br><span class="line">                &quot;addr&quot;: &quot;172.99.0.101:6789/0&quot;,</span><br><span class="line">                &quot;public_addr&quot;: &quot;172.99.0.101:6789/0&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;rank&quot;: 1,</span><br><span class="line">                &quot;name&quot;: &quot;control2&quot;,</span><br><span class="line">                &quot;addr&quot;: &quot;172.99.0.102:6789/0&quot;,</span><br><span class="line">                &quot;public_addr&quot;: &quot;172.99.0.102:6789/0&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="相关命令：-1"><a href="#相关命令：-1" class="headerlink" title="相关命令："></a>相关命令：</h5><blockquote>
+<h6 id="打印地图-1"><a href="#打印地图-1" class="headerlink" title="打印地图"></a>打印地图</h6><p>$ monmaptool –print monmap.txt</p>
+</blockquote>
+<blockquote>
+<h6 id="使用地图增加2个mon节点进来-1"><a href="#使用地图增加2个mon节点进来-1" class="headerlink" title="使用地图增加2个mon节点进来"></a>使用地图增加2个mon节点进来</h6><p>$ monmaptool –create  \<br>–add mon.node-2 172.99.0.102:6789  \<br>–add mon.node-3 172.99.0.103:6789   \<br>–fsid 059f27e8-a23f-4587-9033-3e3679d03b31  \<br>–clobber /root/monmap.txt</p>
+</blockquote>
+<blockquote>
+<h6 id="通过地图加入一台的节点到集群中-包括mon和数据节点等服务器-1"><a href="#通过地图加入一台的节点到集群中-包括mon和数据节点等服务器-1" class="headerlink" title="通过地图加入一台的节点到集群中(包括mon和数据节点等服务器)"></a>通过地图加入一台的节点到集群中(包括mon和数据节点等服务器)</h6><p>$ ceph-mon -i <control5> –inject-monmap monmap.txt</control5></p>
+</blockquote>
+<blockquote>
+<h6 id="monmap通过ceph-conf配置文件生成新的monmap文件-1"><a href="#monmap通过ceph-conf配置文件生成新的monmap文件-1" class="headerlink" title="monmap通过ceph.conf配置文件生成新的monmap文件"></a>monmap通过ceph.conf配置文件生成新的monmap文件</h6><p>$ monmaptool –create –generate -c /etc/ceph/ceph.conf /etc/ceph/monmap.txt</p>
 </blockquote>
 
       
@@ -287,17 +317,6 @@
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -509,10 +528,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
               </li>
              
@@ -525,7 +540,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">bigdata</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ceph</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">storage</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,14 +565,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Openshift</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ceph</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">storage</a>
               </li>
             
             <div class="clearfix"></div>
