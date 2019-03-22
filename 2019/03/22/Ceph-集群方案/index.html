@@ -6,18 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: bigdata | 寂而常乐</title>
+  <title>Ceph-集群方案 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="妙无立，无所不立！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="寂而常乐">
-<meta property="og:url" content="http://yoursite.com/tags/bigdata/index.html">
+  <meta name="description" content="业务场景与规模对比： RGW:   1024TB/6TB/32盘= 6台 +3台mon  共计 9台RBD:   1024TB/6TB/24盘= 8台 +3台mon  共计11台 (本方案)CephFS:1024TB/6TB/12盘=16台 +3台mon  共计19台注意：业务场景对应着不同密度的盘位机型。ssd交换盘与hdd数据盘比例为1/3 或 1/2  本方案内容：  构建一套物理容量1P">
+<meta name="keywords" content="ceph,storage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ceph-集群方案">
+<meta property="og:url" content="http://yoursite.com/2019/03/22/Ceph-集群方案/index.html">
 <meta property="og:site_name" content="寂而常乐">
-<meta property="og:description" content="妙无立，无所不立！">
+<meta property="og:description" content="业务场景与规模对比： RGW:   1024TB/6TB/32盘= 6台 +3台mon  共计 9台RBD:   1024TB/6TB/24盘= 8台 +3台mon  共计11台 (本方案)CephFS:1024TB/6TB/12盘=16台 +3台mon  共计19台注意：业务场景对应着不同密度的盘位机型。ssd交换盘与hdd数据盘比例为1/3 或 1/2  本方案内容：  构建一套物理容量1P">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/22/2a5de4d0-4c72-11e9-af77-f57d8dfb3102.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/22/60c1cd80-4c71-11e9-af77-f57d8dfb3102.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/22/5ac467e0-4c70-11e9-af77-f57d8dfb3102.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/22/1d457590-4c65-11e9-97a0-d35cf0d4b852.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/22/82ab0b10-4c6b-11e9-97a0-d35cf0d4b852.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/22/b96a8bd0-4c6b-11e9-97a0-d35cf0d4b852.png">
+<meta property="og:updated_time" content="2019-03-22T07:14:51.037Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="寂而常乐">
-<meta name="twitter:description" content="妙无立，无所不立！">
+<meta name="twitter:title" content="Ceph-集群方案">
+<meta name="twitter:description" content="业务场景与规模对比： RGW:   1024TB/6TB/32盘= 6台 +3台mon  共计 9台RBD:   1024TB/6TB/24盘= 8台 +3台mon  共计11台 (本方案)CephFS:1024TB/6TB/12盘=16台 +3台mon  共计19台注意：业务场景对应着不同密度的盘位机型。ssd交换盘与hdd数据盘比例为1/3 或 1/2  本方案内容：  构建一套物理容量1P">
+<meta name="twitter:image" content="http://yoursite.com/images/2019/03/22/2a5de4d0-4c72-11e9-af77-f57d8dfb3102.png">
   
     <link rel="alternative" href="/atom.xml" title="寂而常乐" type="application/atom+xml">
   
@@ -187,44 +196,137 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Ceph-集群方案" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/22/Ceph-恢复或新增Mon/" class="archive-article-date">
-  	<time datetime="2019-03-22T01:56:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/22/Ceph-恢复或新增Mon/">Ceph 恢复或新增Mon</a>
+    <h1 class="article-title" itemprop="name">
+      Ceph-集群方案
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/03/22/Ceph-集群方案/" class="archive-article-date">
+  	<time datetime="2019-03-22T02:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+        
+            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+                  <span class="btn-bg"></span>
+                  <span class="btn-text">文章导航</span>
+                  </p>
+          <div id="toc-article" class="toc-article">
+              <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+            <strong class="toc-title">文章目录</strong>
+                   <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#业务场景与规模对比："><span class="toc-number">1.</span> <span class="toc-text">业务场景与规模对比：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#本方案内容："><span class="toc-number">2.</span> <span class="toc-text">本方案内容：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设备硬件列表"><span class="toc-number">3.</span> <span class="toc-text">设备硬件列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络部分说明-内外两部分"><span class="toc-number">4.</span> <span class="toc-text">网络部分说明:内外两部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ceph与Openstack的物理网络"><span class="toc-number">5.</span> <span class="toc-text">Ceph与Openstack的物理网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ceph存储机架图"><span class="toc-number">6.</span> <span class="toc-text">ceph存储机架图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BlueStore存储引擎（选择它）与FileStore存储引擎对比"><span class="toc-number">7.</span> <span class="toc-text">BlueStore存储引擎（选择它）与FileStore存储引擎对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ceph的操作流程图"><span class="toc-number">8.</span> <span class="toc-text">Ceph的操作流程图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ceph接口"><span class="toc-number">9.</span> <span class="toc-text">Ceph接口</span></a></li></ol>
+                 </div>
+           <script type="text/javascript">
+          function showToc(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:block");
+            show_toc_btn.setAttribute("style","display:none");
+            };
+          function showBtn(){
+            var toc_article = document.getElementById("toc-article");
+            var show_toc_btn = document.getElementById("show-toc-btn");
+            toc_article.setAttribute("style","display:none");
+            show_toc_btn.setAttribute("style","display:block");
+            };
+           </script>
+                 
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/images/2019/03/22/2a5de4d0-4c72-11e9-af77-f57d8dfb3102.png" alt="image.png"></p>
+<h4 id="业务场景与规模对比："><a href="#业务场景与规模对比：" class="headerlink" title="业务场景与规模对比："></a>业务场景与规模对比：</h4><blockquote>
+<p>RGW:   1024TB/6TB/32盘= 6台 +3台mon  共计 9台<br>RBD:   1024TB/6TB/24盘= 8台 +3台mon  共计11台 (本方案)<br>CephFS:1024TB/6TB/12盘=16台 +3台mon  共计19台<br>注意：业务场景对应着不同密度的盘位机型。<br>ssd交换盘与hdd数据盘比例为1/3 或 1/2</p>
+</blockquote>
+<h4 id="本方案内容："><a href="#本方案内容：" class="headerlink" title="本方案内容："></a>本方案内容：</h4><p>  构建一套物理容量1PB规模的Ceph存储，外提供RBD块服务对接业务为Openstack或VMWare虚拟化平台。<br><a id="more"></a></p>
+<h4 id="设备硬件列表"><a href="#设备硬件列表" class="headerlink" title="设备硬件列表"></a>设备硬件列表</h4><table>
+<thead>
+<tr>
+<th>id</th>
+<th>名称</th>
+<th>规格</th>
+<th>数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>交换机-外网</td>
+<td>10/20/4/  GbE Switches</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>交换机-内网</td>
+<td>40/56/100 GbE Switches</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mon节点</td>
+<td>Intel <br>Mem:128Gb <br>nic:1GBex4 <br>os-sas:1Tx2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Data节点</td>
+<td>Intel <br>Mme:128Gb <br>nic:1GBex4 <br>os-sas:1Tx2 <br>ssd:2Tx2<br>hdd:6Tx24</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h4 id="网络部分说明-内外两部分"><a href="#网络部分说明-内外两部分" class="headerlink" title="网络部分说明:内外两部分"></a>网络部分说明:内外两部分</h4><blockquote>
+<p>1.外网: (交换机物理口QOS限速)<br> ceph集群对外提供服务的网络线路，设备之间心跳与健康监测使用这个网络。<br>2.内网: (交换机带宽很重要-恢复速度看这里)<br> ceph集群内部通讯专用网络，OSD自身健康及周边健康监测、数据传输网络。<br>1Gbps万兆卡复制1TB数据耗时3小时,3TB(典型配置）需要9小时<br>10Gbps万兆卡复制1TB数据是20分钟，3TB需要1小时。<br>注意：存储业务通讯的网卡要做Bond，防止网卡因为故障导致网络中断，而后触发一系列问题。</p>
+</blockquote>
+<h4 id="Ceph与Openstack的物理网络"><a href="#Ceph与Openstack的物理网络" class="headerlink" title="Ceph与Openstack的物理网络"></a>Ceph与Openstack的物理网络</h4><p><img src="/images/2019/03/22/60c1cd80-4c71-11e9-af77-f57d8dfb3102.png" alt="image.png"></p>
+<h4 id="ceph存储机架图"><a href="#ceph存储机架图" class="headerlink" title="ceph存储机架图"></a>ceph存储机架图</h4><p><img src="/images/2019/03/22/5ac467e0-4c70-11e9-af77-f57d8dfb3102.png" alt="image.png"></p>
+<h4 id="BlueStore存储引擎（选择它）与FileStore存储引擎对比"><a href="#BlueStore存储引擎（选择它）与FileStore存储引擎对比" class="headerlink" title="BlueStore存储引擎（选择它）与FileStore存储引擎对比"></a>BlueStore存储引擎（选择它）与FileStore存储引擎对比</h4><p><img src="/images/2019/03/22/1d457590-4c65-11e9-97a0-d35cf0d4b852.png" alt="image.png"></p>
+<h4 id="Ceph的操作流程图"><a href="#Ceph的操作流程图" class="headerlink" title="Ceph的操作流程图"></a>Ceph的操作流程图</h4><p><img src="/images/2019/03/22/82ab0b10-4c6b-11e9-97a0-d35cf0d4b852.png" alt="image.png"></p>
+<h4 id="Ceph接口"><a href="#Ceph接口" class="headerlink" title="Ceph接口"></a>Ceph接口</h4><p><img src="/images/2019/03/22/b96a8bd0-4c6b-11e9-97a0-d35cf0d4b852.png" alt="image.png"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢您的打赏支持！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">bigdata</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ceph</a>
         		</li>
@@ -236,7 +338,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -249,135 +351,117 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/22/Ceph-集群方案/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/22/Ceph-恢复或新增Mon/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ceph 恢复或新增Mon</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/06/Hadoop笔记/" class="archive-article-date">
-  	<time datetime="2017-03-06T02:20:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-06</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#业务场景与规模对比："><span class="toc-number">1.</span> <span class="toc-text">业务场景与规模对比：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#本方案内容："><span class="toc-number">2.</span> <span class="toc-text">本方案内容：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设备硬件列表"><span class="toc-number">3.</span> <span class="toc-text">设备硬件列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络部分说明-内外两部分"><span class="toc-number">4.</span> <span class="toc-text">网络部分说明:内外两部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ceph与Openstack的物理网络"><span class="toc-number">5.</span> <span class="toc-text">Ceph与Openstack的物理网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ceph存储机架图"><span class="toc-number">6.</span> <span class="toc-text">ceph存储机架图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BlueStore存储引擎（选择它）与FileStore存储引擎对比"><span class="toc-number">7.</span> <span class="toc-text">BlueStore存储引擎（选择它）与FileStore存储引擎对比</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ceph的操作流程图"><span class="toc-number">8.</span> <span class="toc-text">Ceph的操作流程图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ceph接口"><span class="toc-number">9.</span> <span class="toc-text">Ceph接口</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/06/Hadoop笔记/">HadoopHA搭建笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">bigdata</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/06/Hadoop集群/" class="archive-article-date">
-  	<time datetime="2016-12-06T02:20:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/06/Hadoop集群/">Hadoop集群</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">bigdata</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -400,9 +484,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
