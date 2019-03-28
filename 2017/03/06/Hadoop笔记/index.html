@@ -192,7 +192,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hadoop笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Hadoop笔记" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -241,7 +241,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/sebastien-goldberg-1442353-unsplash.jpg" alt></p>
+        <p><img src="/img/sebastien-goldberg-1442353-unsplash.jpg" alt=""></p>
 <h3 id="1-参考链接"><a href="#1-参考链接" class="headerlink" title="1.参考链接"></a>1.参考链接</h3><p>Hadoop官方HA地址：<a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithNFS.html" target="_blank" rel="noopener">http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithNFS.html</a></p>
 <a id="more"></a>
 <h3 id="2-Hadoop配置文件表"><a href="#2-Hadoop配置文件表" class="headerlink" title="2.Hadoop配置文件表"></a>2.Hadoop配置文件表</h3><table>
@@ -362,7 +362,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="5-HadoopHA的转变流程图"><a href="#5-HadoopHA的转变流程图" class="headerlink" title="5.HadoopHA的转变流程图"></a>5.HadoopHA的转变流程图</h3><p>这里有两个NameNode，一个处于active状态，一个处于standby状态。ActiveNamenode对外提供服务，而StandbyNamenode则不对外提供服务，仅同步active namenode的状态，以便在故障时快速进行切换。hadoop2.0提供了两种HDFS HA的解决方案，NFS和QJM，这里我们使用QJM。在该方案中两个namenode间通过JournalNode同步元数据信息，一条数据只要写入JournalNode即认为写入成功。通常配置奇数个JournalNode，依靠zookeeper来协调。这里还配置了一个zookeeper集群，用于ZKFC故障转移。ResourceManager也是有一个Active，一个Standby，状态由zookeeper进行协调。<br><br><br><img src="https://github.com/mclitao/openshift/blob/master/BIGDATA/HadoopHA.png?raw=true" alt width="600"><br><br></p>
+<h3 id="5-HadoopHA的转变流程图"><a href="#5-HadoopHA的转变流程图" class="headerlink" title="5.HadoopHA的转变流程图"></a>5.HadoopHA的转变流程图</h3><p>这里有两个NameNode，一个处于active状态，一个处于standby状态。ActiveNamenode对外提供服务，而StandbyNamenode则不对外提供服务，仅同步active namenode的状态，以便在故障时快速进行切换。hadoop2.0提供了两种HDFS HA的解决方案，NFS和QJM，这里我们使用QJM。在该方案中两个namenode间通过JournalNode同步元数据信息，一条数据只要写入JournalNode即认为写入成功。通常配置奇数个JournalNode，依靠zookeeper来协调。这里还配置了一个zookeeper集群，用于ZKFC故障转移。ResourceManager也是有一个Active，一个Standby，状态由zookeeper进行协调。<br><br><br><img src="https://github.com/mclitao/openshift/blob/master/BIGDATA/HadoopHA.png?raw=true" alt="" width="600"><br><br></p>
 <h3 id="6-Hadoop集群节点服务列表"><a href="#6-Hadoop集群节点服务列表" class="headerlink" title="6.Hadoop集群节点服务列表"></a>6.Hadoop集群节点服务列表</h3><table>
 <thead>
 <tr>
@@ -748,6 +748,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Openshift</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ironic</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LB</a>
               </li>
             
             <div class="clearfix"></div>

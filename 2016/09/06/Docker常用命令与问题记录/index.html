@@ -193,7 +193,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Docker常用命令与问题记录" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Docker常用命令与问题记录" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -242,7 +242,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/timg.jpg" alt></p>
+        <p><img src="/img/timg.jpg" alt=""></p>
 <h2 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h2><ul>
 <li><h5 id="1-使用root登录容器"><a href="#1-使用root登录容器" class="headerlink" title="1.使用root登录容器"></a>1.使用root登录容器</h5><blockquote>
 <p>$ docker exec -it -u 0 mon bash<br>$ docker exec -it -u root mon bash</p>
@@ -338,12 +338,12 @@
 <li><h5 id="8-批量保存镜像脚本"><a href="#8-批量保存镜像脚本" class="headerlink" title="8.批量保存镜像脚本"></a>8.批量保存镜像脚本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># vi docker_saves</span><br><span class="line">#！/bin/bash</span><br><span class="line">echo -e &quot;\033[32m ################################################ \033[0m&quot;</span><br><span class="line">echo -e &quot;\033[31m ###           www.XcoloundLive.com          #### \033[0m&quot;</span><br><span class="line">echo -e &quot;\033[33;5m ###    docker saveing all image starting    #### \033[0m&quot;</span><br><span class="line">echo -e &quot;\033[32m ################################################ \033[0m&quot;</span><br><span class="line">docker images --filter &quot;dangling=false&quot; |grep -v &quot;REPOSITORY&quot;|awk &apos;&#123;print $1&quot;:&quot;$2&#125;&apos; &gt;docker_images.txt</span><br><span class="line">echo -e &quot;\033[32m ###              docker image list          #### \033[0m&quot;</span><br><span class="line">cat -n docker_images.txt</span><br><span class="line">if  [ -f docker_images.txt ]</span><br><span class="line">then</span><br><span class="line">        while read LINE</span><br><span class="line">        do</span><br><span class="line">                echo -e &quot;\033[32m ### saveing.....[ $&#123;LINE&#125; ]... \033[0m&quot;</span><br><span class="line">                FH_1=$&#123;LINE//\//_&#125;</span><br><span class="line">                FH_2=$&#123;FH_1//:/-&#125;</span><br><span class="line">                docker save $LINE &gt; $&#123;FH_2&#125;.tar</span><br><span class="line">                done &lt; docker_images.txt</span><br><span class="line">        echo -e &quot;\033[32;5m ###        docker saver all image finish      #### \033[0m&quot;</span><br><span class="line">else</span><br><span class="line">        echo -e &quot;\033[31;5m ###          docker_images.txt not find       #### \033[0m&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><img src="1.png" alt></p>
+<p><img src="1.png" alt=""></p>
 <ul>
 <li><h5 id="9-批量导入镜像脚本"><a href="#9-批量导入镜像脚本" class="headerlink" title="9.批量导入镜像脚本"></a>9.批量导入镜像脚本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># vi docker_load</span><br><span class="line">#!/bin/sh</span><br><span class="line">if  [ -f docker_images.txt ]</span><br><span class="line">then</span><br><span class="line">        echo -e &quot;\033[32m ################################################ \033[0m&quot;</span><br><span class="line">        echo -e &quot;\033[31m ###           www.XcoloundLive.com          #### \033[0m&quot;</span><br><span class="line">        echo -e &quot;\033[33;5m ###       docker load image starting        #### \033[0m&quot;</span><br><span class="line">        echo -e &quot;\033[32m ################################################ \033[0m&quot;</span><br><span class="line">        echo -e &quot;\033[32m ###              docke_image.txt           #### \033[0m&quot;</span><br><span class="line">        cat -n docker_images.txt</span><br><span class="line">        while read LINE</span><br><span class="line">        do</span><br><span class="line">          echo -e &quot;\033[32m ### loading.....[ $&#123;LINE&#125; ]... \033[0m&quot;</span><br><span class="line">          FH_1=$&#123;LINE//\//\_&#125;</span><br><span class="line">          FH_2=$&#123;FH_1//:/-&#125;</span><br><span class="line">          #docker load &lt; $&#123;LINE//\//\_&#125;.tar</span><br><span class="line">          docker load &lt; $&#123;FH_2&#125;.tar</span><br><span class="line">          done &lt; docker_images.txt</span><br><span class="line">          echo -e &quot;\033[32;5m ###        docker load all image finish      #### \033[0m&quot;</span><br><span class="line">else</span><br><span class="line">     echo -e &quot;\033[31;5m ###          docker_images.txt not find       #### \033[0m&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><img src="2.png" alt></p>
+<p><img src="2.png" alt=""></p>
 <p><br></p>
 <ul>
 <li><h5 id="9-开启Remote-API-端口服务2375"><a href="#9-开启Remote-API-端口服务2375" class="headerlink" title="9.开启Remote API 端口服务2375"></a>9.开启Remote API 端口服务2375</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/docker/daemon.json 增加下面这一行信息</span><br><span class="line">  &quot;hosts&quot;: [&quot;tcp://0.0.0.0:2375&quot;,&quot;unix:///var/run/docker.sock&quot;],</span><br><span class="line"># systemctl daemon-reload</span><br><span class="line"># systemctl restart docker</span><br><span class="line"># netstat -ntlp |grep 2375</span><br></pre></td></tr></table></figure>
@@ -681,6 +681,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Openshift</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ironic</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LB</a>
               </li>
             
             <div class="clearfix"></div>
