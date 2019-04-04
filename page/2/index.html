@@ -189,20 +189,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Hadoop集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Ceph-恢复或新增Mon" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/06/Hadoop集群/">Hadoop集群</a>
+      <a class="article-title" href="/2019/03/22/Ceph-恢复或新增Mon/">Ceph 恢复或新增Mon</a>
     </h1>
   
 
         
-        <a href="/2016/12/06/Hadoop集群/" class="archive-article-date">
-  	<time datetime="2016-12-06T02:20:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
+        <a href="/2019/03/22/Ceph-恢复或新增Mon/" class="archive-article-date">
+  	<time datetime="2019-03-22T01:56:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
 </a>
         
 
@@ -214,10 +214,935 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/hadoop.jpg" alt></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>Hadoop官方：<a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/" target="_blank" rel="noopener">http://hadoop.apache.org/docs/stable/hadoop-project-dist/</a></p>
+        <p><img src="/images/2019/03/22/ffffd170-4c54-11e9-97a0-d35cf0d4b852.jpg" alt></p>
+<h5 id="条件："><a href="#条件：" class="headerlink" title="条件："></a>条件：</h5><ul>
+<li>至少存活一个mon是健康完整的状态。</li>
+<li>从mon上获取map和key,有这2个东西就可以恢复或新增mon以及其它节点。</li>
+</ul>
         
-          <a class="article-more-a" href="/2016/12/06/Hadoop集群/#more">more >></a>
+          <a class="article-more-a" href="/2019/03/22/Ceph-恢复或新增Mon/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">bigdata</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ceph</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">storage</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/22/Ceph-恢复或新增Mon/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-IPMITOOL工具命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/21/IPMITOOL工具命令/">IPMITOOL工具命令</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/21/IPMITOOL工具命令/" class="archive-article-date">
+  	<time datetime="2019-03-21T05:17:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-21</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/IPMITOOL.jpg" alt></p>
+        
+          <a class="article-more-a" href="/2019/03/21/IPMITOOL工具命令/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SHELL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">KVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/21/IPMITOOL工具命令/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-心中心法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/20/心中心法/">心中心法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/20/心中心法/" class="archive-article-date">
+  	<time datetime="2019-03-20T08:46:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-20</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/e850352ac65c1038d5d52dcbb7119313b07e8914.jpg" alt></p>
+<h1 id="此法甚是难得-得修是无上福报！"><a href="#此法甚是难得-得修是无上福报！" class="headerlink" title="此法甚是难得,得修是无上福报！"></a>此法甚是难得,得修是无上福报！</h1><p>官方链接：<a href="http://www.xzxdc.com/detail.aspx?cid=1099" target="_blank" rel="noopener">http://www.xzxdc.com/detail.aspx?cid=1099</a><br>
+        
+          <a class="article-more-a" href="/2019/03/20/心中心法/#more">more >></a>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">禅净密</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/20/心中心法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Openshift-CLI笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/06/Openshift-CLI笔记/">Openshift CLI笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/06/Openshift-CLI笔记/" class="archive-article-date">
+  	<time datetime="2018-09-06T09:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-06</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/photo-1528732263440-4dd1a18a4cc2.webp" alt></p>
+<blockquote>
+<p>版本：OpenShift Origin v3.9<br>官方手册(<a href="https://docs.openshift.com/container-platform/3.9/welcome/index.html" target="_blank" rel="noopener">https://docs.openshift.com/container-platform/3.9/welcome/index.html</a>)<br>说明：本手册包含，项目、权限、资源分配、等运维备份命令，用来速查CLI的。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2018/09/06/Openshift-CLI笔记/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenShift</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">pass</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/06/Openshift-CLI笔记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Skopeo-docker-registry复制迁移工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/04/Skopeo-docker-registry复制迁移工具/">Skopeo docker registry复制迁移工具</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/04/Skopeo-docker-registry复制迁移工具/" class="archive-article-date">
+  	<time datetime="2018-06-04T00:12:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Skopeo"><a href="#Skopeo" class="headerlink" title="Skopeo"></a>Skopeo<a href="https://travis-ci.org/containers/skopeo" target="_blank" rel="noopener"><img src="https://travis-ci.org/containers/skopeo.svg?branch=master" alt="Build Status"></a></h1><h2 id="Skopeo的使用"><a href="#Skopeo的使用" class="headerlink" title="Skopeo的使用"></a>Skopeo的使用</h2><blockquote>
+<p>来自<a href="https://github.com/containers/skopeo" target="_blank" rel="noopener">skope</a></p>
+</blockquote>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li><p><strong>Skopeo用途</strong></p>
+<ul>
+<li>在没有要docker守护服务时就可以复制 A仓库：镜像 到 B:仓库：镜像</li>
+</ul>
+</li>
+<li><p><strong>Skopeod的相关资料</strong></p>
+<ul>
+<li><a href="https://rhelblog.redhat.com/2017/05/11/skopeo-copy-to-the-rescue/" target="_blank" rel="noopener">https://rhelblog.redhat.com/2017/05/11/skopeo-copy-to-the-rescue/</a></li>
+</ul>
+</li>
+<li><p><strong>安装Skopeo</strong></p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#这里的所有命令在debian 8.6的环节上运行通过</span><br><span class="line">#编译安装skopeo</span><br><span class="line">$ git clone https://github.com/projectatomic/skopeo $GOPATH/src/github.com/projectatomic/skopeo</span><br><span class="line">$ sudo apt-get install libgpgme11-dev libdevmapper-dev btrfs-tools go-md2man</span><br><span class="line">$ cd $GOPATH/src/github.com/projectatomic/skopeo </span><br><span class="line">$ make binary-local</span><br><span class="line">$ sudo make install</span><br><span class="line"></span><br><span class="line">#下载hello-world的image</span><br><span class="line">$ skopeo copy docker://hello-world oci:hello-world</span><br><span class="line">$ tree hello-world/</span><br><span class="line">hello-world/</span><br><span class="line">├── blobs</span><br><span class="line">│   └── sha256</span><br><span class="line">│       ├── 636fcf0bc8246e08d2df4771dc764d35ea50428b8dfaa904773b0707cb4f6303</span><br><span class="line">│       ├── 7520415ce76232cdd62ecc345cea5ea44f5b6b144dc62351f2cd2b08382532a3</span><br><span class="line">│       └── 9b8e3ce88f3a2aaa478cfe613632f38d27be5eddaa002a719fa1bfa9ff4f7f63</span><br><span class="line">├── oci-layout</span><br><span class="line">└── refs</span><br><span class="line">    └── latest</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Skopeo CLI</strong><ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  复制以镜像仓库A中的镜像 到仓库B中,不需要docker守护进程的存在</span><br><span class="line"># skopeo copy dockerA://internal.registry/myimage:latest  dockerB://production.registry/myimage:v1.0</span><br><span class="line">    </span><br><span class="line">  仓库带账户密码凭证的</span><br><span class="line"># skopeo copy --dest-creds prod_user:prod_pass /</span><br><span class="line">        dockerA://internal.registry/myimage:latest /</span><br><span class="line">        dockerB://production.registry/myimage:v1.0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/04/Skopeo-docker-registry复制迁移工具/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux-Screen" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/03/Linux-Screen/">Linux Screen</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/03/Linux-Screen/" class="archive-article-date">
+  	<time datetime="2018-05-03T03:47:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-03</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/images/2019/04/03/c449def0-55c3-11e9-9ca6-a9dd1015b60b.png" alt="image.png"></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GNU Screen是一款由GNU计划开发的用于命令行终端切换的自由软件。用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。</p>
+<p>GNU Screen可以看作是窗口管理器的命令行界面版本。它提供了统一的管理多个会话的界面和相应的功能。</p>
+        
+          <a class="article-more-a" href="/2018/05/03/Linux-Screen/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SHELL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/03/Linux-Screen/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Elasticsearch-索引删除" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/03/Elasticsearch-索引删除/">Elasticsearch 索引删除</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/03/Elasticsearch-索引删除/" class="archive-article-date">
+  	<time datetime="2018-04-03T02:46:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-03</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/images/2019/04/03/b25cb950-55ba-11e9-b513-43513f0ba05b.png" alt="image.png"></p>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><blockquote>
+<p>公司云平台采用了 ElasticSearch 做日志查询，生产状态下积累了大量的索引文件，需要定期删除过期日志索引，释放空间。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2018/04/03/Elasticsearch-索引删除/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">bigdata</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ELK</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/03/Elasticsearch-索引删除/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Nginx反向代理配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/28/Nginx反向代理配置/">Nginx反向代理配置</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/28/Nginx反向代理配置/" class="archive-article-date">
+  	<time datetime="2018-03-28T02:14:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-28</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/images/2019/03/28/dd15e400-5100-11e9-abd3-a1274d146bd2.png" alt="image.png"></p>
+<h2 id="参数列表"><a href="#参数列表" class="headerlink" title="参数列表"></a>参数列表</h2><h2 id="强制http转https访问"><a href="#强制http转https访问" class="headerlink" title="强制http转https访问"></a>强制http转https访问</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen  80;</span><br><span class="line">        server_name     api.yourdomain.com;</span><br><span class="line">        location / &#123;</span><br><span class="line">                rewrite ^/(.*) https://api.yourdomain.com/$1 permanent ;</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        error_page 497 https://$host:$server_port$request_uri;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/03/28/Nginx反向代理配置/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">LB</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/28/Nginx反向代理配置/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-本地USB重镜像到KVM虚拟机方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/21/本地USB重镜像到KVM虚拟机方式/">本地USB重镜像到KVM虚拟机方式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/21/本地USB重镜像到KVM虚拟机方式/" class="archive-article-date">
+  	<time datetime="2017-03-21T01:56:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/daniel-korpai-1302050-unsplash.jpg" alt></p>
+<h3 id="一、参考资料"><a href="#一、参考资料" class="headerlink" title="一、参考资料"></a>一、参考资料</h3><pre><code>spice：https://www.spice-space.org/usbredir.html
+virt-viewer：https://releases.pagure.org/virt-viewer/
+注意：virt-viewer6.0才支持UsbDk驱动实现重定向，推荐UsbDK_1.0.19
+</code></pre><h3 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h3><pre><code>1.给虚拟机添加USB设备定义
+2.基于spice通讯协议完成本地usb device的远程镜像链接
+注意：此方法仅限于以KVM为虚拟机化方案的场景。
+</code></pre>
+        
+          <a class="article-more-a" href="/2017/03/21/本地USB重镜像到KVM虚拟机方式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">KVM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Libvirt</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">USB</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/21/本地USB重镜像到KVM虚拟机方式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Hadoop笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/06/Hadoop笔记/">HadoopHA搭建笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/06/Hadoop笔记/" class="archive-article-date">
+  	<time datetime="2017-03-06T02:20:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-06</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/sebastien-goldberg-1442353-unsplash.jpg" alt></p>
+<h3 id="1-参考链接"><a href="#1-参考链接" class="headerlink" title="1.参考链接"></a>1.参考链接</h3><p>Hadoop官方HA地址：<a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithNFS.html" target="_blank" rel="noopener">http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSHighAvailabilityWithNFS.html</a></p>
+        
+          <a class="article-more-a" href="/2017/03/06/Hadoop笔记/#more">more >></a>
         
       
 
@@ -252,225 +1177,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/06/Hadoop集群/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Docker常用命令与问题记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/06/Docker常用命令与问题记录/">Docker常用命令与问题记录</a>
-    </h1>
-  
-
-        
-        <a href="/2016/09/06/Docker常用命令与问题记录/" class="archive-article-date">
-  	<time datetime="2016-09-06T01:40:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-06</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/img/timg.jpg" alt></p>
-<h2 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h2><ul>
-<li><h5 id="1-使用root登录容器"><a href="#1-使用root登录容器" class="headerlink" title="1.使用root登录容器"></a>1.使用root登录容器</h5><blockquote>
-<p>$ docker exec -it -u 0 mon bash<br>$ docker exec -it -u root mon bash</p>
-</blockquote>
-</li>
-</ul>
-<p><br></p>
-<h2 id="二、重要参数"><a href="#二、重要参数" class="headerlink" title="二、重要参数"></a>二、重要参数</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">ID</th>
-<th style="text-align:left">文件列表</th>
-<th style="text-align:left">描述内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">0</td>
-<td style="text-align:left">–oom-kill-disable=true</td>
-<td style="text-align:left">禁止内核没有内存时杀该容器 <br></td>
-</tr>
-<tr>
-<td style="text-align:left">1</td>
-<td style="text-align:left">–log-opt max-size=10m <br>–log-opt max-file=3</td>
-<td style="text-align:left">设置日志大小和最多保留3个日志文件</td>
-</tr>
-<tr>
-<td style="text-align:left">2</td>
-<td style="text-align:left">–log-driver=syslog<br>–log-opt syslog-address=tcp://<syslogserverip>:5000<br>–log-opt syslog-facility=daemon</syslogserverip></td>
-<td style="text-align:left">日志驱动<br>日志提交地址<br></td>
-</tr>
-</tbody>
-</table>
-        
-          <a class="article-more-a" href="/2016/09/06/Docker常用命令与问题记录/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/09/06/Docker常用命令与问题记录/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Nodejs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/06/Nodejs/">Nodejs笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/06/Nodejs/" class="archive-article-date">
-  	<time datetime="2016-03-06T02:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-06</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/img/nodejs.jpg" alt></p>
-<h3 id="一、NPM仓库加速-天朝必会技能"><a href="#一、NPM仓库加速-天朝必会技能" class="headerlink" title="一、NPM仓库加速(天朝必会技能)"></a>一、NPM仓库加速(天朝必会技能)</h3>
-        
-          <a class="article-more-a" href="/2016/03/06/Nodejs/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">coding</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/06/Nodejs/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/03/06/Hadoop笔记/">展开全文 >></a>
         </p>
       
 
@@ -502,7 +1209,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -613,6 +1320,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ironic</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SHELL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LB</a>
               </li>
              
@@ -621,15 +1352,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">KVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,15 +1368,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SHELL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Openstack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ironic</a>
+                <a href="javascript:void(0)" class="js-tag color5">OpenShift</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -658,10 +1377,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Openshift</a>
               </li>
              
               <li class="article-tag-list-item">

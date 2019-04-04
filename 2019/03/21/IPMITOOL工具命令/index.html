@@ -8,15 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>IPMITOOL工具命令 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="KVM,SHELL,Openstack,ironic">
+  <meta name="keywords" content="OpenStack,ironic,SHELL,KVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IPMITOOL工具命令">
 <meta property="og:url" content="http://yoursite.com/2019/03/21/IPMITOOL工具命令/index.html">
 <meta property="og:site_name" content="寂而常乐">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/IPMITOOL.jpg">
-<meta property="og:image" content="http://yoursite.com/images/2019/03/26/c8b8fc30-4f5d-11e9-abd3-a1274d146bd2.png">
-<meta property="og:updated_time" content="2019-03-26T01:01:17.034Z">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/29/2f08ccd0-51e4-11e9-abd3-a1274d146bd2.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/03/29/50f9eae0-51e4-11e9-abd3-a1274d146bd2.png">
+<meta property="og:updated_time" content="2019-04-01T06:19:53.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IPMITOOL工具命令">
 <meta name="twitter:image" content="http://yoursite.com/img/IPMITOOL.jpg">
@@ -215,7 +216,7 @@
           <div id="toc-article" class="toc-article">
               <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
             <strong class="toc-title">文章目录</strong>
-                   <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IPMI介绍"><span class="toc-number">1.</span> <span class="toc-text">IPMI介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPMITOOL-常用命令"><span class="toc-number">2.</span> <span class="toc-text">IPMITOOL 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、开关机，重启"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">一、开关机，重启</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、用户管理"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">二、用户管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、IP网络设置"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">三、IP网络设置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、SOL功能"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">四、SOL功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#五、SEL日志查看"><span class="toc-number">2.0.0.5.</span> <span class="toc-text">五、SEL日志查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#六、FRU信息查看"><span class="toc-number">2.0.0.6.</span> <span class="toc-text">六、FRU信息查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#七、SDR，Sensor信息查看"><span class="toc-number">2.0.0.7.</span> <span class="toc-text">七、SDR，Sensor信息查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#八、mc-管理单元BMC-状态和控制"><span class="toc-number">2.0.0.8.</span> <span class="toc-text">八、mc(管理单元BMC)状态和控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#九、设置BMC的iptables防火墙"><span class="toc-number">2.0.0.9.</span> <span class="toc-text">九、设置BMC的iptables防火墙</span></a></li></ol></li></ol>
+                   <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BMC基板管理控制器（Baseboard-Manager-Controller，简称BMC）。"><span class="toc-number">1.</span> <span class="toc-text">BMC基板管理控制器（Baseboard Manager Controller，简称BMC）。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPMI介绍"><span class="toc-number">2.</span> <span class="toc-text">IPMI介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPMITOOL-常用命令"><span class="toc-number">3.</span> <span class="toc-text">IPMITOOL 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、开关机，重启"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">一、开关机，重启</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、用户管理"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">二、用户管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、IP网络设置"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">三、IP网络设置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、SOL功能"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">四、SOL功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#五、SEL日志查看"><span class="toc-number">3.0.0.5.</span> <span class="toc-text">五、SEL日志查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#六、FRU信息查看"><span class="toc-number">3.0.0.6.</span> <span class="toc-text">六、FRU信息查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#七、SDR，Sensor信息查看"><span class="toc-number">3.0.0.7.</span> <span class="toc-text">七、SDR，Sensor信息查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#八、mc-管理单元BMC-状态和控制"><span class="toc-number">3.0.0.8.</span> <span class="toc-text">八、mc(管理单元BMC)状态和控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#九、设置BMC的iptables防火墙"><span class="toc-number">3.0.0.9.</span> <span class="toc-text">九、设置BMC的iptables防火墙</span></a></li></ol></li></ol>
                  </div>
            <script type="text/javascript">
           function showToc(){
@@ -240,8 +241,11 @@
       
         <p><img src="/img/IPMITOOL.jpg" alt></p>
 <a id="more"></a>
+<h2 id="BMC基板管理控制器（Baseboard-Manager-Controller，简称BMC）。"><a href="#BMC基板管理控制器（Baseboard-Manager-Controller，简称BMC）。" class="headerlink" title="BMC基板管理控制器（Baseboard Manager Controller，简称BMC）。"></a>BMC基板管理控制器（Baseboard Manager Controller，简称BMC）。</h2><blockquote>
+<p>BMC是一个独立的系统，它不依赖与系统上的其它硬件（比如CPU、内存等），也不依赖与BIOS、OS等（但是BMC可以与BIOS和OS交互，这样可以起到更好的平台管理作用，OS下有系统管理软件可以与BMC协同工作以达到更好的管理效果）。<br><img src="/images/2019/03/29/2f08ccd0-51e4-11e9-abd3-a1274d146bd2.png" alt="image.png"></p>
+</blockquote>
 <h2 id="IPMI介绍"><a href="#IPMI介绍" class="headerlink" title="IPMI介绍"></a>IPMI介绍</h2><blockquote>
-<p>IPMI（Intelligent PlatformManagement Interface）即智能平台管理接口是使硬件管理具备“智能化”的新一代通用接口标准。用户可以利用 IPMI 监视服务器的物理特征，如温度、电压、电扇工作状态、电源供应以及机箱入侵等。Ipmi 最大的优势在于它是独立于 CPU BIOS 和 OS 的，所以用户无论在开机还是关机的状态下，只要接通电源就可以实现对服务器的监控。Ipmi 是一种规范的标准，其中最重要的物理部件就是BMC(Baseboard Management Controller 如图1)，一种嵌入式管理微控制器，它相当于整个平台管理的“大脑”，通过它 ipmi 可以监控各个传感器的数据并记录各种事件的日志。<br><img src="/images/2019/03/26/c8b8fc30-4f5d-11e9-abd3-a1274d146bd2.png" alt="image.png"></p>
+<p>IPMI（Intelligent PlatformManagement Interface）即智能平台管理接口是使硬件管理具备“智能化”的新一代通用接口标准。用户可以利用 IPMI 监视服务器的物理特征，如温度、电压、电扇工作状态、电源供应以及机箱入侵等。Ipmi 最大的优势在于它是独立于 CPU BIOS 和 OS 的，所以用户无论在开机还是关机的状态下，只要接通电源就可以实现对服务器的监控。Ipmi 是一种规范的标准，其中最重要的物理部件就是BMC(Baseboard Management Controller 如图1)，一种嵌入式管理微控制器，它相当于整个平台管理的“大脑”，通过它 ipmi 可以监控各个传感器的数据并记录各种事件的日志。<br><img src="/images/2019/03/29/50f9eae0-51e4-11e9-abd3-a1274d146bd2.png" alt="image.png"></p>
 </blockquote>
 <h2 id="IPMITOOL-常用命令"><a href="#IPMITOOL-常用命令" class="headerlink" title="IPMITOOL 常用命令"></a><strong>IPMITOOL 常用命令</strong></h2><ul>
 <li><h5 id="一、开关机，重启"><a href="#一、开关机，重启" class="headerlink" title="一、开关机，重启"></a>一、开关机，重启</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. 查看开关机状态：</span><br><span class="line">ipmitool -H (BMC的管理IP地址) -I lanplus -U (BMC登录用户名) -P (BMC 登录用户名的密码) power status</span><br><span class="line"></span><br><span class="line">2. 开机：</span><br><span class="line">ipmitool -H (BMC的管理IP地址) -I lanplus -U (BMC登录用户名) -P (BMC 登录用户名的密码) power on</span><br><span class="line"></span><br><span class="line">3. 关机：</span><br><span class="line">（硬-关机）</span><br><span class="line">ipmitool -H (BMC的管理IP地址) -I lanplus -U (BMC登录用户名) -P (BMC 登录用户名的密码) power off</span><br><span class="line">（软-关机）</span><br><span class="line">ipmitool -H (BMC的管理IP地址) -I lanplus -U (BMC登录用户名) -P (BMC 登录用户名的密码) power soft </span><br><span class="line"></span><br><span class="line">4. 重启：</span><br><span class="line">ipmitool -H (BMC的管理IP地址) -I lanplus -U (BMC登录用户名) -P (BMC 登录用户名的密码) power reset</span><br></pre></td></tr></table></figure>
@@ -304,7 +308,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">KVM</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -312,11 +320,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Openstack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">KVM</a>
         		</li>
       		
 		</ul>
@@ -435,7 +439,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IPMI介绍"><span class="toc-number">1.</span> <span class="toc-text">IPMI介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPMITOOL-常用命令"><span class="toc-number">2.</span> <span class="toc-text">IPMITOOL 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、开关机，重启"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">一、开关机，重启</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、用户管理"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">二、用户管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、IP网络设置"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">三、IP网络设置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、SOL功能"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">四、SOL功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#五、SEL日志查看"><span class="toc-number">2.0.0.5.</span> <span class="toc-text">五、SEL日志查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#六、FRU信息查看"><span class="toc-number">2.0.0.6.</span> <span class="toc-text">六、FRU信息查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#七、SDR，Sensor信息查看"><span class="toc-number">2.0.0.7.</span> <span class="toc-text">七、SDR，Sensor信息查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#八、mc-管理单元BMC-状态和控制"><span class="toc-number">2.0.0.8.</span> <span class="toc-text">八、mc(管理单元BMC)状态和控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#九、设置BMC的iptables防火墙"><span class="toc-number">2.0.0.9.</span> <span class="toc-text">九、设置BMC的iptables防火墙</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BMC基板管理控制器（Baseboard-Manager-Controller，简称BMC）。"><span class="toc-number">1.</span> <span class="toc-text">BMC基板管理控制器（Baseboard Manager Controller，简称BMC）。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPMI介绍"><span class="toc-number">2.</span> <span class="toc-text">IPMI介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPMITOOL-常用命令"><span class="toc-number">3.</span> <span class="toc-text">IPMITOOL 常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、开关机，重启"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">一、开关机，重启</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二、用户管理"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">二、用户管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三、IP网络设置"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">三、IP网络设置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#四、SOL功能"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">四、SOL功能</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#五、SEL日志查看"><span class="toc-number">3.0.0.5.</span> <span class="toc-text">五、SEL日志查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#六、FRU信息查看"><span class="toc-number">3.0.0.6.</span> <span class="toc-text">六、FRU信息查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#七、SDR，Sensor信息查看"><span class="toc-number">3.0.0.7.</span> <span class="toc-text">七、SDR，Sensor信息查看</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#八、mc-管理单元BMC-状态和控制"><span class="toc-number">3.0.0.8.</span> <span class="toc-text">八、mc(管理单元BMC)状态和控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#九、设置BMC的iptables防火墙"><span class="toc-number">3.0.0.9.</span> <span class="toc-text">九、设置BMC的iptables防火墙</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -563,6 +567,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ironic</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SHELL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LB</a>
               </li>
              
@@ -571,15 +599,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">KVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -591,15 +615,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SHELL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Openstack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ironic</a>
+                <a href="javascript:void(0)" class="js-tag color5">OpenShift</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,10 +624,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Openshift</a>
               </li>
              
               <li class="article-tag-list-item">
