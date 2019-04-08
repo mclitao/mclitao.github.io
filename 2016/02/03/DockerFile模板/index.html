@@ -54,7 +54,7 @@
 		  <h1 class="header-author"><a href="/">开心波罗蜜</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">极乐净土中 Coding... 业力，极乐净土中 Coding... 愿力。</p>
+		<p class="header-subtitle">妙无立，无所不立！</p>
 		
 
 		<nav class="header-menu">
@@ -126,7 +126,7 @@
 			  <h1 class="header-author js-header-author">开心波罗蜜</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>极乐净土中 Coding... 业力，极乐净土中 Coding... 愿力。<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>妙无立，无所不立！<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -250,27 +250,6 @@
 <h2 id="centos7-Demo2"><a href="#centos7-Demo2" class="headerlink" title="centos7 Demo2"></a>centos7 Demo2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">FROM centos:7</span><br><span class="line">MAINTAINER jie.yang &lt;&quot;zxf668899@163.com&quot;&gt;</span><br><span class="line"></span><br><span class="line">RUN yum update -y &amp;&amp; \</span><br><span class="line">  yum -y install --setopt=tsflags=nodocs make wget which autoconf unzip gcc gcc-c++ &amp;&amp; \</span><br><span class="line">  wget --no-check-certificate https://github.com/ideawu/ssdb/archive/master.zip &amp;&amp; \</span><br><span class="line">  unzip master.zip &amp;&amp; \</span><br><span class="line">  cd ssdb-master &amp;&amp; \</span><br><span class="line">  make &amp;&amp; make install &amp;&amp; \</span><br><span class="line">  cd .. &amp;&amp; \</span><br><span class="line">  yum -y erase vim-minimal unzip wget tar gcc gcc-c++ make which autoconf &amp;&amp; \</span><br><span class="line">  yum clean all &amp;&amp; \</span><br><span class="line">  rm -rf ssdb-master master.zip /var/lib/yum/* /tmp/* /var/tmp/* &amp;&amp; \</span><br><span class="line">  mkdir /etc/ssdb &amp;&amp; \</span><br><span class="line">  mkdir /etc/ssdb/var &amp;&amp; \</span><br><span class="line">  mv /usr/local/ssdb/ssdb.conf /etc/ssdb/</span><br><span class="line"></span><br><span class="line">EXPOSE 8888</span><br><span class="line">VOLUME [/usr/local/ssdb, /etc/ssdb]</span><br><span class="line">ENTRYPOINT /usr/local/ssdb/ssdb-server /etc/ssdb/ssdb.conf</span><br></pre></td></tr></table></figure>
       
 
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢您的打赏支持！<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -558,7 +537,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenShift</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,6 +546,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pass</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenShift</a>
               </li>
              
               <li class="article-tag-list-item">
