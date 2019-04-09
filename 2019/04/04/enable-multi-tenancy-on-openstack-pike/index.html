@@ -17,9 +17,10 @@
 <meta property="og:description" content="介绍Multi-tenancy 是OpenStack ironic从Ocata版本开始支持的新特性，通过network-generic-switch插件控制交换机，Ironic可以实现在不同租户间机网络隔离，并且可以使得物理机和虚拟机工作在同一个二层中。 硬件环境1.dell r720服务器2.cisco 300交换机3.kolla pike openstack 集群">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/2019/04/04/6d31f490-569f-11e9-b809-87bff9c57f4b.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/04/09/5c81c200-5a97-11e9-a822-115ea157c259.png">
 <meta property="og:image" content="http://yoursite.com/images/2019/03/29/50fc8520-51f3-11e9-abd3-a1274d146bd2.png">
 <meta property="og:image" content="http://yoursite.com/images/2019/04/04/90211d80-56a6-11e9-b809-87bff9c57f4b.png">
-<meta property="og:updated_time" content="2019-04-04T06:55:39.363Z">
+<meta property="og:updated_time" content="2019-04-09T07:17:19.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="enable multi-tenancy on openstack pike">
 <meta name="twitter:description" content="介绍Multi-tenancy 是OpenStack ironic从Ocata版本开始支持的新特性，通过network-generic-switch插件控制交换机，Ironic可以实现在不同租户间机网络隔离，并且可以使得物理机和虚拟机工作在同一个二层中。 硬件环境1.dell r720服务器2.cisco 300交换机3.kolla pike openstack 集群">
@@ -193,7 +194,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-enable-multi-tenancy-on-openstack-pike" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-enable-multi-tenancy-on-openstack-pike" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -225,7 +226,7 @@
 <li><code>Management</code>线路：OpenStack API 控制线路(eht0)<br>注意：eth0线路要和IPMI带外线路在一个二层交换上，并且eth0拥有一个访问IPMI的IP身份，或者控制节点上单独有一个网卡走这条线路也可以，根据你的成本决定。</li>
 <li><code>External Network</code>线路：南向业务网线路(br-ex对应eth1)<br>注意：这条线路走的是Ironic python agent、TFTP client、ISCSI server服务，用来远程让控制节点做系统用，这样做的缺点是给裸金硬盘做系统时，会影响业务网路带宽。</li>
 </ul>
-<p>注意：需要根据自己的硬件线路环境设置适合自己<code>裸金部署业务的网络</code>走法，降低给裸机做系统是对业务或管理网络的影响。</p>
+<p>注意：需要根据自己的硬件线路环境设置适合自己<code>裸金部署业务的网络</code>走法，降低给裸机做系统是对业务或管理网络的影响。<br><img src="/images/2019/04/09/5c81c200-5a97-11e9-a822-115ea157c259.png" alt="image.png"></p>
 <h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ul>
 <li><p>配置网络基础链路(<code>桥</code>-<code>网卡</code> 对应关系在这里)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@control1 ~]# cat /etc/kolla/neutron-server/ml2_conf.ini|grep network_vlan_ranges </span><br><span class="line">network_vlan_ranges = physnet_vlan:100:1000</span><br></pre></td></tr></table></figure>
@@ -240,6 +241,10 @@
 <h2 id="注册裸机-支持multi-tenancy-的节点"><a href="#注册裸机-支持multi-tenancy-的节点" class="headerlink" title="注册裸机(支持multi-tenancy)的节点"></a>注册裸机(支持<code>multi-tenancy</code>)的节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># ironic node-create -d pxe_ipmitool -n 197test --network-interface neutron</span><br><span class="line">注意：重点就在参数--network-interface</span><br><span class="line">NODE_UUID=ironic node-list|grep 197test|awk &apos;&#123;print $2&#125;&apos;</span><br></pre></td></tr></table></figure>
 <h2 id="参考Redhat的网路图："><a href="#参考Redhat的网路图：" class="headerlink" title="参考Redhat的网路图："></a>参考Redhat的网路图：</h2><p><img src="/images/2019/03/29/50fc8520-51f3-11e9-abd3-a1274d146bd2.png" alt="image.png"></p>
 <h2 id="Ironic的创建流程、代码调用流程："><a href="#Ironic的创建流程、代码调用流程：" class="headerlink" title="Ironic的创建流程、代码调用流程："></a>Ironic的创建流程、代码调用流程：</h2><p><img src="/images/2019/04/04/90211d80-56a6-11e9-b809-87bff9c57f4b.png" alt="image.png"></p>
+<p>##ibmc_driver</p>
+<blockquote>
+<p><a href="https://docs.openstack.org/ironic/latest/_images/ironic_standalone_with_ibmc_driver.svg" target="_blank" rel="noopener">https://docs.openstack.org/ironic/latest/_images/ironic_standalone_with_ibmc_driver.svg</a></p>
+</blockquote>
 
       
 
