@@ -6,27 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>本地USB重镜像到KVM虚拟机方式 | 寂而常乐</title>
+  <title>凉菜调料汁集锦 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、参考资料spice：https://www.spice-space.org/usbredir.html virt-viewer：https://releases.pagure.org/virt-viewer/ 注意：virt-viewer6.0才支持UsbDk驱动实现重定向，推荐UsbDK_1.0.19 二、实现思路1.给虚拟机添加USB设备定义 2.基于spice通讯协议完成本地usb d">
-<meta name="keywords" content="OpenStack,KVM,Libvirt,USB">
+  <meta name="description" content="调料汁做凉菜，主要是看调料汁做的怎样，调料汁的好坏，决定一道凉菜是否很美味，出彩！   1．盐味汁：以精盐、味精、香油加适量鲜汤调和而成，为白色成鲜味。适用拌食鸡肉、虾肉、蔬菜、豆类等，如盐味鸡脯、盐味虾、盐味蚕豆、盐味莴笋等。   2．酱油汁：以酱油、味精、香油、鲜汤调和制成，如红黑色咸鲜味。用于拌食或蘸食肉类主料，如：酱油鸡、酱油肉等。">
+<meta name="keywords" content="cate美食">
 <meta property="og:type" content="article">
-<meta property="og:title" content="本地USB重镜像到KVM虚拟机方式">
-<meta property="og:url" content="http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/index.html">
+<meta property="og:title" content="凉菜调料汁集锦">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/凉菜调料汁集锦/index.html">
 <meta property="og:site_name" content="寂而常乐">
-<meta property="og:description" content="一、参考资料spice：https://www.spice-space.org/usbredir.html virt-viewer：https://releases.pagure.org/virt-viewer/ 注意：virt-viewer6.0才支持UsbDk驱动实现重定向，推荐UsbDK_1.0.19 二、实现思路1.给虚拟机添加USB设备定义 2.基于spice通讯协议完成本地usb d">
+<meta property="og:description" content="调料汁做凉菜，主要是看调料汁做的怎样，调料汁的好坏，决定一道凉菜是否很美味，出彩！   1．盐味汁：以精盐、味精、香油加适量鲜汤调和而成，为白色成鲜味。适用拌食鸡肉、虾肉、蔬菜、豆类等，如盐味鸡脯、盐味虾、盐味蚕豆、盐味莴笋等。   2．酱油汁：以酱油、味精、香油、鲜汤调和制成，如红黑色咸鲜味。用于拌食或蘸食肉类主料，如：酱油鸡、酱油肉等。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/img/daniel-korpai-1302050-unsplash.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/1.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/2.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/7.png">
-<meta property="og:image" content="http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/3.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/6.jpg">
-<meta property="og:updated_time" content="2019-03-21T07:13:50.278Z">
+<meta property="og:image" content="http://yoursite.com/images/2019/04/09/68f1ccd0-5a63-11e9-acb6-4990e535bd0b.png">
+<meta property="og:updated_time" content="2019-04-09T01:09:22.026Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="本地USB重镜像到KVM虚拟机方式">
-<meta name="twitter:description" content="一、参考资料spice：https://www.spice-space.org/usbredir.html virt-viewer：https://releases.pagure.org/virt-viewer/ 注意：virt-viewer6.0才支持UsbDk驱动实现重定向，推荐UsbDK_1.0.19 二、实现思路1.给虚拟机添加USB设备定义 2.基于spice通讯协议完成本地usb d">
-<meta name="twitter:image" content="http://yoursite.com/img/daniel-korpai-1302050-unsplash.jpg">
+<meta name="twitter:title" content="凉菜调料汁集锦">
+<meta name="twitter:description" content="调料汁做凉菜，主要是看调料汁做的怎样，调料汁的好坏，决定一道凉菜是否很美味，出彩！   1．盐味汁：以精盐、味精、香油加适量鲜汤调和而成，为白色成鲜味。适用拌食鸡肉、虾肉、蔬菜、豆类等，如盐味鸡脯、盐味虾、盐味蚕豆、盐味莴笋等。   2．酱油汁：以酱油、味精、香油、鲜汤调和制成，如红黑色咸鲜味。用于拌食或蘸食肉类主料，如：酱油鸡、酱油肉等。">
+<meta name="twitter:image" content="http://yoursite.com/images/2019/04/09/68f1ccd0-5a63-11e9-acb6-4990e535bd0b.png">
   
     <link rel="alternative" href="/atom.xml" title="寂而常乐" type="application/atom+xml">
   
@@ -196,80 +191,108 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-本地USB重镜像到KVM虚拟机方式" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-凉菜调料汁集锦" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      本地USB重镜像到KVM虚拟机方式
+      凉菜调料汁集锦
     </h1>
   
 
         
-        <a href="/2017/03/21/本地USB重镜像到KVM虚拟机方式/" class="archive-article-date">
-  	<time datetime="2017-03-21T01:56:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-21</time>
+        <a href="/2019/04/09/凉菜调料汁集锦/" class="archive-article-date">
+  	<time datetime="2019-04-09T01:05:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
 </a>
         
 
         <!-- 目录内容 -->
-        
-            <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-                  <span class="btn-bg"></span>
-                  <span class="btn-text">文章导航</span>
-                  </p>
-          <div id="toc-article" class="toc-article">
-              <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-            <strong class="toc-title">文章目录</strong>
-                   <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、参考资料"><span class="toc-number">1.</span> <span class="toc-text">一、参考资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、实现思路"><span class="toc-number">2.</span> <span class="toc-text">二、实现思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、测试环境"><span class="toc-number">3.</span> <span class="toc-text">三、测试环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、KVM-GUI增加虚拟机USB方法"><span class="toc-number">4.</span> <span class="toc-text">四、KVM GUI增加虚拟机USB方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、SHELL-CLI增加虚拟机USB方法"><span class="toc-number">5.</span> <span class="toc-text">五、SHELL CLI增加虚拟机USB方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中"><span class="toc-number">6.</span> <span class="toc-text">六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中</span></a></li></ol>
-                 </div>
-           <script type="text/javascript">
-          function showToc(){
-            var toc_article = document.getElementById("toc-article");
-            var show_toc_btn = document.getElementById("show-toc-btn");
-            toc_article.setAttribute("style","display:block");
-            show_toc_btn.setAttribute("style","display:none");
-            };
-          function showBtn(){
-            var toc_article = document.getElementById("toc-article");
-            var show_toc_btn = document.getElementById("show-toc-btn");
-            toc_article.setAttribute("style","display:none");
-            show_toc_btn.setAttribute("style","display:block");
-            };
-           </script>
-                 
+           
         <!-- 目录内容结束 -->
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/daniel-korpai-1302050-unsplash.jpg" alt></p>
-<h3 id="一、参考资料"><a href="#一、参考资料" class="headerlink" title="一、参考资料"></a>一、参考资料</h3><pre><code>spice：https://www.spice-space.org/usbredir.html
-virt-viewer：https://releases.pagure.org/virt-viewer/
-注意：virt-viewer6.0才支持UsbDk驱动实现重定向，推荐UsbDK_1.0.19
-</code></pre><h3 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h3><pre><code>1.给虚拟机添加USB设备定义
-2.基于spice通讯协议完成本地usb device的远程镜像链接
-注意：此方法仅限于以KVM为虚拟机化方案的场景。
-</code></pre><a id="more"></a>
-<h3 id="三、测试环境"><a href="#三、测试环境" class="headerlink" title="三、测试环境"></a>三、测试环境</h3><pre><code>1.Centos 7
-2.Openstack 
-3.KVM
-4.Windows 7-64
-5.virt-viewer6
-</code></pre><h3 id="四、KVM-GUI增加虚拟机USB方法"><a href="#四、KVM-GUI增加虚拟机USB方法" class="headerlink" title="四、KVM GUI增加虚拟机USB方法"></a>四、KVM GUI增加虚拟机USB方法</h3><blockquote>
-<p>1.给虚拟机添加USB设备定义<br>    <img src="1.jpg" alt="可添加USB的驱动"><br>    <img src="2.jpg" alt="添加后的USB"><br><br><br>2.给虚拟机添加USB转发器<br>    <img src="7.png" alt="添加USB转发器"><br><br><br>3.登录虚拟机可以看到多出来的USB接口<br>    <img src="3.jpg" alt="虚拟机内部USB"></p>
-</blockquote>
-<h3 id="五、SHELL-CLI增加虚拟机USB方法"><a href="#五、SHELL-CLI增加虚拟机USB方法" class="headerlink" title="五、SHELL CLI增加虚拟机USB方法"></a>五、SHELL CLI增加虚拟机USB方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  找出usb设备</span><br><span class="line"># lsusb</span><br><span class="line">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span><br><span class="line">Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br><span class="line">Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br><span class="line">Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br><span class="line">Bus 005 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br><span class="line">Bus 006 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br><span class="line">Bus 006 Device 002: ID 03f0:1027 Hewlett-Packard Virtual keyboard and mouse</span><br><span class="line">Bus 001 Device 002: ID 058f:6387 Alcor Micro Corp. Flash Drive</span><br><span class="line"></span><br><span class="line">  编辑usb描述文件</span><br><span class="line"># vi usb_redir.xml</span><br><span class="line">&lt;hostdev mode=&apos;subsystem&apos; type=&apos;usb&apos; managed=&apos;yes&apos;&gt;</span><br><span class="line">&lt;source&gt;</span><br><span class="line">&lt;vendor id=&apos;0x058f&apos;/&gt;</span><br><span class="line">&lt;product id=&apos;0x6387&apos;/&gt;</span><br><span class="line">&lt;address bus=&apos;1&apos; device=&apos;2&apos;/&gt;</span><br><span class="line">&lt;/source&gt;</span><br><span class="line">&lt;alias name=&apos;hostdev0&apos;/&gt;</span><br><span class="line">&lt;/hostdev&gt;</span><br><span class="line"> </span><br><span class="line">  找出目标虚拟机 </span><br><span class="line"># virsh list --all</span><br><span class="line"> Id    名称                         状态</span><br><span class="line">----------------------------------------------------</span><br><span class="line"> 23    instance-00000058            running</span><br><span class="line"> </span><br><span class="line">  将上面定义的usb设备描述挂载入目标instance-00000058虚拟机中</span><br><span class="line"># attach-device instance-00000058 user_redir.xml</span><br><span class="line"></span><br><span class="line">  查看虚拟机的USB信息</span><br><span class="line"># virsh dumpxml instance-00000058 |grep redir</span><br><span class="line">&lt;redirdev bus=&apos;usb&apos; type=&apos;spicevmc&apos;&gt;</span><br><span class="line">   &lt;alias name=&apos;redir0&apos;/&gt;</span><br><span class="line">&lt;/redirdev&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中"><a href="#六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中" class="headerlink" title="六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中"></a>六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中</h3><pre><code>c:/&gt; remote-viewer.exe --spice-usbredir-auto-redirect-filter=&quot;0x03,-1,-1,-1,0|-1,-1,-1,-1,1&quot; spice://192.168.1.150:5900
-
-c:/&gt; remote-viewer.exe --spice-usbredir-redirect-on-connect=&quot;0x03,-1,-1,-1,0|-1,-1,-1,-1,1&quot; spice://192.168.1.150:5900
-
-注意：过滤器&quot;0x03,-1,-1,-1,0|-1,-1,-1,-1,1&quot;的意义是除了HID设备(鼠键等)都允许连接，而且格式和双引号都是必须的，换单引号都不行，另外，个人测试时on-connect比auto-redirect好用,auto-redirect的话在执行命令前接入的USB是不能成功重定向的，而on-connect可以。
-</code></pre><blockquote>
-<p>要特别注意：在接入USB时，系统的光标必须是在remote-viewer窗口或是在虚拟机中才能成功！<br><img src="6.jpg" alt="虚拟机内部USB"></p>
-</blockquote>
+        <p><img src="/images/2019/04/09/68f1ccd0-5a63-11e9-acb6-4990e535bd0b.png" alt="image.png"></p>
+<h2 id="调料汁"><a href="#调料汁" class="headerlink" title="调料汁"></a>调料汁</h2><p>做凉菜，主要是看调料汁做的怎样，调料汁的好坏，决定一道凉菜是否很美味，出彩！ </p>
+<ul>
+<li><p>1．盐味汁：<br>以精盐、味精、香油加适量鲜汤调和而成，为白色成鲜味。适用拌食鸡肉、虾肉、蔬菜、豆类等，如盐味鸡脯、盐味虾、盐味蚕豆、盐味莴笋等。 </p>
+</li>
+<li><p>2．酱油汁：<br>以酱油、味精、香油、鲜汤调和制成，如红黑色咸鲜味。用于拌食或蘸食肉类主料，如：酱油鸡、酱油肉等。 </p>
+<a id="more"></a></li>
+<li><p>3．虾油汁：<br>用料有虾籽、盐、味精、香油、绍酒、鲜汤。作法是先用香油炸香虾籽后再加调料烧沸，为白色咸鲜味。用以拌食荤素菜皆可，如：虾油冬笋、虾油鸡片。 </p>
+</li>
+<li><p>4．蟹油汁：<br>用料为熟蟹黄、盐、味精、姜末、绍酒、鲜汤。蟹黄先用植物油炸香后加调料烧沸，为桔红色咸鲜味。多用以拌食荤料，如：蟹油鱼片、蟹油鸡脯、蟹油鸭脯等。 </p>
+</li>
+<li><p>5．蚝油汁：<br>用料为蚝油、盐、香油，加鲜汤烧沸，为咖啡色咸鲜味。用以拌食荤料，如：蚝油鸡、蚝油肉片等。 </p>
+</li>
+<li><p>6．韭味汁：<br>用料为腌韭菜花、味精、香油、精盐、鲜汤、腌韭菜花用刀剁成茸，然后加调料鲜汤调和，为绿色咸鲜味。拌食荤素菜肴皆宜，如：韭味里脊、韭味鸡丝、韭菜口条等。 </p>
+</li>
+<li><p>7．麻叶汁：<br>用料为芝麻酱、精盐、味精、香油、蒜泥。将麻酱用香油调稀，加精盐、味精调和均匀，为赭色咸香料。拌食荤素原料均可，如：麻酱拌豆角、麻汁黄瓜、麻汁海参等。 </p>
+</li>
+<li><p>8．椒麻汁：<br>用料为生花椒、生葱、盐、香油、味精、鲜汤，将花椒、生葱同制成细茸，加调料调和均匀，为绿色或咸香味。拌食荤食，如：椒麻鸡片、野鸡片、里脊片等。忌用熟花椒。 </p>
+</li>
+<li><p>9．葱油：<br>用料为生油、葱末、盐、味精。葱末入油后炸香，即成葱油，再同调料拌匀，为白色咸香味。用以拌食禽、蔬、肉类原料，如：葱油鸡、葱油萝卜丝等。 </p>
+</li>
+<li><p>10．糟油：<br>用料为糟汁、盐、味精，调匀后为咖啡色咸香味。用以拌食禽、肉、水产类原料，如：糟油风爪、糟油鱼片、糟油虾等。 </p>
+</li>
+<li><p>11．酒味汁：<br>用料为好白酒、盐、味精、香油、鲜汤。将调料调匀后加入白酒，为白色咸香味，也可加酱油成红色。用以拌食水产品、禽类较宜，如：醉青虾、醉鸡脯，以生虾最有风味。 </p>
+</li>
+<li><p>12．芥末糊：<br>用料为芥末粉、醋、味精、香油、糖。作法用芥末粉加醋、糖、水调和成糊状，静置半小时后再加调料调和，为淡黄色咸香味。用以拌食荤素均宜，如：芥末肚丝。芥末鸡皮苔菜等。 </p>
+</li>
+<li><p>13．咖哩汁：<br>用料为咖哩粉、葱、姜、蒜、辣椒、盐、味精、油。咖哩粉加水调成糊状，用油炸成咖哩浆，加汤调成汁，为黄色咸香味。禽、肉、水产都宜，如：咖哩鸡片、咖哩鱼条等。 </p>
+</li>
+<li><p>14．姜味汁：<br>用料为生姜、盐、味精、油。生姜挤汁，与调料调和，为白色成香味。最宜拌食禽类，如：姜汁鸡块、姜汁鸡脯等。 </p>
+</li>
+</ul>
+<p>15．蒜泥汁：<br>用料为生蒜瓣、盐、味精、麻油、鲜汤。蒜瓣捣烂成泥，加调料、鲜汤调和，为白色。拌食荤素皆宜，如：蒜泥白肉。蒜泥豆角等。 </p>
+<ul>
+<li><p>16．五香汁：<br>用料为五香料、盐、鲜汤、绍酒。作法为鲜汤中加盐、五香料、绍酒，将原料放入汤中，煮熟后捞出冷食。最适宜煮禽内脏类，如：盐水鸭肝等。 </p>
+</li>
+<li><p>17．茶熏味：<br>用料为精盐、味精、香油、茶叶、白糖、木屑等。作法为先将原料放在盐水汁中煮熟，然后在锅内铺上木屑、糖、茶叶，加蓖，将煮熟的原料放蓖上，盖上锅用小火熏，使烟剂凝结原料表面。禽、蛋、鱼类皆可熏制，如；熏鸡脯、五香鱼等。注意锅中不可着旺火。 </p>
+</li>
+<li><p>18．酱醋汁：<br>用料为酱油、醋、香油。调和后为浅红色，为咸酸味型。用以拌菜或炝菜，荤素皆宜，如：炝腰片、炝胗肝等。 </p>
+</li>
+<li><p>19．酱汁：<br>用料为面酱、精盐、白糖、香油。先将面酱炒香，加入糖、盐、清汤、香油后再将原料入锅靠透，为赭色咸甜型。用来酱制菜肴，荤素均宜，如：酱汁茄子、酱汁肉等。 </p>
+</li>
+<li><p>20．糖醋汁：<br>以糖、醋为原料，调和成汁后，拌入主料中，用于拌制蔬菜，如：糖醋萝卜、糖醋番茄等。也可以先将主料炸或煮熟后，再加入糖醋汁炸透，成为滚糖醋汁。多用于荤料，如：糖醋排骨、糖醋鱼片。还可将糖、醋调和人锅，加水烧开，凉后再加入主料浸泡数小时后食用，多用于泡制蔬菜的叶、根、茎、果，如；泡青椒、泡黄瓜、泡萝卜、泡姜芽等。 </p>
+</li>
+<li><ol start="21">
+<li>山楂汁<br>用料为山楂糕、白糖、白醋、桂花酱。将山楂糕打烂成泥后加入调料调和成汁即可。多用于拌制蔬菜果类，如：楂汁马蹄、楂味鲜菱、珊瑚藕。 </li>
+</ol>
+</li>
+<li><p>22．茄味汁<br>用料为番茄酱、白糖、醋，作法是将番茄酱用油炒透后加糖、醋、水调和。多用于拌溜荤菜，如：茄汁鱼条、茄汁大虾、茄汁里脊、茄汁鸡片。 </p>
+</li>
+<li><p>23．红油汁<br>用料为红辣椒油、盐、味精、鲜汤，调和成汁，为红色咸辣味。用以拌食荤素原料，如：红油鸡条、红油鸡、红油笋条、红油里脊等。 </p>
+</li>
+<li><p>24．青椒汁<br>用料为青辣椒、盐、味精、香油、鲜汤。将青椒切剁成茸，加调料调和成汁，为绿色咸辣味。多用于拌食荤食原料，如：椒味里脊、椒味鸡脯、椒味鱼条等。 </p>
+</li>
+<li><p>25．胡椒汁<br>用料为白椒、盐、味精、香油、蒜泥、鲜汤，调和成汁后，多用于炝、拌肉类和水产原料，如：拌鱼丝、鲜辣鱿鱼等。 </p>
+</li>
+<li><p>26．鲜辣汁<br>用料为糖、醋、辣椒、姜、葱、盐、味精、香油。将辣椒、姜、葱切丝炒透，加调料、鲜汤成汁，为咖啡色酸辣味。多用于炝腌蔬菜，如：酸辣白菜、酸辣黄瓜。 </p>
+</li>
+<li><p>27．醋姜汁<br>用料为黄香醋、生姜。将生姜切成末或丝，加醋调和，为咖啡色酸香味。适宜于拌食鱼虾，如：姜末虾、姜末蟹、姜汁肴肉等。 </p>
+</li>
+<li><p>28．三味汁<br>将蒜泥汁、姜味汁、青椒计三味调和而成，为绿色。用以拌食荤素皆宜，如：炝菜心、拌肚仁、三味鸡等，具有独特风味。 </p>
+</li>
+<li><p>29．麻辣汁<br>用料为酱油、醋、糖、盐、味精、辣油、麻油、花椒面、芝麻粉、葱、蒜、姜，将以上原料调和后即可。用以拌食主料，荤素皆宜，如：麻辣鸡条、麻辣黄瓜、麻辣肚、麻辣腰片等。 </p>
+</li>
+<li><p>30．五香味<br>用料为了香、芫荽、花椒、桂皮、陈皮、草果、良姜、山楂、生姜、葱、酱油、盐、绍酒、鲜汤，将以上调料加汤煮沸，再将主料加入煮浸到烂。用于煮制荤原料，如：五香牛肉、五香扒鸡、五香口条等 </p>
+</li>
+<li><p>31.糖油汁<br>用料为白糖、麻油。调后拌食蔬菜，为白色甜香味，如：糖油黄瓜、糖油莴笋等。 </p>
+</li>
+</ul>
+<h2 id="川菜必含"><a href="#川菜必含" class="headerlink" title="川菜必含"></a>川菜必含</h2><p>普通的调料一定要有如下: 生姜、花椒、辣椒酱(生)、豆豉、大葱、蒜头、熟辣椒油等.(最好去大超市购买).夏天了,好多人喜欢吃凉拌菜.川菜里的凉拌菜主要分姜汁凉菜和红油凉菜,红油凉菜却是以熟辣椒油为主要调料,今天我给你说如何制作熟辣椒油: </p>
+<p>料:精练食油 上等干辣椒面 生姜 花椒 </p>
+<p>作法:将油烧热,放入生姜(切片)花椒,将其炸变至深色后捞出不要.将要用的干辣椒面的一半盛在一耐高温广口容器内(大碗也行) ,将上面烧烫的油的三分之一慢慢倒入盛有干辣椒面的容器里 ,然后搅拌一下.等容器里温度降下来后(可以用手摸了),先将另一半干辣椒面放入容器内,再将锅中烧烫的油的二分之一倒入容器内并搅动.等容器里的温度降下来后,把最后的烫油倒入容器内并搅动.这里的量不好讲,以用搪瓷缸子为容器为例,最后的量应该为:油面高出辣椒面5cm许. </p>
+<p>特点: 其味辣而香,其色红又亮.</p>
+<h2 id="芝麻酱两种调法"><a href="#芝麻酱两种调法" class="headerlink" title="芝麻酱两种调法"></a>芝麻酱两种调法</h2><ul>
+<li>1.用油调:用香油稀释芝麻酱.</li>
+<li>2.用水调:用水稀释芝麻酱.<br>注意：油芝麻酱和水芝麻酱按2:1的比例再加入韭菜花和酱豆腐,生抽,虾油,糖,鸡精,味精,料酒还可以点一点啤酒.</li>
+</ul>
 
       
 
@@ -283,19 +306,7 @@ c:/&gt; remote-viewer.exe --spice-usbredir-redirect-on-connect=&quot;0x03,-1,-1,
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">KVM</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Libvirt</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">USB</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cate美食</a>
         		</li>
       		
 		</ul>
@@ -307,7 +318,7 @@ c:/&gt; remote-viewer.exe --spice-usbredir-redirect-on-connect=&quot;0x03,-1,-1,
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
         		</li>
       		
 		</ul>
@@ -362,7 +373,7 @@ c:/&gt; remote-viewer.exe --spice-usbredir-redirect-on-connect=&quot;0x03,-1,-1,
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/09/凉菜调料汁集锦/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -376,18 +387,9 @@ c:/&gt; remote-viewer.exe --spice-usbredir-redirect-on-connect=&quot;0x03,-1,-1,
   
 <nav id="article-nav">
   
-    <a href="/2018/03/28/Nginx反向代理配置/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Nginx反向代理配置
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/06/Hadoop笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">HadoopHA搭建笔记</div>
+    <a href="/2019/04/09/Linux笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -406,19 +408,6 @@ c:/&gt; remote-viewer.exe --spice-usbredir-redirect-on-connect=&quot;0x03,-1,-1,
             </div>
         </div>
         
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、参考资料"><span class="toc-number">1.</span> <span class="toc-text">一、参考资料</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、实现思路"><span class="toc-number">2.</span> <span class="toc-text">二、实现思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、测试环境"><span class="toc-number">3.</span> <span class="toc-text">三、测试环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、KVM-GUI增加虚拟机USB方法"><span class="toc-number">4.</span> <span class="toc-text">四、KVM GUI增加虚拟机USB方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、SHELL-CLI增加虚拟机USB方法"><span class="toc-number">5.</span> <span class="toc-text">五、SHELL CLI增加虚拟机USB方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中"><span class="toc-number">6.</span> <span class="toc-text">六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
         
     </div>
 </aside>
