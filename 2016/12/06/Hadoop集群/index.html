@@ -9,7 +9,7 @@
   <title>Hadoop集群 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="参考链接Hadoop官方：http://hadoop.apache.org/docs/stable/hadoop-project-dist/">
-<meta name="keywords" content="bigdata">
+<meta name="keywords" content="Bigdata">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop集群">
 <meta property="og:url" content="http://yoursite.com/2016/12/06/Hadoop集群/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="参考链接Hadoop官方：http://hadoop.apache.org/docs/stable/hadoop-project-dist/">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/hadoop.jpg">
-<meta property="og:updated_time" content="2019-03-21T07:41:32.502Z">
+<meta property="og:updated_time" content="2019-04-12T01:14:34.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop集群">
 <meta name="twitter:description" content="参考链接Hadoop官方：http://hadoop.apache.org/docs/stable/hadoop-project-dist/">
@@ -191,7 +191,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hadoop集群" class="article article-type-post " itemscope="" itemprop="blogPost">
+            <article id="post-Hadoop集群" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -240,7 +240,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/hadoop.jpg" alt=""></p>
+        <p><img src="/img/hadoop.jpg" alt></p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>Hadoop官方：<a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/" target="_blank" rel="noopener">http://hadoop.apache.org/docs/stable/hadoop-project-dist/</a></p>
 <a id="more"></a>
 <h5 id="一、Hadoop配置文件表"><a href="#一、Hadoop配置文件表" class="headerlink" title="一、Hadoop配置文件表"></a>一、<em>Hadoop配置文件表</em></h5><table>
@@ -407,7 +407,6 @@
 <h5 id="十、MapReduce命令"><a href="#十、MapReduce命令" class="headerlink" title="十、MapReduce命令"></a>十、<strong>MapReduce命令</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># hdfs jar file.jar 执行jar包程序</span><br><span class="line"># # hdfs job -kill job_201005310937_0053  杀死正在执行的jar包程序</span><br><span class="line"># hdfs job -submit &lt;job-file&gt;  提交作业</span><br><span class="line"># hdfs job -status &lt;job-id&gt;   打印map和reduce完成百分比和所有计数器。</span><br><span class="line"># hdfs job -counter &lt;job-id&gt; &lt;group-name&gt; &lt;counter-name&gt;  打印计数器的值。</span><br><span class="line"># hdfs job -kill &lt;job-id&gt;  杀死指定作业。</span><br><span class="line"># hdfs job -events &lt;job-id&gt; &lt;from-event-#&gt; &lt;#-of-events&gt; 打印给定范围内jobtracker接收到的事件细节。</span><br><span class="line"># hdfs job -history [all] &lt;jobOutputDir&gt;     </span><br><span class="line"># hdfs job -history &lt;jobOutputDir&gt; 打印作业的细节、失败及被杀死原因的细节。更多的关于一个作业的细节比如成功的任务，做过的任务尝试等信息可以通过指定[all]选项查看。</span><br><span class="line"># hdfs job -list [all]  显示所有作业。-list只显示将要完成的作业。</span><br><span class="line"># hdfs job -kill -task &lt;task-id&gt;   杀死任务。被杀死的任务不会不利于失败尝试。</span><br><span class="line"># hdfs job -fail -task &lt;task-id&gt;   使任务失败。被失败的任务会对失败尝试不利。</span><br></pre></td></tr></table></figure>
 <h5 id="十一、hdfs系统检查工具fsck"><a href="#十一、hdfs系统检查工具fsck" class="headerlink" title="十一、hdfs系统检查工具fsck"></a>十一、<strong>hdfs系统检查工具fsck</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># hdfs fsck &lt;path&gt; -move           移动受损文件到/lost+found</span><br><span class="line"># hdfs fsck &lt;path&gt; -delete         删除受损文件。</span><br><span class="line"># hdfs fsck &lt;path&gt; -openforwrite   打印出写打开的文件。</span><br><span class="line"># hdfs fsck &lt;path&gt; -files          打印出正被检查的文件。</span><br><span class="line"># hdfs fsck &lt;path&gt; -blocks         打印出块信息报告。</span><br><span class="line"># hdfs fsck &lt;path&gt; -locations      打印出每个块的位置信息。</span><br><span class="line"># hdfs fsck &lt;path&gt; -racks          打印出data-node的网络拓扑结构。</span><br></pre></td></tr></table></figure>
 <h5 id="十二、运行pipies作业"><a href="#十二、运行pipies作业" class="headerlink" title="十二、运行pipies作业"></a>十二、<strong>运行pipies作业</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># hdfs pipes -conf &lt;path&gt;          作业的配置</span><br><span class="line"># hdfs pipes -jobconf &lt;key=value&gt;, &lt;key=value&gt;, ...  增加/覆盖作业的配置项</span><br><span class="line"># hdfs pipes -input &lt;path&gt;         输入目录</span><br><span class="line"># hdfs pipes -output &lt;path&gt;        输出目录</span><br><span class="line"># hdfs pipes -jar &lt;jar file&gt;       Jar文件名</span><br><span class="line"># hdfs pipes -inputformat &lt;class&gt;  InputFormat类</span><br><span class="line"># hdfs pipes -map &lt;class&gt;          Java Map类</span><br><span class="line"># hdfs pipes -partitioner &lt;class&gt;  Java Partitioner</span><br><span class="line"># hdfs pipes -reduce &lt;class&gt;       Java Reduce类</span><br><span class="line"># hdfs pipes -writer &lt;class&gt;       Java RecordWriter</span><br><span class="line"># hdfs pipes -program &lt;executable&gt; 可执行程序的URI</span><br><span class="line"># hdfs pipes -reduces &lt;num&gt;        reduce个数</span><br></pre></td></tr></table></figure>
-
       
 
       
@@ -420,7 +419,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">bigdata</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Bigdata</a>
         		</li>
       		
 		</ul>
@@ -651,15 +650,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ceph</a>
+                <a href="javascript:void(0)" class="js-tag color3">Storage</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">storage</a>
+                <a href="javascript:void(0)" class="js-tag color5">Ceph</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">bigdata</a>
+                <a href="javascript:void(0)" class="js-tag color3">Bigdata</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -675,10 +674,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ironic</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SHELL</a>
               </li>
              
@@ -691,15 +686,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">coding</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">KVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ironic</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,7 +714,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Kolla</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Neutron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">VIP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cate美食</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenShift</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -724,22 +751,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenShift</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">cate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cate美食</a>
               </li>
             
             <div class="clearfix"></div>

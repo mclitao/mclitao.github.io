@@ -189,7 +189,638 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-往生广咒" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-OpenStack-KVM虚拟机密码修改" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/OpenStack-KVM虚拟机密码修改/">OpenStack KVM虚拟机密码修改</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/12/OpenStack-KVM虚拟机密码修改/" class="archive-article-date">
+  	<time datetime="2019-04-12T08:20:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在创建虚拟机时候，通常我们需要让用户填写虚机系统的初始化密码，因为很多人并不习惯使用秘钥方式ssh登录， 设置其用户密码有很多种方式，诸如早期的inject-password，或是借助cloud-init， 甚至L版的 libvirt-set-admin-password 等方式， 本文就来介绍一下这几种方案，以及他们对应的使用场景。</p>
+<h2 id="inject方式"><a href="#inject方式" class="headerlink" title="inject方式"></a>inject方式</h2><blockquote>
+<p>inject-passwd默认是被禁用的，因为他的使用场景受限，目前来看只能支持Qcow2镜像格式,也就是你的后端用了CEPH就不可以了，所以它并不常用。</p>
+</blockquote>
+<ul>
+<li><p><code>Compute节点</code>修改/etc/nova/nova-compute/nova.conf</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>/etc/nova/nova-compute.conf</span><br><span class="line"></span><br><span class="line">[libvirt]</span><br><span class="line">virt_type=kvm</span><br><span class="line">inject_password = true #add</span><br><span class="line">inject_partition = -1  #add</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> systemctl restart nova-compute</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>horizon</code>组件的配置文件，开启设置密码界面</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">OPENSTACK_HYPERVISOR_FEATURES = &#123;</span><br><span class="line">    'can_set_mount_point': False,</span><br><span class="line">    'can_set_password': True,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="cloud-init方式"><a href="#cloud-init方式" class="headerlink" title="cloud-init方式"></a>cloud-init方式</h2><blockquote>
+<p>这种方法依赖OS中安装了cloud-init组件来打个patch<br>diff –git a/cloudinit/config/cc_set_passwords.py b/cloudinit/config/cc_set_passwords.py<br>虚拟机创建时会自动生成一个adminPass密码<br>虚机在通过cloud-init获取元数据时可以使用api-metadata、ConfigDrive等方式，而借助cloud-init方式来初始化虚机密码则必须选择ConfigDrive方式， 因为ConfigDrive方式才会把adminPass字段传递给虚机。</p>
+</blockquote>
+<h2 id="libvirt-set-admin-password方式"><a href="#libvirt-set-admin-password方式" class="headerlink" title="libvirt-set-admin-password方式"></a>libvirt-set-admin-password方式</h2><p>这是L版以后新特性，这种方式的本质是在虚拟机内部安装qemu-guest-agent来接受相关修改密码的指令，当然这种特性对我们各个中间件的版本是有要求的:<br>libvirt              1.2.16+       宿主机<br>python-libvirt       1.2.16+       宿主机<br>qemu-guest-agent     2.3+          虚机内部</p>
+<ul>
+<li>设置image的元数据增加<code>hw_qemu_guest_agent=yes</code><br><img src="/images/2019/04/12/8bd2de70-5cfb-11e9-a176-c97300abe970.png" alt="image.png"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这样创建出来的虚拟机就可以随时修改密码了</span><br><span class="line"><span class="meta">#</span> nova root-password &lt;centos7-demo1&gt;</span><br><span class="line">New password:</span><br><span class="line">Again:</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>libvirt-set-admin-password</code>最大的优势在于他可以在任何时候去修改虚机系统密码，而不像前两种方式， 只能在初始化阶段做，但是对相关依赖组件的版本要求也是硬伤。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li>没有安装qemu quest agent代理<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@control1 ~]# nova get-password demo1 或</span><br><span class="line">[root@control1 ~]# openstack server set  --root-password demo1</span><br><span class="line">New password: </span><br><span class="line">Retype new password:</span><br><span class="line">相当于执行了</span><br><span class="line"> [root@control1 nova-compute]# docker exec -it nova_libvirt bash          </span><br><span class="line">(nova-libvirt)[root@control1 /]# virsh list</span><br><span class="line"> Id    Name                           State</span><br><span class="line">----------------------------------------------------</span><br><span class="line"> 1     instance-000001ec              running</span><br><span class="line">(nova-libvirt)[root@control1 /]# virsh set-user-password  --domain 1 --user root  --password root</span><br><span class="line">error: argument unsupported: QEMU guest agent is not configured（没有安装angent所以不能用）</span><br><span class="line"></span><br><span class="line">==========安装qemu-guest-agent=======</span><br><span class="line"><span class="meta">#</span> yum install -y qemu-guest-agent</span><br><span class="line"><span class="meta">#</span> mkdir /var/log/qemu-agent</span><br><span class="line"><span class="meta">#</span> tee /etc/default/qemu-guest-agent &gt; /dev/null &lt;&lt;EOF</span><br><span class="line">DAEMON_ARGS="--logfile/var/log/qemu-agent/org.qemu.guest_agent.0.log --fsfreeze-hook --verbose"</span><br><span class="line">EOF</span><br><span class="line"><span class="meta">#</span> systemctl restart qemu-guest-agent </span><br><span class="line">注意：libvirt &gt;=1.2.６在nova can_set_password 函数判断了支持该功能的版本号。</span><br><span class="line">=====================================</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">KVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/12/OpenStack-KVM虚拟机密码修改/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Ironic-pxe-ipmitool-socat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/Ironic-pxe-ipmitool-socat/">Ironic pxe_ipmitool_socat</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/12/Ironic-pxe-ipmitool-socat/" class="archive-article-date">
+  	<time datetime="2019-04-12T03:11:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/images/2019/04/12/f1dfe2e0-5cd2-11e9-a176-c97300abe970.png" alt="image.png"></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>使用Kolla Openstack <code>Ocata</code>版本下的ironic组件管理配置裸设备主机，网络使用<code>flat模式</code>。</p>
+<hr>
+<h2 id="云平台网络"><a href="#云平台网络" class="headerlink" title="云平台网络"></a>云平台网络</h2><p>图1：<code>(ironic组件关系与物理网)</code><br><img src="/images/2019/04/12/87cac050-5cd2-11e9-a176-c97300abe970.png" alt="image.png"></p>
+<hr>
+<p>图2：<code>(裸金网络线路)</code><br><img src="/images/2019/04/12/1e411f70-5cd3-11e9-a176-c97300abe970.png" alt="image.png"></p>
+<blockquote>
+<p>注意：可根据你自己的需要选择其他的方式例如<code>Vlan+Trunk</code>方式，我这里使用的是专用的<code>baremetal_provision-subnet</code>网络<br>
+        
+          <a class="article-more-a" href="/2019/04/12/Ironic-pxe-ipmitool-socat/#more">more >></a>
+        
+      
+
+      
+    </p></blockquote></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/12/Ironic-pxe-ipmitool-socat/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-OpenStack-O版本kolla部署对接华为SAN存储" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/OpenStack-O版本kolla部署对接华为SAN存储/">OpenStack O版本kolla部署对接华为SAN存储</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/12/OpenStack-O版本kolla部署对接华为SAN存储/" class="archive-article-date">
+  	<time datetime="2019-04-12T01:13:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>OpenStack 实际生产落地时会大量使用到物理硬件存储来增加系统稳定性，所以这里举个对接华为SAN存储的例子。</p>
+<h2 id="修改globals-yml文件"><a href="#修改globals-yml文件" class="headerlink" title="修改globals.yml文件"></a>修改globals.yml文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># grep enable_multipathd /etc/kolla/globals.yml </span><br><span class="line">enable_multipathd: &quot;yes&quot;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2019/04/12/OpenStack-O版本kolla部署对接华为SAN存储/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Storage</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kolla</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/12/OpenStack-O版本kolla部署对接华为SAN存储/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Centos7下制作OpenStack-kolla-pike版本发布机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/Centos7下制作OpenStack-kolla-pike版本发布机/">Centos7下制作OpenStack-kolla-pike版本发布机</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/12/Centos7下制作OpenStack-kolla-pike版本发布机/" class="archive-article-date">
+  	<time datetime="2019-04-12T01:00:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>我这里用workstation 创建了一个虚拟机，安装centos7.4系统，这台虚拟机上有两张网卡，一张做openstack管理网，一张做为虚拟机的业务网卡。<br>确认环境信息<br>
+        
+          <a class="article-more-a" href="/2019/04/12/Centos7下制作OpenStack-kolla-pike版本发布机/#more">more >></a>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kolla</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/12/Centos7下制作OpenStack-kolla-pike版本发布机/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-openstack-虚拟机使用VIP配置方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/12/openstack-虚拟机使用VIP配置方法/">openstack 虚拟机使用VIP配置方法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/12/openstack-虚拟机使用VIP配置方法/" class="archive-article-date">
+  	<time datetime="2019-04-12T00:43:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="在openstack上的虚拟机绑定vip（keepalived）"><a href="#在openstack上的虚拟机绑定vip（keepalived）" class="headerlink" title="在openstack上的虚拟机绑定vip（keepalived）"></a>在openstack上的虚拟机绑定vip（keepalived）</h1><p><img src="/images/2019/04/12/8aba4120-5cbc-11e9-a176-c97300abe970.png" alt="image.png"></p>
+<p>现在什么都在云上，已经不能像以前那样使用主机了，在这种情况下，客户想在openstack的虚拟机上配置vip搭建高可用集群，下面简单的说下在openstack上的虚拟机如何绑定vip</p>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><ul>
+<li>1、导入环境变量<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> source admin-openrc.sh</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+        
+          <a class="article-more-a" href="/2019/04/12/openstack-虚拟机使用VIP配置方法/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Neutron</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">VIP</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Network</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/12/openstack-虚拟机使用VIP配置方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-云平台网络多线分压设置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/10/云平台网络多线分压设置/">云平台网络多线分压设置</a>
+    </h1>
+  
+
+        
+        <a href="/2019/04/10/云平台网络多线分压设置/" class="archive-article-date">
+  	<time datetime="2019-04-10T07:00:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-10</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/images/2019/04/10/dc33af30-5b65-11e9-a176-c97300abe970.png" alt="image.png"></p>
+<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><ul>
+<li><a href="http://www.cnblogs.com/sammyliu/p/4626419.html" target="_blank" rel="noopener">参考1</a></li>
+<li><a href="https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/8/html/bare_metal_provisioning/install_and_configure_openstack_bare_metal_provisioning_ironic" target="_blank" rel="noopener">参考2</a></li>
+</ul>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>公司云平台业务增多，网络压力变大，需要平均分摊压力，老式的单一线路已经不胜任，现在使用多台业务线路同时在云平台内启用。<br>
+        
+          <a class="article-more-a" href="/2019/04/10/云平台网络多线分压设置/#more">more >></a>
+        
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/04/10/云平台网络多线分压设置/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-往生广咒" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -284,7 +915,7 @@
 
 
   
-    <article id="post-治眼病咒" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-治眼病咒" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -373,7 +1004,7 @@
 
 
   
-    <article id="post-元音上师传治糖尿病方" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-元音上师传治糖尿病方" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -457,7 +1088,7 @@
 
 
   
-    <article id="post-楞严咒心" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-楞严咒心" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -524,613 +1155,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/04/09/楞严咒心/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-凉菜调料汁集锦" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/凉菜调料汁集锦/">凉菜调料汁集锦</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/09/凉菜调料汁集锦/" class="archive-article-date">
-  	<time datetime="2019-04-09T01:05:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/2019/04/09/68f1ccd0-5a63-11e9-acb6-4990e535bd0b.png" alt="image.png"></p>
-<h2 id="调料汁"><a href="#调料汁" class="headerlink" title="调料汁"></a>调料汁</h2><p>做凉菜，主要是看调料汁做的怎样，调料汁的好坏，决定一道凉菜是否很美味，出彩！ </p>
-<ul>
-<li><p>1．盐味汁：<br>以精盐、味精、香油加适量鲜汤调和而成，为白色成鲜味。适用拌食鸡肉、虾肉、蔬菜、豆类等，如盐味鸡脯、盐味虾、盐味蚕豆、盐味莴笋等。 </p>
-</li>
-<li><p>2．酱油汁：<br>以酱油、味精、香油、鲜汤调和制成，如红黑色咸鲜味。用于拌食或蘸食肉类主料，如：酱油鸡、酱油肉等。 </p>
-        
-          <a class="article-more-a" href="/2019/04/09/凉菜调料汁集锦/#more">more >></a>
-        
-      
-
-      
-    </li></ul></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cate美食</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/09/凉菜调料汁集锦/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux笔记" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/Linux笔记/">Linux笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/09/Linux笔记/" class="archive-article-date">
-  	<time datetime="2019-04-09T00:33:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/2019/04/09/1a704150-5a62-11e9-acb6-4990e535bd0b.gif" alt="VI VIM.gif"></p>
-<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>好记性不如烂笔头。</p>
-        
-          <a class="article-more-a" href="/2019/04/09/Linux笔记/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SHELL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/09/Linux笔记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-MAC工具" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/08/MAC工具/">MAC工具</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/08/MAC工具/" class="archive-article-date">
-  	<time datetime="2019-04-08T00:53:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-08</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/2019/04/08/09ffd3e0-5999-11e9-a1af-4392075632bc.png" alt="image.png"></p>
-<h2 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h2><ul>
-<li>brew：<a href="https://brew.sh/" target="_blank" rel="noopener">https://brew.sh/</a></li>
-<li>zsh：<a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="noopener">https://github.com/robbyrussell/oh-my-zsh</a></li>
-<li>iTerm2：<a href="https://www.iterm2.com/" target="_blank" rel="noopener">https://www.iterm2.com/</a></li>
-</ul>
-<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><ul>
-<li>git：<a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></li>
-<li>GitKraken：<a href="https://www.gitkraken.com/" target="_blank" rel="noopener">https://www.gitkraken.com/</a></li>
-<li>jetbrains全家桶：<a href="https://www.jetbrains.com/" target="_blank" rel="noopener">https://www.jetbrains.com/</a>
-        
-          <a class="article-more-a" href="/2019/04/08/MAC工具/#more">more >></a>
-        
-      
-
-      
-    </li></ul></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/08/MAC工具/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Intellj-IDEA-插件-HTTP-Client" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/08/Intellj-IDEA-插件-HTTP-Client/">Intellj IDEA 插件 HTTP Client</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/08/Intellj-IDEA-插件-HTTP-Client/" class="archive-article-date">
-  	<time datetime="2019-04-08T00:29:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-08</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/2019/04/08/01dcba00-5996-11e9-a1af-4392075632bc.png" alt="image.png"></p>
-<h1 id="IntelliJ-IDEA-插件-HTTP-Client"><a href="#IntelliJ-IDEA-插件-HTTP-Client" class="headerlink" title="IntelliJ IDEA 插件 HTTP Client"></a>IntelliJ IDEA 插件 HTTP Client</h1><blockquote>
-<p>原文地址：<a href="https://github.com/corningsun/yuchigong/blob/httpClient/httpClient/README.md" target="_blank" rel="noopener">https://github.com/corningsun/yuchigong/blob/httpClient/httpClient/README.md</a></p>
-</blockquote>
-<h4 id="资料链接"><a href="#资料链接" class="headerlink" title="资料链接"></a>资料链接</h4><table>
-<thead>
-<tr>
-<th>ID</th>
-<th>NAME</th>
-<th>DESCROPTION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>IDEA Plugins</td>
-<td><a href="https://www.jetbrains.com/help/idea/testing-restful-web-services.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/idea/testing-restful-web-services.html</a></td>
-</tr>
-<tr>
-<td>1</td>
-<td>IDEA Code Editor</td>
-<td><a href="https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html</a></td>
-</tr>
-</tbody>
-</table>
-        
-          <a class="article-more-a" href="/2019/04/08/Intellj-IDEA-插件-HTTP-Client/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/08/Intellj-IDEA-插件-HTTP-Client/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-enable-multi-tenancy-on-openstack-pike" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/04/enable-multi-tenancy-on-openstack-pike/">enable multi-tenancy on openstack pike</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/04/enable-multi-tenancy-on-openstack-pike/" class="archive-article-date">
-  	<time datetime="2019-04-04T06:02:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-04</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/2019/04/04/6d31f490-569f-11e9-b809-87bff9c57f4b.png" alt="image.png"></p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Multi-tenancy 是OpenStack ironic从Ocata版本开始支持的新特性，通过network-generic-switch插件控制交换机，Ironic可以实现在不同租户间机网络隔离，并且可以使得物理机和虚拟机工作在同一个二层中。</p>
-<h2 id="硬件环境"><a href="#硬件环境" class="headerlink" title="硬件环境"></a>硬件环境</h2><p>1.dell r720服务器<br>2.cisco 300交换机<br>3.kolla pike openstack 集群<br>
-        
-          <a class="article-more-a" href="/2019/04/04/enable-multi-tenancy-on-openstack-pike/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/04/enable-multi-tenancy-on-openstack-pike/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Ironic-Network" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/04/Ironic-Network/">Ironic Network</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/04/Ironic-Network/" class="archive-article-date">
-  	<time datetime="2019-04-04T03:11:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-04</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/2019/04/04/bdd2ca80-5688-11e9-b809-87bff9c57f4b.png" alt="image.png"></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>随着业务增多，使用虚拟机外还增加了ironic裸金,但实际使用中主要还是根据你的IDC建设选择的各大硬件厂商以及当时的BCWS（计划工程预算成本）成本，决定了用那种方式网络方案，这里总结记录一下。</p>
-<h2 id="三种模式"><a href="#三种模式" class="headerlink" title="三种模式"></a>三种模式</h2>
-        
-          <a class="article-more-a" href="/2019/04/04/Ironic-Network/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/04/Ironic-Network/">展开全文 >></a>
         </p>
       
 
@@ -1257,15 +1281,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ceph</a>
+                <a href="javascript:void(0)" class="js-tag color3">Storage</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">storage</a>
+                <a href="javascript:void(0)" class="js-tag color5">Ceph</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">bigdata</a>
+                <a href="javascript:void(0)" class="js-tag color3">Bigdata</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1281,10 +1305,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ironic</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SHELL</a>
               </li>
              
@@ -1297,15 +1317,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">coding</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">LB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">KVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ironic</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1321,7 +1345,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Kolla</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Neutron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">VIP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">cate美食</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenShift</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1330,22 +1382,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pass</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenShift</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">cate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">cate美食</a>
               </li>
             
             <div class="clearfix"></div>
