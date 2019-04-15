@@ -216,33 +216,14 @@
       
         <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在创建虚拟机时候，通常我们需要让用户填写虚机系统的初始化密码，因为很多人并不习惯使用秘钥方式ssh登录， 设置其用户密码有很多种方式，诸如早期的inject-password，或是借助cloud-init， 甚至L版的 libvirt-set-admin-password 等方式， 本文就来介绍一下这几种方案，以及他们对应的使用场景。</p>
 <h2 id="inject方式"><a href="#inject方式" class="headerlink" title="inject方式"></a>inject方式</h2><blockquote>
-<p>inject-passwd默认是被禁用的，因为他的使用场景受限，目前来看只能支持Qcow2镜像格式,也就是你的后端用了CEPH就不可以了，所以它并不常用。</p>
-</blockquote>
-<ul>
-<li><p><code>Compute节点</code>修改/etc/nova/nova-compute/nova.conf</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>/etc/nova/nova-compute.conf</span><br><span class="line"></span><br><span class="line">[libvirt]</span><br><span class="line">virt_type=kvm</span><br><span class="line">inject_password = true #add</span><br><span class="line">inject_partition = -1  #add</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> systemctl restart nova-compute</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改<code>horizon</code>组件的配置文件，开启设置密码界面</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">OPENSTACK_HYPERVISOR_FEATURES = &#123;</span><br><span class="line">    'can_set_mount_point': False,</span><br><span class="line">    'can_set_password': True,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="cloud-init方式"><a href="#cloud-init方式" class="headerlink" title="cloud-init方式"></a>cloud-init方式</h2><blockquote>
-<p>这种方法依赖OS中安装了cloud-init组件来打个patch<br>diff –git a/cloudinit/config/cc_set_passwords.py b/cloudinit/config/cc_set_passwords.py<br>虚拟机创建时会自动生成一个adminPass密码<br>虚机在通过cloud-init获取元数据时可以使用api-metadata、ConfigDrive等方式，而借助cloud-init方式来初始化虚机密码则必须选择ConfigDrive方式， 因为ConfigDrive方式才会把adminPass字段传递给虚机。</p>
-</blockquote>
-<h2 id="libvirt-set-admin-password方式"><a href="#libvirt-set-admin-password方式" class="headerlink" title="libvirt-set-admin-password方式"></a>libvirt-set-admin-password方式</h2><p>这是L版以后新特性，这种方式的本质是在虚拟机内部安装qemu-guest-agent来接受相关修改密码的指令，当然这种特性对我们各个中间件的版本是有要求的:<br>libvirt              1.2.16+       宿主机<br>python-libvirt       1.2.16+       宿主机<br>qemu-guest-agent     2.3+          虚机内部</p>
-<ul>
-<li>设置image的元数据增加<code>hw_qemu_guest_agent=yes</code><br><img src="/images/2019/04/12/8bd2de70-5cfb-11e9-a176-c97300abe970.png" alt="image.png"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这样创建出来的虚拟机就可以随时修改密码了</span><br><span class="line"><span class="meta">#</span> nova root-password &lt;centos7-demo1&gt;</span><br><span class="line">New password:</span><br><span class="line">Again:</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>libvirt-set-admin-password</code>最大的优势在于他可以在任何时候去修改虚机系统密码，而不像前两种方式， 只能在初始化阶段做，但是对相关依赖组件的版本要求也是硬伤。</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
-<li>没有安装qemu quest agent代理<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@control1 ~]# nova get-password demo1 或</span><br><span class="line">[root@control1 ~]# openstack server set  --root-password demo1</span><br><span class="line">New password: </span><br><span class="line">Retype new password:</span><br><span class="line">相当于执行了</span><br><span class="line"> [root@control1 nova-compute]# docker exec -it nova_libvirt bash          </span><br><span class="line">(nova-libvirt)[root@control1 /]# virsh list</span><br><span class="line"> Id    Name                           State</span><br><span class="line">----------------------------------------------------</span><br><span class="line"> 1     instance-000001ec              running</span><br><span class="line">(nova-libvirt)[root@control1 /]# virsh set-user-password  --domain 1 --user root  --password root</span><br><span class="line">error: argument unsupported: QEMU guest agent is not configured（没有安装angent所以不能用）</span><br><span class="line"></span><br><span class="line">==========安装qemu-guest-agent=======</span><br><span class="line"><span class="meta">#</span> yum install -y qemu-guest-agent</span><br><span class="line"><span class="meta">#</span> mkdir /var/log/qemu-agent</span><br><span class="line"><span class="meta">#</span> tee /etc/default/qemu-guest-agent &gt; /dev/null &lt;&lt;EOF</span><br><span class="line">DAEMON_ARGS="--logfile/var/log/qemu-agent/org.qemu.guest_agent.0.log --fsfreeze-hook --verbose"</span><br><span class="line">EOF</span><br><span class="line"><span class="meta">#</span> systemctl restart qemu-guest-agent </span><br><span class="line">注意：libvirt &gt;=1.2.６在nova can_set_password 函数判断了支持该功能的版本号。</span><br><span class="line">=====================================</span><br></pre></td></tr></table></figure></li>
-</ul>
-
+<p>inject-passwd默认是被禁用的，因为他的使用场景受限，目前来看只能支持Qcow2镜像格式,也就是你的后端用了CEPH就不可以了，所以它并不常用。<br>
+        
+          <a class="article-more-a" href="/2019/04/12/OpenStack-KVM虚拟机密码修改/#more">more >></a>
+        
       
 
       
-    </div>
+    </p></blockquote></div>
     <div class="article-info article-info-index">
       
       

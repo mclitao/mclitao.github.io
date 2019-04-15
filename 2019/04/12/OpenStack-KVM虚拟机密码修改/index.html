@@ -17,7 +17,7 @@
 <meta property="og:description" content="介绍在创建虚拟机时候，通常我们需要让用户填写虚机系统的初始化密码，因为很多人并不习惯使用秘钥方式ssh登录， 设置其用户密码有很多种方式，诸如早期的inject-password，或是借助cloud-init， 甚至L版的 libvirt-set-admin-password 等方式， 本文就来介绍一下这几种方案，以及他们对应的使用场景。 inject方式 inject-passwd默认是被禁用的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/2019/04/12/8bd2de70-5cfb-11e9-a176-c97300abe970.png">
-<meta property="og:updated_time" content="2019-04-12T08:41:00.725Z">
+<meta property="og:updated_time" content="2019-04-12T09:10:51.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack KVM虚拟机密码修改">
 <meta name="twitter:description" content="介绍在创建虚拟机时候，通常我们需要让用户填写虚机系统的初始化密码，因为很多人并不习惯使用秘钥方式ssh登录， 设置其用户密码有很多种方式，诸如早期的inject-password，或是借助cloud-init， 甚至L版的 libvirt-set-admin-password 等方式， 本文就来介绍一下这几种方案，以及他们对应的使用场景。 inject方式 inject-passwd默认是被禁用的">
@@ -218,7 +218,7 @@
       
         <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在创建虚拟机时候，通常我们需要让用户填写虚机系统的初始化密码，因为很多人并不习惯使用秘钥方式ssh登录， 设置其用户密码有很多种方式，诸如早期的inject-password，或是借助cloud-init， 甚至L版的 libvirt-set-admin-password 等方式， 本文就来介绍一下这几种方案，以及他们对应的使用场景。</p>
 <h2 id="inject方式"><a href="#inject方式" class="headerlink" title="inject方式"></a>inject方式</h2><blockquote>
-<p>inject-passwd默认是被禁用的，因为他的使用场景受限，目前来看只能支持Qcow2镜像格式,也就是你的后端用了CEPH就不可以了，所以它并不常用。</p>
+<p>inject-passwd默认是被禁用的，因为他的使用场景受限，目前来看只能支持Qcow2镜像格式,也就是你的后端用了CEPH就不可以了，所以它并不常用。<br><a id="more"></a></p>
 </blockquote>
 <ul>
 <li><p><code>Compute节点</code>修改/etc/nova/nova-compute/nova.conf</p>
