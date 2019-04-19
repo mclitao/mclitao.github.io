@@ -189,6 +189,327 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Openshift-CLI笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/06/Openshift-CLI笔记/">Openshift CLI笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/06/Openshift-CLI笔记/" class="archive-article-date">
+  	<time datetime="2018-09-06T09:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-06</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/img/photo-1528732263440-4dd1a18a4cc2.webp" alt></p>
+<blockquote>
+<p>版本：OpenShift Origin v3.9<br>官方手册(<a href="https://docs.openshift.com/container-platform/3.9/welcome/index.html" target="_blank" rel="noopener">https://docs.openshift.com/container-platform/3.9/welcome/index.html</a>)<br>说明：本手册包含，项目、权限、资源分配、等运维备份命令，用来速查CLI的。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2018/09/06/Openshift-CLI笔记/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenShift</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">pass</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/06/Openshift-CLI笔记/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Skopeo-docker-registry复制迁移工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/04/Skopeo-docker-registry复制迁移工具/">Skopeo docker registry复制迁移工具</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/04/Skopeo-docker-registry复制迁移工具/" class="archive-article-date">
+  	<time datetime="2018-06-04T00:12:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Skopeo"><a href="#Skopeo" class="headerlink" title="Skopeo"></a>Skopeo<a href="https://travis-ci.org/containers/skopeo" target="_blank" rel="noopener"><img src="https://travis-ci.org/containers/skopeo.svg?branch=master" alt="Build Status"></a></h1><h2 id="Skopeo的使用"><a href="#Skopeo的使用" class="headerlink" title="Skopeo的使用"></a>Skopeo的使用</h2><blockquote>
+<p>来自<a href="https://github.com/containers/skopeo" target="_blank" rel="noopener">skope</a></p>
+</blockquote>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li><p><strong>Skopeo用途</strong></p>
+<ul>
+<li>在没有要docker守护服务时就可以复制 A仓库：镜像 到 B:仓库：镜像</li>
+</ul>
+</li>
+<li><p><strong>Skopeod的相关资料</strong></p>
+<ul>
+<li><a href="https://rhelblog.redhat.com/2017/05/11/skopeo-copy-to-the-rescue/" target="_blank" rel="noopener">https://rhelblog.redhat.com/2017/05/11/skopeo-copy-to-the-rescue/</a></li>
+</ul>
+</li>
+<li><p><strong>安装Skopeo</strong></p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#这里的所有命令在debian 8.6的环节上运行通过</span><br><span class="line">#编译安装skopeo</span><br><span class="line">$ git clone https://github.com/projectatomic/skopeo $GOPATH/src/github.com/projectatomic/skopeo</span><br><span class="line">$ sudo apt-get install libgpgme11-dev libdevmapper-dev btrfs-tools go-md2man</span><br><span class="line">$ cd $GOPATH/src/github.com/projectatomic/skopeo </span><br><span class="line">$ make binary-local</span><br><span class="line">$ sudo make install</span><br><span class="line"></span><br><span class="line">#下载hello-world的image</span><br><span class="line">$ skopeo copy docker://hello-world oci:hello-world</span><br><span class="line">$ tree hello-world/</span><br><span class="line">hello-world/</span><br><span class="line">├── blobs</span><br><span class="line">│   └── sha256</span><br><span class="line">│       ├── 636fcf0bc8246e08d2df4771dc764d35ea50428b8dfaa904773b0707cb4f6303</span><br><span class="line">│       ├── 7520415ce76232cdd62ecc345cea5ea44f5b6b144dc62351f2cd2b08382532a3</span><br><span class="line">│       └── 9b8e3ce88f3a2aaa478cfe613632f38d27be5eddaa002a719fa1bfa9ff4f7f63</span><br><span class="line">├── oci-layout</span><br><span class="line">└── refs</span><br><span class="line">    └── latest</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Skopeo CLI</strong><ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  复制以镜像仓库A中的镜像 到仓库B中,不需要docker守护进程的存在</span><br><span class="line"># skopeo copy dockerA://internal.registry/myimage:latest  dockerB://production.registry/myimage:v1.0</span><br><span class="line">    </span><br><span class="line">  仓库带账户密码凭证的</span><br><span class="line"># skopeo copy --dest-creds prod_user:prod_pass /</span><br><span class="line">        dockerA://internal.registry/myimage:latest /</span><br><span class="line">        dockerB://production.registry/myimage:v1.0</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/04/Skopeo-docker-registry复制迁移工具/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Linux-Screen" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/03/Linux-Screen/">Linux Screen</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/03/Linux-Screen/" class="archive-article-date">
+  	<time datetime="2018-05-03T03:47:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-03</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/images/2019/04/03/c449def0-55c3-11e9-9ca6-a9dd1015b60b.png" alt="image.png"></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>GNU Screen是一款由GNU计划开发的用于命令行终端切换的自由软件。用户可以通过该软件同时连接多个本地或远程的命令行会话，并在其间自由切换。</p>
+<p>GNU Screen可以看作是窗口管理器的命令行界面版本。它提供了统一的管理多个会话的界面和相应的功能。</p>
+        
+          <a class="article-more-a" href="/2018/05/03/Linux-Screen/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SHELL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/03/Linux-Screen/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Elasticsearch-索引删除" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -447,6 +768,10 @@ virt-viewer：https://releases.pagure.org/virt-viewer/
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">USB</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -540,6 +865,10 @@ virt-viewer：https://releases.pagure.org/virt-viewer/
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Bigdata</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -632,6 +961,10 @@ virt-viewer：https://releases.pagure.org/virt-viewer/
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Bigdata</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
         		</li>
       		
 		</ul>
@@ -757,6 +1090,10 @@ virt-viewer：https://releases.pagure.org/virt-viewer/
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
         		</li>
       		
 		</ul>
@@ -1133,6 +1470,10 @@ virt-viewer：https://releases.pagure.org/virt-viewer/
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -1182,224 +1523,9 @@ virt-viewer：https://releases.pagure.org/virt-viewer/
 
 
   
-    <article id="post-Nodejs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/06/Nodejs/">Nodejs笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/06/Nodejs/" class="archive-article-date">
-  	<time datetime="2016-03-06T02:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-06</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/img/nodejs.jpg" alt></p>
-<h3 id="一、NPM仓库加速-天朝必会技能"><a href="#一、NPM仓库加速-天朝必会技能" class="headerlink" title="一、NPM仓库加速(天朝必会技能)"></a>一、NPM仓库加速(天朝必会技能)</h3>
-        
-          <a class="article-more-a" href="/2016/03/06/Nodejs/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">coding</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/06/Nodejs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DockerFile模板" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/03/DockerFile模板/">DockerFile模板</a>
-    </h1>
-  
-
-        
-        <a href="/2016/02/03/DockerFile模板/" class="archive-article-date">
-  	<time datetime="2016-02-03T00:19:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-03</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="模板标准"><a href="#模板标准" class="headerlink" title="模板标准"></a>模板标准</h2><ul>
-<li>INSTRUCTION argument指令不区分大小写。但是，命名约定为全部大写<br>所有Dockerfile都必须以FROM命令开始。 FROM命令会指定镜像基于哪个基础镜像创建，接下来的命令也会基于这个基础镜像。</li>
-<li>FROM命令可以多次使用，表示会创建多个镜像。具体语法如下：</li>
-<li>FROM <image name></image></li>
-<li>FROM centos   基于centos这个镜像来构建</li>
-<li>MAINTAINER <author name>  镜像作者</author></li>
-<li>RUN 《command》</li>
-<li>ADD：复制文件指令。它有两个参数<source>和<destination>。destination是容器内的路径。source可以是URL或者是启动配置上下文中的一个文件</destination></li>
-<li>ADD <src> <destiantion></destiantion></src></li>
-<li>CMD：提供了容器默认的执行命令。 Dockerfile只允许使用一次CMD指令。 使用多个CMD会抵消之前所有的指令，只有最后一个指令生效。 CMD有三种形式：</li>
-<li>CMD [“executable”,”param1”,”param2”]</li>
-<li>CMD [“param1”,”param2”]</li>
-<li>CMD command param1 param2</li>
-<li>EXPOSE：指定容器在运行时监听的端口</li>
-<li>EXPOSE <port></port></li>
-<li>ENTRYPOINT：配置给容器一个可执行的命令，这意味着在每次使用镜像创建容器时一个特定的应用程序可以被设置为默认程序。同时也意味着该镜像每次被调用时仅能运行指定的应用。类似于CMD，Docker只允许一个ENTRYPOINT，多个ENTRYPOINT会抵消之前所有的指令，只执行最后的ENTRYPOINT指令。语法如下：</li>
-<li>ENTRYPOINT [“executable”,”param1”,”param2”]</li>
-<li>ENTRYPOINT command param1 param2</li>
-<li>WORKDIR：指定RUN、CMD与ENTRYPOINT命令的工作目录</li>
-<li>WORKDIR /path/to/workdir</li>
-<li>ENV 设置环境变量，它们使用键值对，增加运行程序的灵活性</li>
-<li>ENV <key> <value></value></key></li>
-<li>USER :镜像运行时设置一个UID</li>
-<li>USER <uid></uid></li>
-<li>VOLUME : 授权访问从容器内到主机上的目录</li>
-<li>VOLUME [‘/data’]</li>
-</ul>
-<h3 id="Dockerfile创建支持ssh服务自启动的容器镜像"><a href="#Dockerfile创建支持ssh服务自启动的容器镜像" class="headerlink" title="Dockerfile创建支持ssh服务自启动的容器镜像"></a>Dockerfile创建支持ssh服务自启动的容器镜像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">[root@docker]# vim /etc/docker/Dockerfile</span><br><span class="line">[root@docker docker]# cat Dockerfile </span><br><span class="line">#选择一个镜像作为基础</span><br><span class="line">FROM docker.io/centos:6</span><br><span class="line">#作者信息</span><br><span class="line">MAINTAINER jie Yang &quot;jie@163.com&quot;</span><br><span class="line">#安装的软件包 </span><br><span class="line">RUN yum install -y openssh-server sudo</span><br><span class="line">#Centos7.2无需此项：</span><br><span class="line">#RUN sed -i &apos;s/UsePAM yes/UsePAM no/g&apos; /etc/ssh/sshd_config</span><br><span class="line">#添加用户并设置sudo</span><br><span class="line"></span><br><span class="line">RUN echo &quot;123456&quot; |passwd --stdin root</span><br><span class="line">RUN mkdir -p /root/.ssh &amp;&amp; chown root.root /root &amp;&amp; chmod 700 /root/.ssh</span><br><span class="line">RUN useradd admin</span><br><span class="line">RUN echo &quot;admin:admin&quot; | chpasswd</span><br><span class="line">RUN echo &quot;admin   ALL=(ALL)       ALL&quot; &gt;&gt; /etc/sudoers</span><br><span class="line">#centos6必须有，否则无法登录 </span><br><span class="line">RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key</span><br><span class="line">RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key</span><br><span class="line">#Centos7：</span><br><span class="line">RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key</span><br><span class="line">RUN ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key</span><br><span class="line"></span><br><span class="line">#ADD authorized_keys /root/.ssh/authorized_keys</span><br><span class="line">#ADD run.sh /run.sh</span><br><span class="line">#RUN chmod 755 /run.sh</span><br><span class="line"></span><br><span class="line">#创建锁文件</span><br><span class="line">RUN mkdir /var/run/sshd</span><br><span class="line">#指定端口</span><br><span class="line">EXPOSE 22</span><br><span class="line">#启动sshd</span><br><span class="line">CMD [&quot;/usr/sbin/sshd&quot;, &quot;-D&quot;]</span><br><span class="line">#CMD [&quot;/run.sh&quot;]</span><br><span class="line">############################################</span><br><span class="line"># cat run.sh</span><br><span class="line">#!/bin/bash</span><br><span class="line">/usr/sbin/sshd -D</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">启动httpd:</span><br><span class="line">CMD [&quot;/usr/sbin/apachectl&quot;,&quot;-D&quot;,&quot;FOREGROUND&quot;]</span><br></pre></td></tr></table></figure>
-<h2 id="Redis-demo"><a href="#Redis-demo" class="headerlink" title="Redis demo"></a>Redis demo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">FROM centos:7</span><br><span class="line">MAINTAINER Jay.yang &lt;zxf668899@163.com&gt;</span><br><span class="line">RUN yum -y install gcc gcc-c++ make wget \</span><br><span class="line"> 	&amp;&amp; cd /opt \</span><br><span class="line"> 	&amp;&amp; curl http://download.redis.io/releases/redis-3.0.3.tar.gz|tar zx \</span><br><span class="line">         &amp;&amp; wget https://github.com/zxf668899/PHP-Nginx/blob/master/NoSql/redis.conf \</span><br><span class="line">         &amp;&amp; cd redis-3.0.3 &amp;&amp; make &amp;&amp; make install \</span><br><span class="line">         &amp;&amp; mkdir -p /usr/local/redis/etc \</span><br><span class="line"> 	&amp;&amp; mv /opt/redis.conf /usr/local/redis/etc \</span><br><span class="line"> 	&amp;&amp; yum -y remove gcc make wget \</span><br><span class="line">         &amp;&amp; yum clean all \</span><br><span class="line">         &amp;&amp; rm -rf /tmp/* /opt/* /var/cache/&#123;yum,ldconfig&#125;</span><br><span class="line"> </span><br><span class="line">EXPOSE 6379</span><br><span class="line">CMD [&quot;/usr/local/bin/redis-server&quot;,&quot;/usr/local/redis/etc/redis.conf&quot;]</span><br></pre></td></tr></table></figure>
-<h2 id="PHP-amp-Nginx"><a href="#PHP-amp-Nginx" class="headerlink" title="PHP &amp; Nginx"></a>PHP &amp; Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">FROM centos:7.2</span><br><span class="line">MAINTAINER allone</span><br><span class="line"></span><br><span class="line">RUN yum -y install \</span><br><span class="line">        apr-devel apr-util-devel cmake \</span><br><span class="line">        gcc gcc-c++ GeoIP GeoIP-devel libtool \</span><br><span class="line">        perl-devel perl-ExtUtils-Embed make \</span><br><span class="line">        wget \</span><br><span class="line">        &amp;&amp; cd /opt \</span><br><span class="line">        &amp;&amp; wget http://10.2.229.10/Nginx-PHP7-SourcePackage.tar.gz \</span><br><span class="line">        &amp;&amp; tar zxf Nginx-PHP7-SourcePackage.tar.gz \</span><br><span class="line">        &amp;&amp; cd Nginx-PHP7-SourcePackage \</span><br><span class="line">        &amp;&amp; ./docker-install.sh \</span><br><span class="line">        &amp;&amp; yum -y remove gcc cmake make wget iptables \</span><br><span class="line">        &amp;&amp; yum clean all \</span><br><span class="line">        &amp;&amp; rm -rf /tmp/* /opt/* /var/cache/&#123;yum,ldconfig&#125;</span><br><span class="line"></span><br><span class="line">EXPOSE 80</span><br><span class="line">CMD [&quot;./entrypoint.sh&quot;]</span><br></pre></td></tr></table></figure>
-<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># ./nginx -t</span><br><span class="line">./nginx: error while loading shared libraries: libprofiler.so.0: cannot open shared object file: No such fil</span><br><span class="line">e or directory</span><br><span class="line"># ldd nginx </span><br><span class="line">	linux-vdso.so.1 =&gt;  (0x00007ffdef7f4000)</span><br><span class="line">	libdl.so.2 =&gt; /lib64/libdl.so.2 (0x00007faca4ae5000)</span><br><span class="line">	libpthread.so.0 =&gt; /lib64/libpthread.so.0 (0x00007faca48c9000)</span><br><span class="line">	libcrypt.so.1 =&gt; /lib64/libcrypt.so.1 (0x00007faca4691000)</span><br><span class="line">	libprofiler.so.0 =&gt; not found     ##《《《《《《</span><br><span class="line">	libc.so.6 =&gt; /lib64/libc.so.6 (0x00007faca42cf000)</span><br><span class="line">	/lib64/ld-linux-x86-64.so.2 (0x00007faca4cee000)</span><br><span class="line">	libfreebl3.so =&gt; /lib64/libfreebl3.so (0x00007faca40cb000)</span><br><span class="line">ln -s /usr/local/lib/libprofiler.so /lib64/libprofiler.so.0</span><br></pre></td></tr></table></figure>
-<h2 id="centos7-php-demo"><a href="#centos7-php-demo" class="headerlink" title="centos7 php demo"></a>centos7 php demo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">FROM centos:7.2</span><br><span class="line">MAINTAINER Jay.yang &lt;zxf668899@163.com&gt;</span><br><span class="line"></span><br><span class="line">RUN yum -y install \</span><br><span class="line">        apr-devel apr-util-devel cmake \</span><br><span class="line">        gcc gcc-c++ GeoIP GeoIP-devel libtool \</span><br><span class="line">        perl-devel perl-ExtUtils-Embed make \</span><br><span class="line">        &amp;&amp; cd /opt \</span><br><span class="line">        &amp;&amp; curl http://10.2.229.10/php-one.tar.gz|tar zx \</span><br><span class="line">        &amp;&amp; cd php-one \</span><br><span class="line">        &amp;&amp; ./docker-php.sh \</span><br><span class="line">        &amp;&amp; yum -y remove gcc cmake make \</span><br><span class="line">        &amp;&amp; yum clean all \</span><br><span class="line">        &amp;&amp; rm -rf /tmp/* /opt/* /var/cache/&#123;yum,ldconfig&#125;</span><br><span class="line"></span><br><span class="line">CMD [&quot;/usr/local/php/sbin/php-fpm&quot;]</span><br></pre></td></tr></table></figure>
-<h2 id="centos-7-Demo1"><a href="#centos-7-Demo1" class="headerlink" title="centos 7 Demo1"></a>centos 7 Demo1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">FROM centos:7</span><br><span class="line">MAINTAINER jie.yang &lt;&quot;zxf668899@163.com&quot;&gt;</span><br><span class="line"></span><br><span class="line">RUN yum -y install wget &amp;&amp; \</span><br><span class="line">		wget https://github.com/zxf668899/Docker_nginx/blob/master/ssdb.tar.gz &amp;&amp; \</span><br><span class="line">		tar zxf ssdb.tar.gz -C /usr/local/</span><br><span class="line">        mv ssdb /usr/local &amp;&amp; \</span><br><span class="line">        mkdir /etc/ssdb &amp;&amp; mkdir /var/lib/ssdb &amp;&amp; \</span><br><span class="line">        cp /usr/local/ssdb/ssdb-server /usr/bin &amp;&amp; \</span><br><span class="line">        mv /usr/local/ssdb/ssdb.conf /etc/ssdb &amp;&amp; \</span><br><span class="line">        yum -y remove tar curl vim-minimal</span><br><span class="line"></span><br><span class="line">EXPOSE 8888</span><br><span class="line">CMD [&quot;/usr/local/ssdb/ssdb-server&quot;,&quot;/etc/ssdb/ssdb.conf&quot;]</span><br></pre></td></tr></table></figure>
-<h2 id="centos7-Demo2"><a href="#centos7-Demo2" class="headerlink" title="centos7 Demo2"></a>centos7 Demo2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">FROM centos:7</span><br><span class="line">MAINTAINER jie.yang &lt;&quot;zxf668899@163.com&quot;&gt;</span><br><span class="line"></span><br><span class="line">RUN yum update -y &amp;&amp; \</span><br><span class="line">  yum -y install --setopt=tsflags=nodocs make wget which autoconf unzip gcc gcc-c++ &amp;&amp; \</span><br><span class="line">  wget --no-check-certificate https://github.com/ideawu/ssdb/archive/master.zip &amp;&amp; \</span><br><span class="line">  unzip master.zip &amp;&amp; \</span><br><span class="line">  cd ssdb-master &amp;&amp; \</span><br><span class="line">  make &amp;&amp; make install &amp;&amp; \</span><br><span class="line">  cd .. &amp;&amp; \</span><br><span class="line">  yum -y erase vim-minimal unzip wget tar gcc gcc-c++ make which autoconf &amp;&amp; \</span><br><span class="line">  yum clean all &amp;&amp; \</span><br><span class="line">  rm -rf ssdb-master master.zip /var/lib/yum/* /tmp/* /var/tmp/* &amp;&amp; \</span><br><span class="line">  mkdir /etc/ssdb &amp;&amp; \</span><br><span class="line">  mkdir /etc/ssdb/var &amp;&amp; \</span><br><span class="line">  mv /usr/local/ssdb/ssdb.conf /etc/ssdb/</span><br><span class="line"></span><br><span class="line">EXPOSE 8888</span><br><span class="line">VOLUME [/usr/local/ssdb, /etc/ssdb]</span><br><span class="line">ENTRYPOINT /usr/local/ssdb/ssdb-server /etc/ssdb/ssdb.conf</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/02/03/DockerFile模板/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
@@ -1530,11 +1656,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">coding</a>
+                <a href="javascript:void(0)" class="js-tag color3">LB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LB</a>
+                <a href="javascript:void(0)" class="js-tag color2">coding</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1575,6 +1701,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">原创</a>
               </li>
              
               <li class="article-tag-list-item">

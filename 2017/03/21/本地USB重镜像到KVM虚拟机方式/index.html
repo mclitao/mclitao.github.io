@@ -9,7 +9,7 @@
   <title>本地USB重镜像到KVM虚拟机方式 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、参考资料spice：https://www.spice-space.org/usbredir.html virt-viewer：https://releases.pagure.org/virt-viewer/ 注意：virt-viewer6.0才支持UsbDk驱动实现重定向，推荐UsbDK_1.0.19 二、实现思路1.给虚拟机添加USB设备定义 2.基于spice通讯协议完成本地usb d">
-<meta name="keywords" content="OpenStack,KVM,Libvirt,USB">
+<meta name="keywords" content="OpenStack,KVM,Libvirt,USB,原创">
 <meta property="og:type" content="article">
 <meta property="og:title" content="本地USB重镜像到KVM虚拟机方式">
 <meta property="og:url" content="http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/index.html">
@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/7.png">
 <meta property="og:image" content="http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/3.jpg">
 <meta property="og:image" content="http://yoursite.com/2017/03/21/本地USB重镜像到KVM虚拟机方式/6.jpg">
-<meta property="og:updated_time" content="2019-03-21T07:13:50.278Z">
+<meta property="og:updated_time" content="2019-04-19T06:09:57.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="本地USB重镜像到KVM虚拟机方式">
 <meta name="twitter:description" content="一、参考资料spice：https://www.spice-space.org/usbredir.html virt-viewer：https://releases.pagure.org/virt-viewer/ 注意：virt-viewer6.0才支持UsbDk驱动实现重定向，推荐UsbDK_1.0.19 二、实现思路1.给虚拟机添加USB设备定义 2.基于spice通讯协议完成本地usb d">
@@ -258,9 +258,14 @@ virt-viewer：https://releases.pagure.org/virt-viewer/
 3.KVM
 4.Windows 7-64
 5.virt-viewer6
-</code></pre><h3 id="四、KVM-GUI增加虚拟机USB方法"><a href="#四、KVM-GUI增加虚拟机USB方法" class="headerlink" title="四、KVM GUI增加虚拟机USB方法"></a>四、KVM GUI增加虚拟机USB方法</h3><blockquote>
-<p>1.给虚拟机添加USB设备定义<br>    <img src="1.jpg" alt="可添加USB的驱动"><br>    <img src="2.jpg" alt="添加后的USB"><br><br><br>2.给虚拟机添加USB转发器<br>    <img src="7.png" alt="添加USB转发器"><br><br><br>3.登录虚拟机可以看到多出来的USB接口<br>    <img src="3.jpg" alt="虚拟机内部USB"></p>
-</blockquote>
+</code></pre><h3 id="四、KVM-GUI增加虚拟机USB方法"><a href="#四、KVM-GUI增加虚拟机USB方法" class="headerlink" title="四、KVM GUI增加虚拟机USB方法"></a>四、KVM GUI增加虚拟机USB方法</h3><ul>
+<li><p>1.给虚拟机添加USB设备定义<br>  <img src="1.jpg" alt="可添加USB的驱动"><br>  <img src="2.jpg" alt="添加后的USB"></p>
+</li>
+<li><p>2.给虚拟机添加USB转发器<br>  <img src="7.png" alt="添加USB转发器"></p>
+</li>
+<li><p>3.登录虚拟机可以看到多出来的USB接口<br>  <img src="3.jpg" alt="虚拟机内部USB"></p>
+</li>
+</ul>
 <h3 id="五、SHELL-CLI增加虚拟机USB方法"><a href="#五、SHELL-CLI增加虚拟机USB方法" class="headerlink" title="五、SHELL CLI增加虚拟机USB方法"></a>五、SHELL CLI增加虚拟机USB方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  找出usb设备</span><br><span class="line"># lsusb</span><br><span class="line">Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span><br><span class="line">Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br><span class="line">Bus 003 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br><span class="line">Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br><span class="line">Bus 005 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br><span class="line">Bus 006 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub</span><br><span class="line">Bus 006 Device 002: ID 03f0:1027 Hewlett-Packard Virtual keyboard and mouse</span><br><span class="line">Bus 001 Device 002: ID 058f:6387 Alcor Micro Corp. Flash Drive</span><br><span class="line"></span><br><span class="line">  编辑usb描述文件</span><br><span class="line"># vi usb_redir.xml</span><br><span class="line">&lt;hostdev mode=&apos;subsystem&apos; type=&apos;usb&apos; managed=&apos;yes&apos;&gt;</span><br><span class="line">&lt;source&gt;</span><br><span class="line">&lt;vendor id=&apos;0x058f&apos;/&gt;</span><br><span class="line">&lt;product id=&apos;0x6387&apos;/&gt;</span><br><span class="line">&lt;address bus=&apos;1&apos; device=&apos;2&apos;/&gt;</span><br><span class="line">&lt;/source&gt;</span><br><span class="line">&lt;alias name=&apos;hostdev0&apos;/&gt;</span><br><span class="line">&lt;/hostdev&gt;</span><br><span class="line"> </span><br><span class="line">  找出目标虚拟机 </span><br><span class="line"># virsh list --all</span><br><span class="line"> Id    名称                         状态</span><br><span class="line">----------------------------------------------------</span><br><span class="line"> 23    instance-00000058            running</span><br><span class="line"> </span><br><span class="line">  将上面定义的usb设备描述挂载入目标instance-00000058虚拟机中</span><br><span class="line"># attach-device instance-00000058 user_redir.xml</span><br><span class="line"></span><br><span class="line">  查看虚拟机的USB信息</span><br><span class="line"># virsh dumpxml instance-00000058 |grep redir</span><br><span class="line">&lt;redirdev bus=&apos;usb&apos; type=&apos;spicevmc&apos;&gt;</span><br><span class="line">   &lt;alias name=&apos;redir0&apos;/&gt;</span><br><span class="line">&lt;/redirdev&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中"><a href="#六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中" class="headerlink" title="六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中"></a>六、Remote-Viewer远程登录并镜像本机USB到远程虚拟机中</h3><pre><code>c:/&gt; remote-viewer.exe --spice-usbredir-auto-redirect-filter=&quot;0x03,-1,-1,-1,0|-1,-1,-1,-1,1&quot; spice://192.168.1.150:5900
 
@@ -296,6 +301,10 @@ c:/&gt; remote-viewer.exe --spice-usbredir-redirect-on-connect=&quot;0x03,-1,-1,
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">USB</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
         		</li>
       		
 		</ul>
@@ -562,11 +571,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">coding</a>
+                <a href="javascript:void(0)" class="js-tag color3">LB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LB</a>
+                <a href="javascript:void(0)" class="js-tag color2">coding</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,6 +616,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">原创</a>
               </li>
              
               <li class="article-tag-list-item">

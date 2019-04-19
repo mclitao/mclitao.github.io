@@ -9,7 +9,7 @@
   <title>Docker常用命令与问题记录 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、常用命令 1.使用root登录容器 $ docker exec -it -u 0 mon bash$ docker exec -it -u root mon bash     二、重要参数   ID 文件列表 描述内容     0 –oom-kill-disable=true 禁止内核没有内存时杀该容器    1 –log-opt max-size=10m –log-opt max-file">
-<meta name="keywords" content="Docker">
+<meta name="keywords" content="Docker,原创">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker常用命令与问题记录">
 <meta property="og:url" content="http://yoursite.com/2016/09/06/Docker常用命令与问题记录/index.html">
@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/img/timg.jpg">
 <meta property="og:image" content="http://yoursite.com/2016/09/06/Docker常用命令与问题记录/1.png">
 <meta property="og:image" content="http://yoursite.com/2016/09/06/Docker常用命令与问题记录/2.png">
-<meta property="og:updated_time" content="2019-03-21T09:13:24.236Z">
+<meta property="og:updated_time" content="2019-04-19T06:10:36.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker常用命令与问题记录">
 <meta name="twitter:description" content="一、常用命令 1.使用root登录容器 $ docker exec -it -u 0 mon bash$ docker exec -it -u root mon bash     二、重要参数   ID 文件列表 描述内容     0 –oom-kill-disable=true 禁止内核没有内存时杀该容器    1 –log-opt max-size=10m –log-opt max-file">
@@ -356,8 +356,7 @@
 </ul>
 <p><br></p>
 <ul>
-<li><h5 id="11-当容器运行时挂载目录到容器内，内部无法访问提示-Permission-denied"><a href="#11-当容器运行时挂载目录到容器内，内部无法访问提示-Permission-denied" class="headerlink" title="11.当容器运行时挂载目录到容器内，内部无法访问提示 Permission denied"></a>11.当容器运行时挂载目录到容器内，内部无法访问提示 Permission denied</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将宿主机上的senlinux关闭在执行就可以</span><br><span class="line"># setenforce 0</span><br></pre></td></tr></table></figure>
-</li>
+<li><h5 id="11-当容器运行时挂载目录到容器内，内部无法访问提示-Permission-denied"><a href="#11-当容器运行时挂载目录到容器内，内部无法访问提示-Permission-denied" class="headerlink" title="11.当容器运行时挂载目录到容器内，内部无法访问提示 Permission denied"></a>11.当容器运行时挂载目录到容器内，内部无法访问提示 Permission denied</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将宿主机上的senlinux关闭在执行就可以</span><br><span class="line"># setenforce 0</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -373,6 +372,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
         		</li>
       		
 		</ul>
@@ -639,11 +642,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">coding</a>
+                <a href="javascript:void(0)" class="js-tag color3">LB</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">LB</a>
+                <a href="javascript:void(0)" class="js-tag color2">coding</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,6 +687,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">原创</a>
               </li>
              
               <li class="article-tag-list-item">
