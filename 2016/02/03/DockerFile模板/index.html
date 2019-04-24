@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="寂而常乐">
 <meta property="og:description" content="模板标准 INSTRUCTION argument指令不区分大小写。但是，命名约定为全部大写所有Dockerfile都必须以FROM命令开始。 FROM命令会指定镜像基于哪个基础镜像创建，接下来的命令也会基于这个基础镜像。 FROM命令可以多次使用，表示会创建多个镜像。具体语法如下： FROM  FROM centos   基于centos这个镜像来构建 MAINTAINER   镜像作者 RUN">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-04T00:21:30.071Z">
+<meta property="og:updated_time" content="2019-04-23T05:47:40.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DockerFile模板">
 <meta name="twitter:description" content="模板标准 INSTRUCTION argument指令不区分大小写。但是，命名约定为全部大写所有Dockerfile都必须以FROM命令开始。 FROM命令会指定镜像基于哪个基础镜像创建，接下来的命令也会基于这个基础镜像。 FROM命令可以多次使用，表示会创建多个镜像。具体语法如下： FROM  FROM centos   基于centos这个镜像来构建 MAINTAINER   镜像作者 RUN">
@@ -220,7 +220,7 @@
 <li>FROM <image name></image></li>
 <li>FROM centos   基于centos这个镜像来构建</li>
 <li>MAINTAINER <author name>  镜像作者</author></li>
-<li>RUN 《command》</li>
+<li>RUN 《command》<a id="more"></a></li>
 <li>ADD：复制文件指令。它有两个参数<source>和<destination>。destination是容器内的路径。source可以是URL或者是启动配置上下文中的一个文件</destination></li>
 <li>ADD <src> <destiantion></destiantion></src></li>
 <li>CMD：提供了容器默认的执行命令。 Dockerfile只允许使用一次CMD指令。 使用多个CMD会抵消之前所有的指令，只有最后一个指令生效。 CMD有三种形式：</li>
@@ -485,7 +485,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color3">原创</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,6 +525,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
               </li>
              
@@ -557,10 +561,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">原创</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
@@ -578,6 +578,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pass</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SDN</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">NetWork</a>
               </li>
             
             <div class="clearfix"></div>
