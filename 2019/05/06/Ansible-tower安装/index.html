@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/images/2019/05/06/c9e555e0-6fd8-11e9-8ded-417932f87efe.png">
 <meta property="og:image" content="http://yoursite.com/images/2019/05/06/d82c45f0-6fd8-11e9-8ded-417932f87efe.png">
 <meta property="og:image" content="http://yoursite.com/images/2019/05/06/f78ad9a0-6fd5-11e9-8ded-417932f87efe.png">
-<meta property="og:updated_time" content="2019-05-06T08:33:31.799Z">
+<meta property="og:updated_time" content="2019-05-23T07:08:54.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ansible-tower安装">
 <meta name="twitter:description" content="介绍使用很长时间ansible后，发现有个GUI工具管理ansible非常好用，他就是Ansible tower,是一个图形化的任务调度，复杂服务部署，IT自动化的一个管理平台。可以通过界面从github拉取最新playbook实施服务部署，提高生产效率。当然，它也提供一个RESET API和命令行的CLI以供python脚本调用。 环境 CentOS Linux release 7.5.180">
@@ -237,7 +237,7 @@
 <h2 id="编译与反编译python代码"><a href="#编译与反编译python代码" class="headerlink" title="编译与反编译python代码"></a>编译与反编译python代码</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> pip install uncompyle2</span><br><span class="line"></span><br><span class="line">  反编译</span><br><span class="line"><span class="meta">#</span> uncompyle6 task_engine.pyc &gt;task_engine.py</span><br><span class="line">  编译文件</span><br><span class="line"><span class="meta">#</span> python -m py_compile __init__.py</span><br><span class="line"><span class="meta">#</span> python -O -m py_compile __init__.py</span><br><span class="line"><span class="meta">#</span> ansible-tower-service restart</span><br></pre></td></tr></table></figure>
 <p><img src="/images/2019/05/06/f78ad9a0-6fd5-11e9-8ded-417932f87efe.png" alt="image.png"></p>
 <h2 id="安装插件：galaxy-ansible-com"><a href="#安装插件：galaxy-ansible-com" class="headerlink" title="安装插件：galaxy.ansible.com"></a>安装插件：galaxy.ansible.com</h2><p>ansible-galaxy install stouts.grafana<br>ansible-galaxy install lean_delivery.weblogic<br>ansible-galaxy install mm0.ibm-websphere-mq</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://kionf.com/2018/11/21/tower-useage/" target="_blank" rel="noopener">https://kionf.com/2018/11/21/tower-useage/</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://kionf.com/2018/11/21/tower-useage/" target="_blank" rel="noopener">https://kionf.com/2018/11/21/tower-useage/</a><br>仅供学习参考，请购买正版用于商业行为。</p>
 
       
 
@@ -469,10 +469,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Storage</a>
               </li>
              
@@ -481,11 +477,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Bigdata</a>
+                <a href="javascript:void(0)" class="js-tag color3">原创</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">原创</a>
+                <a href="javascript:void(0)" class="js-tag color3">Ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Bigdata</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,15 +509,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">coding</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Network</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Loadbalancer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">coding</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,15 +549,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Libvirt</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">USB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
               </li>
              
               <li class="article-tag-list-item">
