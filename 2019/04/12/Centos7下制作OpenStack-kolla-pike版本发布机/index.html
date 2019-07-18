@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="寂而常乐">
 <meta property="og:description" content="环境准备我这里用workstation 创建了一个虚拟机，安装centos7.4系统，这台虚拟机上有两张网卡，一张做openstack管理网，一张做为虚拟机的业务网卡。确认环境信息">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-12T01:15:36.341Z">
+<meta property="og:updated_time" content="2019-06-26T09:17:05.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7下制作OpenStack-kolla-pike版本发布机">
 <meta name="twitter:description" content="环境准备我这里用workstation 创建了一个虚拟机，安装centos7.4系统，这台虚拟机上有两张网卡，一张做openstack管理网，一张做为虚拟机的业务网卡。确认环境信息">
@@ -220,7 +220,7 @@
 <h2 id="环境初始化"><a href="#环境初始化" class="headerlink" title="环境初始化"></a>环境初始化</h2><p>1.更改主机名<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> hostnamectl set-hostname pike</span><br><span class="line"><span class="meta">#</span> hostname pike</span><br><span class="line"><span class="meta">#</span> hostname</span><br><span class="line">pike</span><br></pre></td></tr></table></figure></p>
 <p>2.关闭NetworkManager,firewalld,selinux<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> systemctl stop NetworkManager</span><br><span class="line"><span class="meta">#</span> systemctl disable NetworkManager</span><br><span class="line">Removed symlink /etc/systemd/system/multi-user.target.wants/NetworkManager.service.</span><br><span class="line">Removed symlink /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service.</span><br><span class="line">Removed symlink /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service.</span><br><span class="line"><span class="meta">#</span> systemctl stop firewalld</span><br><span class="line"><span class="meta">#</span> systemctl disable firewalld</span><br><span class="line">Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.</span><br><span class="line">Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.</span><br><span class="line"><span class="meta">#</span> sed -i "s/SELINUX=enforcing/SELINUX=disabled/" /etc/selinux/config</span><br><span class="line"><span class="meta">#</span> setenforce 0</span><br><span class="line"><span class="meta">#</span> getenforce</span><br><span class="line">Permissive</span><br></pre></td></tr></table></figure></p>
 <p>3.查看是否开启了虚拟化<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> egrep "vmx|svm" /proc/cpuinfo</span><br></pre></td></tr></table></figure></p>
-<h2 id="安装基础包"><a href="#安装基础包" class="headerlink" title="安装基础包"></a>安装基础包</h2><p>1.配置epel源安装基础包<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> yum install epel-release</span><br><span class="line"><span class="meta">#</span> yum install axel vim git curl wget lrzsz gcc  python-devel yum* python-pip</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装基础包"><a href="#安装基础包" class="headerlink" title="安装基础包"></a>安装基础包</h2><p>1.配置base、epel源安装基础包<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  替换为国内阿里源</span><br><span class="line"><span class="meta">#</span> wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line">  使用国内阿里epel源</span><br><span class="line"><span class="meta">#</span> wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> yum install axel vim git curl wget lrzsz gcc  python-devel yum* python-pip</span><br></pre></td></tr></table></figure></p>
 <p>2.配置docker-ce的yum源安装docker-ce,这里我用的docker版本为docker-ce17.09<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"><span class="meta">#</span> yum install -y docker-ce</span><br><span class="line"><span class="meta">#</span> docker -v</span><br><span class="line">Docker version 17.09.0-ce, build afdb6d4</span><br></pre></td></tr></table></figure></p>
 <p>3.配置docker<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> mkdir /etc/systemd/system/docker.service.d</span><br><span class="line"><span class="meta">#</span> tee /etc/systemd/system/docker.service.d/kolla.conf &lt;&lt; 'EOF'</span><br><span class="line">[Service]</span><br><span class="line">MountFlags=shared</span><br><span class="line">EOF</span><br><span class="line"><span class="meta">#</span> vim /usr/lib/systemd/system/docker.service</span><br><span class="line"><span class="meta">#</span> ExecStart=/usr/bin/dockerd</span><br><span class="line">ExecStart=/usr/bin/dockerd --insecure-registry 192.168.10.139:4000</span><br></pre></td></tr></table></figure></p>
 <p>4.启动docker<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> systemctl daemon-reload</span><br><span class="line"><span class="meta">#</span> systemctl restart docker</span><br><span class="line"><span class="meta">#</span> systemctl enable docker</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.</span><br><span class="line"><span class="meta">#</span> systemctl status docker</span><br><span class="line"><span class="meta">#</span> docker info</span><br></pre></td></tr></table></figure></p>
@@ -479,6 +479,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Ansible</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Storage</a>
               </li>
              
@@ -487,15 +491,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">原创</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Ansible</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Bigdata</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">原创</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,6 +504,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Network</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Loadbalancer</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,19 +527,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">coding</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Network</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Loadbalancer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">LB</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">coding</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,6 +540,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ironic</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,7 +559,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -564,10 +568,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">USB</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">禅净密</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,7 +583,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">监控</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">运维</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">VIP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">GlusterFS</a>
               </li>
              
               <li class="article-tag-list-item">
