@@ -189,7 +189,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-DockerFile模板" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-DockerFile模板" class="article article-type-post " itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -217,9 +217,9 @@
         <h2 id="模板标准"><a href="#模板标准" class="headerlink" title="模板标准"></a>模板标准</h2><ul>
 <li>INSTRUCTION argument指令不区分大小写。但是，命名约定为全部大写<br>所有Dockerfile都必须以FROM命令开始。 FROM命令会指定镜像基于哪个基础镜像创建，接下来的命令也会基于这个基础镜像。</li>
 <li>FROM命令可以多次使用，表示会创建多个镜像。具体语法如下：</li>
-<li>FROM <image name></image></li>
+<li>FROM <image name=""></image></li>
 <li>FROM centos   基于centos这个镜像来构建</li>
-<li>MAINTAINER <author name>  镜像作者</author></li>
+<li>MAINTAINER <author name="">  镜像作者</author></li>
 <li>RUN 《command》<a id="more"></a></li>
 <li>ADD：复制文件指令。它有两个参数<source>和<destination>。destination是容器内的路径。source可以是URL或者是启动配置上下文中的一个文件</destination></li>
 <li>ADD <src> <destiantion></destiantion></src></li>
