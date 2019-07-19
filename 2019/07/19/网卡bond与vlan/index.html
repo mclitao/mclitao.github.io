@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 寂而常乐</title>
+  <title>网卡bond与vlan | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="妙无立，无不可立！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="寂而常乐">
-<meta property="og:url" content="http://yoursite.com/archives/page/6/index.html">
+  <meta name="description" content="多网卡链路bond与Vlan设置 描述 多个网卡bond后 分别连接不通交换及设备，并在操作系统上提供不通的vlan划分线路来使用bond来做链路传输。  可用bond的模式： 0、1、4、6 常用，2、3、5不常用。  mode=0 为负载均衡方式，两块网卡都工作。 load balancing (round-robin)有高可用 (容错) 和负载均衡的功能, 需要交换机的配置，每块网卡轮询发包">
+<meta name="keywords" content="Network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网卡bond与vlan">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/网卡bond与vlan/index.html">
 <meta property="og:site_name" content="寂而常乐">
-<meta property="og:description" content="妙无立，无不可立！">
+<meta property="og:description" content="多网卡链路bond与Vlan设置 描述 多个网卡bond后 分别连接不通交换及设备，并在操作系统上提供不通的vlan划分线路来使用bond来做链路传输。  可用bond的模式： 0、1、4、6 常用，2、3、5不常用。  mode=0 为负载均衡方式，两块网卡都工作。 load balancing (round-robin)有高可用 (容错) 和负载均衡的功能, 需要交换机的配置，每块网卡轮询发包">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/2019/07/19/0be54210-a9f0-11e9-9aea-ad04c999eea8.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/07/19/be9a4850-a9ce-11e9-9aea-ad04c999eea8.png">
+<meta property="og:updated_time" content="2019-07-19T06:40:28.995Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="寂而常乐">
-<meta name="twitter:description" content="妙无立，无不可立！">
+<meta name="twitter:title" content="网卡bond与vlan">
+<meta name="twitter:description" content="多网卡链路bond与Vlan设置 描述 多个网卡bond后 分别连接不通交换及设备，并在操作系统上提供不通的vlan划分线路来使用bond来做链路传输。  可用bond的模式： 0、1、4、6 常用，2、3、5不常用。  mode=0 为负载均衡方式，两块网卡都工作。 load balancing (round-robin)有高可用 (容错) 和负载均衡的功能, 需要交换机的配置，每块网卡轮询发包">
+<meta name="twitter:image" content="http://yoursite.com/images/2019/07/19/0be54210-a9f0-11e9-9aea-ad04c999eea8.png">
   
     <link rel="alternative" href="/atom.xml" title="寂而常乐" type="application/atom+xml">
   
@@ -187,258 +192,84 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-网卡bond与vlan" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/06/Hadoop笔记/" class="archive-article-date">
-  	<time datetime="2017-03-06T02:20:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/06/Hadoop笔记/">HadoopHA搭建笔记</a>
+    <h1 class="article-title" itemprop="name">
+      网卡bond与vlan
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Bigdata</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2019/07/19/网卡bond与vlan/" class="archive-article-date">
+  	<time datetime="2019-07-19T03:13:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
+</a>
+        
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
+        <h1 id="多网卡链路bond与Vlan设置"><a href="#多网卡链路bond与Vlan设置" class="headerlink" title="多网卡链路bond与Vlan设置"></a>多网卡链路bond与Vlan设置</h1><p><img src="/images/2019/07/19/0be54210-a9f0-11e9-9aea-ad04c999eea8.png" alt="image.png"></p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><blockquote>
+<p>多个网卡bond后 分别连接不通交换及设备，并在操作系统上提供不通的vlan划分线路来使用bond来做链路传输。</p>
+</blockquote>
+<h3 id="可用bond的模式："><a href="#可用bond的模式：" class="headerlink" title="可用bond的模式："></a>可用bond的模式：</h3><blockquote>
+<p>0、1、4、6 常用，2、3、5不常用。</p>
+</blockquote>
+<h6 id="mode-0-为负载均衡方式，两块网卡都工作。"><a href="#mode-0-为负载均衡方式，两块网卡都工作。" class="headerlink" title="mode=0 为负载均衡方式，两块网卡都工作。"></a><code>mode=0</code> 为负载均衡方式，两块网卡都工作。</h6><blockquote>
+<p>load balancing (round-robin)有高可用 (容错) 和负载均衡的功能, 需要交换机的配置，每块网卡轮询发包 (流量分发比较均衡).但由于回话多时，无需到达的包都会被重新请求发送导致了吞吐量下降。<br><a id="more"></a></p>
+</blockquote>
+<h6 id="mode-1-为主备方案-只有一个网卡工作。"><a href="#mode-1-为主备方案-只有一个网卡工作。" class="headerlink" title="mode=1 为主备方案,只有一个网卡工作。"></a><code>mode=1</code> 为主备方案,只有一个网卡工作。</h6><blockquote>
+<p>fault-tolerance (active-backup)提供冗余功能，工作方式是主 从的工作方式,也就是说默认情况下只有一块网卡工作,另一块做备份，对外只有一个mac地址，缺点端口利用率较低。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/modprobe.d/bond.conf</span><br><span class="line">alias bond1 bonding</span><br><span class="line">options bond1 mode=1 miimon=100</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h6 id="mode-2-平衡模式，-balance-xor-平衡策略，有负载平衡和容错能力。"><a href="#mode-2-平衡模式，-balance-xor-平衡策略，有负载平衡和容错能力。" class="headerlink" title="mode=2 平衡模式，(balance-xor)平衡策略，有负载平衡和容错能力。"></a><code>mode=2</code> 平衡模式，(balance-xor)平衡策略，有负载平衡和容错能力。</h6><blockquote>
+<p>特点：基于指定的传输HASH策略传输数据包。缺省的策略是：(源MAC地址 XOR目标MAC地址) % slave数量。其他的传输策略可以通过xmit_hash_policy选项指定，此模式提供负载平衡和容错能力</p>
+</blockquote>
+<h6 id="mode-3-broadcast广播策略模式"><a href="#mode-3-broadcast广播策略模式" class="headerlink" title="mode=3 broadcast广播策略模式."></a><code>mode=3</code> broadcast广播策略模式.</h6><blockquote>
+<p>在每个slave接口上传输每个数据包，此模式提供了容错能力</p>
+</blockquote>
+<h6 id="mode-4-动态混合链路聚合模式-跨交换机做bond-交换机设置模式LACP。"><a href="#mode-4-动态混合链路聚合模式-跨交换机做bond-交换机设置模式LACP。" class="headerlink" title="mode=4 动态混合链路聚合模式,跨交换机做bond,交换机设置模式LACP。"></a><code>mode=4</code> 动态混合链路聚合模式,跨交换机做bond,交换机设置模式LACP。</h6><blockquote>
+<p>IEEE 802.3ad Dynamic link aggregation 为 IEEE 802.3ad 为 动态链接聚合。该策略可以通过 xmit_hash_policy 选项从缺省的 XOR 策略改变到其他策略。<br>特点：创建一个聚合组，它们共享同样的速率和双工设定。根据802.3ad规范将多个slave工作在同一个激活的聚合体下。<br>外出流量的slave选举是基于传输hash策略，该策略可以通过xmit_hash_policy选项从缺省的XOR策略改变到其他策略。需要注意的是，并不是所有的传输策略都是802.3ad适应的，尤其考虑到在802.3ad标准包乱序问题。不同的实现可能会有不同的适应性。<br>必要条件：<br>条件1：ethtool支持获取每个slave的速率和双工设定<br>条件2：switch(交换机)支持IEEE 802.3ad Dynamic link aggregation<br>条件3：大多数switch(交换机)需要经过特定配置才能支持802.3ad模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/modprobe.d/bond.conf 追加</span><br><span class="line">alias bond4 bonding</span><br><span class="line">options bond4 miimon=100 mode=4 lacp_rate=1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h6 id="mode-5-自适应模式-balance-tlb-Adaptive-transmit-load-balancing（适配器传输负载均衡）。"><a href="#mode-5-自适应模式-balance-tlb-Adaptive-transmit-load-balancing（适配器传输负载均衡）。" class="headerlink" title="mode=5 自适应模式,(balance-tlb) Adaptive transmit load balancing（适配器传输负载均衡）。"></a><code>mode=5</code> 自适应模式,(balance-tlb) Adaptive transmit load balancing（适配器传输负载均衡）。</h6><blockquote>
+<p>不需要任何特别的switch(交换机)支持的通道bonding。在每个slave上根据当前的负载（根据速度计算）分配外出流量。如果正在接受数据的slave出故障了，另一个slave接管失败的slave的MAC地址。<br>该模式的必要条件：ethtool支持获取每个slave的速率</p>
+</blockquote>
+<h6 id="mode-6-网卡虚拟化方式，-balance-alb-Adaptive-load-balancing（适配器适应性负载均衡）。"><a href="#mode-6-网卡虚拟化方式，-balance-alb-Adaptive-load-balancing（适配器适应性负载均衡）。" class="headerlink" title="mode=6 网卡虚拟化方式，(balance-alb) Adaptive load balancing（适配器适应性负载均衡）。"></a><code>mode=6</code> 网卡虚拟化方式，(balance-alb) Adaptive load balancing（适配器适应性负载均衡）。</h6><blockquote>
+<p>该模式包含了balance-tlb模式，同时加上针对IPV4流量的接收负载均衡(receive load balance, rlb)，而且不需要任何switch(交换机)的支持。接收负载均衡是通过ARP协商实现的。bonding驱动截获本机发送的ARP应答，并把源硬件地址改写为bond中某个slave的唯一硬件地址，从而使得不同的对端使用不同的硬件地址进行通信。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BONDING_OPTS=&quot;mode=6 miimon=100&quot;</span><br><span class="line">表示这里配置的工作模式是mode6(adaptive load balancing), miimon表示监视网络链接的频度 (毫秒), 我们设置的是100毫秒, 根据你的需求也可以指定mode成其它的负载模式。</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="实战本案例"><a href="#实战本案例" class="headerlink" title="实战本案例"></a>实战本案例</h3><blockquote>
+<p>服务器eno1卡和eno2卡做bond,对应到交换机上相同位置的vlan301\vlan302口上<br><img src="/images/2019/07/19/be9a4850-a9ce-11e9-9aea-ad04c999eea8.png" alt="image.png"><br><code>vlan 301:10.1.2.65/27  vlan 302:192.168.0.1/24</code></p>
+</blockquote>
+<h5 id="服务器系统加载bonding模块："><a href="#服务器系统加载bonding模块：" class="headerlink" title="服务器系统加载bonding模块："></a>服务器系统加载bonding模块：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># modprobe --first-time bonding</span><br><span class="line">没有提示说明加载成功, 如果出现modprobe: ERROR: could not insert &apos;bonding&apos;: Module already in kernel说明你已经加载了这个模块, 就不用管了</span><br></pre></td></tr></table></figure>
+<h5 id="开机加载bonding模块"><a href="#开机加载bonding模块" class="headerlink" title="开机加载bonding模块"></a>开机加载bonding模块</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># more /etc/rc.local</span><br><span class="line">#!/bin/sh</span><br><span class="line">#</span><br><span class="line"># This script will be executed *after* all the other init scripts.</span><br><span class="line"># You can put your own initialization stuff in here if you don&apos;t</span><br><span class="line"># want to do the full Sys V style init stuff.</span><br><span class="line">modprobe bonding</span><br></pre></td></tr></table></figure>
+<h2 id="方案一：双卡绑定后只设置一个vlan-302段的IP"><a href="#方案一：双卡绑定后只设置一个vlan-302段的IP" class="headerlink" title="方案一：双卡绑定后只设置一个vlan 302段的IP"></a>方案一：双卡绑定后只设置一个vlan 302段的IP</h2><h5 id="1-创建配置bond-conf"><a href="#1-创建配置bond-conf" class="headerlink" title="1.创建配置bond.conf"></a>1.创建配置bond.conf</h5><blockquote>
+<p>设定加载bond0接口到内核，并设置网卡bond模式为1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/modprobe.d/bond.conf</span><br><span class="line">alias bond0 bonding</span><br><span class="line">options bond0 miimon=100 mode=1</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h5 id="2-配置虚拟接口bond0的ifcfg-bond0文件"><a href="#2-配置虚拟接口bond0的ifcfg-bond0文件" class="headerlink" title="2.配置虚拟接口bond0的ifcfg-bond0文件"></a>2.配置虚拟接口bond0的ifcfg-bond0文件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/sysconfig/network-scripts/ifcfg-bond0</span><br><span class="line">DEVICE=bond0</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">#不在vim /etc/modprobe.d/bond.conf这里指定，就需要在这里描述</span><br><span class="line">#BONDING_OPTS=&quot;mode=1 miimon=100 primary=eth1&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="3-配置bond0对接的物理网卡接口内容，修改ifcfg-eno1与ifcfg-eno2的配置文件，这里仅以eno1的配置文件，eno2配置文件配置类似，且MASTER项的值均为bond0"><a href="#3-配置bond0对接的物理网卡接口内容，修改ifcfg-eno1与ifcfg-eno2的配置文件，这里仅以eno1的配置文件，eno2配置文件配置类似，且MASTER项的值均为bond0" class="headerlink" title="3.配置bond0对接的物理网卡接口内容，修改ifcfg-eno1与ifcfg-eno2的配置文件，这里仅以eno1的配置文件，eno2配置文件配置类似，且MASTER项的值均为bond0"></a>3.配置bond0对接的物理网卡接口内容，修改ifcfg-eno1与ifcfg-eno2的配置文件，这里仅以eno1的配置文件，eno2配置文件配置类似，且MASTER项的值均为bond0</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/sysconfig/network-scripts/ifcfg-eno1</span><br><span class="line">DEVICE=eno1</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">MASTER=bond0</span><br><span class="line">SLAVE=yes</span><br><span class="line"></span><br><span class="line"># vi /etc/sysconfig/network-scripts/ifcfg-eno2</span><br><span class="line">DEVICE=eno2</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">MASTER=bond0</span><br><span class="line">SLAVE=yes</span><br></pre></td></tr></table></figure>
+<h5 id="4-配置-ifcfg-bond-302文件，特别注意：DEVICE-bond0-302与VLAN-yes"><a href="#4-配置-ifcfg-bond-302文件，特别注意：DEVICE-bond0-302与VLAN-yes" class="headerlink" title="4.配置 ifcfg-bond.302文件，特别注意：DEVICE=bond0.302与VLAN=yes"></a>4.配置 ifcfg-bond.302文件，特别注意：<code>DEVICE=bond0.302与VLAN=yes</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/sysconfig/network-scripts/ifcfg-bond.302</span><br><span class="line">DEVICE=bond0.302</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">IPADDR=192.168.0.2</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">VLAN=yes</span><br><span class="line"># systemctl restart network</span><br></pre></td></tr></table></figure>
+<h2 id="方案二：双卡绑定后只分别设置个vlan-301、vlan-302-内的两个IP"><a href="#方案二：双卡绑定后只分别设置个vlan-301、vlan-302-内的两个IP" class="headerlink" title="方案二：双卡绑定后只分别设置个vlan 301、vlan 302 内的两个IP"></a>方案二：双卡绑定后只分别设置个vlan 301、vlan 302 内的两个IP</h2><h5 id="1-创建bond-conf"><a href="#1-创建bond-conf" class="headerlink" title="1.创建bond.conf"></a>1.创建bond.conf</h5><blockquote>
+<p>和方案一样。</p>
+</blockquote>
+<h5 id="2-在网卡配置目录中创建ifcfg-bond0文件，内容如下："><a href="#2-在网卡配置目录中创建ifcfg-bond0文件，内容如下：" class="headerlink" title="2.在网卡配置目录中创建ifcfg-bond0文件，内容如下："></a>2.在网卡配置目录中创建ifcfg-bond0文件，内容如下：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/sysconfig/network-scripts/ifcfg-bond0</span><br><span class="line">DEVICE=bond0</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=none</span><br></pre></td></tr></table></figure>
+<h5 id="3-配置-ifcfg-bond-301-ifcfg-bond-302-文件，特别注意：DEVICE-bond0-301与VLAN-yes"><a href="#3-配置-ifcfg-bond-301-ifcfg-bond-302-文件，特别注意：DEVICE-bond0-301与VLAN-yes" class="headerlink" title="3.配置 ifcfg-bond.301 ifcfg-bond.302 文件，特别注意：DEVICE=bond0.301与VLAN=yes"></a>3.配置 ifcfg-bond.301 ifcfg-bond.302 文件，特别注意：<code>DEVICE=bond0.301与VLAN=yes</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/sysconfig/network-scripts/ifcfg-bond0.301</span><br><span class="line">DEVICE=bond0.301</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">IPADDR=10.1.2.65</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">VLAN=yes</span><br><span class="line"></span><br><span class="line"># vi /etc/sysconfig/network-scripts/ifcfg-bond0.302</span><br><span class="line">DEVICE=bond0.302</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">IPADDR=192.168.0.3</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">VLAN=yes</span><br></pre></td></tr></table></figure>
+<h5 id="4-关于eno1与eno2网卡的配置文件修改方法如上，其实我们只需要记住在基础的配置上加上如下两条即可"><a href="#4-关于eno1与eno2网卡的配置文件修改方法如上，其实我们只需要记住在基础的配置上加上如下两条即可" class="headerlink" title="4.关于eno1与eno2网卡的配置文件修改方法如上，其实我们只需要记住在基础的配置上加上如下两条即可"></a>4.关于eno1与eno2网卡的配置文件修改方法如上，其实我们只需要记住在基础的配置上加上如下两条即可</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MASTER=bond0</span><br><span class="line">SLAVE=yes</span><br><span class="line"></span><br><span class="line"># systemctl restart network</span><br></pre></td></tr></table></figure>
+<h5 id="辅助命令"><a href="#辅助命令" class="headerlink" title="辅助命令"></a>辅助命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># CentOS7中 nmcli命令由NetworkManager提供</span><br><span class="line"># 可以用于设置：bond、bridge、vlan、wifi、bluetooth、ethernet、vpn</span><br><span class="line"></span><br><span class="line">nmcli的一般用法：</span><br><span class="line">nmcli dev status               #查看网络连接状态</span><br><span class="line">nmcli conn show                #查看已有连接</span><br><span class="line">nmcli dev show                 #查看设备详细信息</span><br><span class="line"></span><br><span class="line">nmcli conn delete UUID1 UUID2  #删除不需要的连接</span><br><span class="line">nmcli dev connect ens33        #连接设备eno33</span><br><span class="line">nmcli dev disconnect eno33     #断开设备eno33</span><br><span class="line"></span><br><span class="line">nmcli conn down ens33          #关闭连接ens33</span><br><span class="line">nmcli conn up ens33            #打开连接ens33</span><br><span class="line">nmcli connection reload        #重新加载网络</span><br><span class="line"></span><br><span class="line">cat /proc/net/vlan/config      #查看已设置的vlan</span><br><span class="line">cat /proc/net/bonding/bond0    #查看bonding信息</span><br><span class="line"></span><br><span class="line">modprobe --first-time bonding  #加载bonding模块</span><br><span class="line">lsmod |grep bonding            #查看是否加载bonding模块</span><br><span class="line">more /sys/class/net/bond0/bonding/mode</span><br><span class="line"></span><br><span class="line">ethtool bond0                  #查看接口传输速率</span><br><span class="line"></span><br><span class="line">参考：https://access.redhat.com/documentation/zh-cn/red_hat_enterprise_linux/7/html/networking_guide/sec-configure_802_1q_vlan_tagging_using_the_command_line_tool_nmcli</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/06/Hadoop集群/" class="archive-article-date">
-  	<time datetime="2016-12-06T02:20:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/06/Hadoop集群/">Hadoop集群</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Bigdata</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/09/06/Docker常用命令与问题记录/" class="archive-article-date">
-  	<time datetime="2016-09-06T01:40:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/06/Docker常用命令与问题记录/">Docker常用命令与问题记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/04/04/Docker笔记/" class="archive-article-date">
-  	<time datetime="2016-04-04T00:25:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/04/Docker笔记/">Docker笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/24/LVS的负载均衡器ipvsadm/" class="archive-article-date">
-  	<time datetime="2016-03-24T09:12:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/24/LVS的负载均衡器ipvsadm/">LVS的负载均衡器ipvsadm</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -446,15 +277,11 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Network</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Loadbalancer</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -467,122 +294,103 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/19/网卡bond与vlan/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/06/Nodejs/" class="archive-article-date">
-  	<time datetime="2016-03-06T02:11:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/19/Graylog检索系统/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Graylog检索系统</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/06/Nodejs/">Nodejs笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">coding</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/02/03/DockerFile模板/" class="archive-article-date">
-  	<time datetime="2016-02-03T00:19:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/03/DockerFile模板/">DockerFile模板</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/5/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span>
-    </nav>
+  
+
+  
+
   
 
 
@@ -606,8 +414,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

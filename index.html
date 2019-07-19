@@ -189,6 +189,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-网卡bond与vlan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/19/网卡bond与vlan/">网卡bond与vlan</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/19/网卡bond与vlan/" class="archive-article-date">
+  	<time datetime="2019-07-19T03:13:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="多网卡链路bond与Vlan设置"><a href="#多网卡链路bond与Vlan设置" class="headerlink" title="多网卡链路bond与Vlan设置"></a>多网卡链路bond与Vlan设置</h1><p><img src="/images/2019/07/19/0be54210-a9f0-11e9-9aea-ad04c999eea8.png" alt="image.png"></p>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><blockquote>
+<p>多个网卡bond后 分别连接不通交换及设备，并在操作系统上提供不通的vlan划分线路来使用bond来做链路传输。</p>
+</blockquote>
+<h3 id="可用bond的模式："><a href="#可用bond的模式：" class="headerlink" title="可用bond的模式："></a>可用bond的模式：</h3><blockquote>
+<p>0、1、4、6 常用，2、3、5不常用。</p>
+</blockquote>
+<h6 id="mode-0-为负载均衡方式，两块网卡都工作。"><a href="#mode-0-为负载均衡方式，两块网卡都工作。" class="headerlink" title="mode=0 为负载均衡方式，两块网卡都工作。"></a><code>mode=0</code> 为负载均衡方式，两块网卡都工作。</h6><blockquote>
+<p>load balancing (round-robin)有高可用 (容错) 和负载均衡的功能, 需要交换机的配置，每块网卡轮询发包 (流量分发比较均衡).但由于回话多时，无需到达的包都会被重新请求发送导致了吞吐量下降。<br>
+        
+          <a class="article-more-a" href="/2019/07/19/网卡bond与vlan/#more">more >></a>
+        
+      
+
+      
+    </p></blockquote></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Network</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/19/网卡bond与vlan/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Graylog检索系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1121,106 +1221,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/04/25/Vxlan与Vtep的关系/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-基于Big-switch的SDN负载均衡和防火墙的架构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/24/基于Big-switch的SDN负载均衡和防火墙的架构/">基于Big switch的SDN负载均衡和防火墙的架构</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/24/基于Big-switch的SDN负载均衡和防火墙的架构/" class="archive-article-date">
-  	<time datetime="2019-04-24T08:01:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-24</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/2019/04/24/9ca200a0-666a-11e9-957a-dd4f783320b4.png" alt="image.png"></p>
-<h2 id="使用开源SDN方案"><a href="#使用开源SDN方案" class="headerlink" title="使用开源SDN方案"></a>使用开源SDN方案</h2><p>最近公司业务和Big switch厂家进行了合作，构建数据中心SDN以及Moning，对业务的负载和安全层使用了如下架构。</p>
-<ul>
-<li>Big switch的SDN控制器</li>
-<li>硬件可选Dell的ONL设备
-        
-          <a class="article-more-a" href="/2019/04/24/基于Big-switch的SDN负载均衡和防火墙的架构/#more">more >></a>
-        
-      
-
-      
-    </li></ul></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SDN</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">NetWork</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/24/基于Big-switch的SDN负载均衡和防火墙的架构/">展开全文 >></a>
         </p>
       
 
