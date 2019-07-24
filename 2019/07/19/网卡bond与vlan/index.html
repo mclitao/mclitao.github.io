@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/2019/07/19/0be54210-a9f0-11e9-9aea-ad04c999eea8.png">
 <meta property="og:image" content="http://yoursite.com/images/2019/07/19/be9a4850-a9ce-11e9-9aea-ad04c999eea8.png">
-<meta property="og:updated_time" content="2019-07-19T06:40:28.995Z">
+<meta property="og:updated_time" content="2019-07-19T06:43:49.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网卡bond与vlan">
 <meta name="twitter:description" content="多网卡链路bond与Vlan设置 描述 多个网卡bond后 分别连接不通交换及设备，并在操作系统上提供不通的vlan划分线路来使用bond来做链路传输。  可用bond的模式： 0、1、4、6 常用，2、3、5不常用。  mode=0 为负载均衡方式，两块网卡都工作。 load balancing (round-robin)有高可用 (容错) 和负载均衡的功能, 需要交换机的配置，每块网卡轮询发包">
@@ -225,7 +225,7 @@
 <p>0、1、4、6 常用，2、3、5不常用。</p>
 </blockquote>
 <h6 id="mode-0-为负载均衡方式，两块网卡都工作。"><a href="#mode-0-为负载均衡方式，两块网卡都工作。" class="headerlink" title="mode=0 为负载均衡方式，两块网卡都工作。"></a><code>mode=0</code> 为负载均衡方式，两块网卡都工作。</h6><blockquote>
-<p>load balancing (round-robin)有高可用 (容错) 和负载均衡的功能, 需要交换机的配置，每块网卡轮询发包 (流量分发比较均衡).但由于回话多时，无需到达的包都会被重新请求发送导致了吞吐量下降。<br><a id="more"></a></p>
+<p>load balancing (round-robin)有高可用 (容错) 和负载均衡的功能, 需要交换机的配置，每块网卡轮询发包 (流量分发比较均衡),但由于通信回话多时，无序到达的包都会被重新请求发送导致了吞吐量下降。<br><a id="more"></a></p>
 </blockquote>
 <h6 id="mode-1-为主备方案-只有一个网卡工作。"><a href="#mode-1-为主备方案-只有一个网卡工作。" class="headerlink" title="mode=1 为主备方案,只有一个网卡工作。"></a><code>mode=1</code> 为主备方案,只有一个网卡工作。</h6><blockquote>
 <p>fault-tolerance (active-backup)提供冗余功能，工作方式是主 从的工作方式,也就是说默认情况下只有一块网卡工作,另一块做备份，对外只有一个mac地址，缺点端口利用率较低。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/modprobe.d/bond.conf</span><br><span class="line">alias bond1 bonding</span><br><span class="line">options bond1 mode=1 miimon=100</span><br></pre></td></tr></table></figure></p>
@@ -355,6 +355,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/07/24/Git命令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Git命令
+        
+      </div>
+    </a>
   
   
     <a href="/2019/07/19/Graylog检索系统/" id="article-nav-older" class="article-nav-link-wrap">
@@ -621,6 +630,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pass</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
             
             <div class="clearfix"></div>
