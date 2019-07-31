@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 寂而常乐</title>
+  <title>Bluestore的SSD故障排查 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="妙无立，无不可立！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="寂而常乐">
-<meta property="og:url" content="http://yoursite.com/archives/page/4/index.html">
+  <meta name="description" content="Bluestore的SSD故障排查Bluestore存储的关键分区项 存放osd keyring等配置信息的 xfs(或者其他fs)目录(100MB)osd data = /tmp/cbt/mnt/osd-device-0-data  存放用户数据的盘/分区bluestore block path = /dev/disk/by-partlabel/osd-device-0-block  存放 ro">
+<meta name="keywords" content="Ceph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bluestore的SSD故障排查">
+<meta property="og:url" content="http://yoursite.com/2019/07/31/Bluestore的SSD故障排查/index.html">
 <meta property="og:site_name" content="寂而常乐">
-<meta property="og:description" content="妙无立，无不可立！">
+<meta property="og:description" content="Bluestore的SSD故障排查Bluestore存储的关键分区项 存放osd keyring等配置信息的 xfs(或者其他fs)目录(100MB)osd data = /tmp/cbt/mnt/osd-device-0-data  存放用户数据的盘/分区bluestore block path = /dev/disk/by-partlabel/osd-device-0-block  存放 ro">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-31T02:01:33.206Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="寂而常乐">
-<meta name="twitter:description" content="妙无立，无不可立！">
+<meta name="twitter:title" content="Bluestore的SSD故障排查">
+<meta name="twitter:description" content="Bluestore的SSD故障排查Bluestore存储的关键分区项 存放osd keyring等配置信息的 xfs(或者其他fs)目录(100MB)osd data = /tmp/cbt/mnt/osd-device-0-data  存放用户数据的盘/分区bluestore block path = /dev/disk/by-partlabel/osd-device-0-block  存放 ro">
   
     <link rel="alternative" href="/atom.xml" title="寂而常乐" type="application/atom+xml">
   
@@ -187,56 +189,67 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Bluestore的SSD故障排查" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Bluestore的SSD故障排查
+    </h1>
+  
+
+        
+        <a href="/2019/07/31/Bluestore的SSD故障排查/" class="archive-article-date">
+  	<time datetime="2019-07-31T01:36:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bluestore的SSD故障排查"><a href="#Bluestore的SSD故障排查" class="headerlink" title="Bluestore的SSD故障排查"></a>Bluestore的SSD故障排查</h1><h3 id="Bluestore存储的关键分区项"><a href="#Bluestore存储的关键分区项" class="headerlink" title="Bluestore存储的关键分区项"></a>Bluestore存储的关键分区项</h3><ol>
+<li>存放osd keyring等配置信息的 xfs(或者其他fs)目录(100MB)<br>osd data = /tmp/cbt/mnt/osd-device-0-data </li>
+<li>存放用户数据的盘/分区<br>bluestore block path = /dev/disk/by-partlabel/osd-device-0-block </li>
+<li>存放 rocksdb 的盘/分区(1GB）<br>bluestore block db path = /dev/disk/by-partlabel/osd-device-0-db </li>
+<li>存放 wal 的盘/分区(1GB)<br>bluestore block wal path = /dev/disk/by-partlabel/osd-device-0-wal</li>
+</ol>
+<a id="more"></a>
+<h3 id="排查过程"><a href="#排查过程" class="headerlink" title="排查过程"></a>排查过程</h3><h4 id="1-定位故障点"><a href="#1-定位故障点" class="headerlink" title="1.定位故障点"></a>1.定位故障点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># ceph osd tree|grep down</span><br><span class="line">  13       1.00000                 osd.13              down        0 1.00000</span><br><span class="line"># ceph osd find 13</span><br><span class="line">&#123;</span><br><span class="line">    &quot;osd&quot;: 13,</span><br><span class="line">    &quot;ip&quot;: &quot;172.99.0.104:6802/154272&quot;,</span><br><span class="line">    &quot;crush_location&quot;: &#123;</span><br><span class="line">        &quot;host&quot;: &quot;control4&quot;,</span><br><span class="line">        &quot;root&quot;: &quot;default&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>登录到上面的172.99.0.104，执行命令”dmesg -T”，发现有dm-0设备发生io错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[Wed Feb 27 16:24:02 2019] hpsa 0000:03:00.0: Acknowledging event: 0x40000032 (HP SSD Smart Path state change)</span><br><span class="line">[Wed Feb 27 16:24:02 2019] hpsa 0000:03:00.0: hpsa_update_device_info: LV failed, device will be skipped.</span><br><span class="line">[Wed Feb 27 16:24:02 2019] hpsa 0000:03:00.0: scsi 0:1:0:0: updated Direct-Access     HP       LOGICAL VOLUME   RAID-1(+0) SSDSmartPathCap+ En+ Exp=1</span><br><span class="line">[Wed Feb 27 16:24:02 2019] hpsa 0000:03:00.0: scsi 0:1:0:2: updated Direct-Access     HP       LOGICAL VOLUME   RAID-0 SSDSmartPathCap+ En+ Exp=1</span><br><span class="line">[Wed Feb 27 16:24:21 2019] buffer_io_error: 1 callbacks suppressed</span><br><span class="line">[Wed Feb 27 16:24:21 2019] Buffer I/O error on dev dm-0, logical block 0, async page read</span><br><span class="line">[Wed Feb 27 16:24:21 2019] Buffer I/O error on dev dm-0, logical block 0, async page read</span><br><span class="line">[Wed Feb 27 16:24:21 2019] Buffer I/O error on dev dm-0, logical block 0, async page read</span><br><span class="line">[Wed Feb 27 16:24:21 2019] Buffer I/O error on dev dm-0, logical block 0, async page read</span><br><span class="line">[Wed Feb 27 16:24:21 2019] Buffer I/O error on dev dm-0, logical block 0, async page read</span><br><span class="line">[Wed Feb 27 16:24:21 2019] Buffer I/O error on dev dm-0, logical block 0, async page read</span><br><span class="line">[Wed Feb 27 16:24:21 2019] Buffer I/O error on dev dm-0, logical block 0, async page read</span><br><span class="line">[Wed Feb 27 16:24:21 2019] Buffer I/O error on dev dm-0, logical block 468834288, async page read</span><br><span class="line">[Wed Feb 27 16:24:21 2019] Buffer I/O error on dev dm-0, logical block 468834288, async page read</span><br><span class="line">[Wed Feb 27 16:24:22 2019] Buffer I/O error on dev dm-0, logical block 468834288, async page read</span><br><span class="line"></span><br><span class="line">检查osd日志出现“ERROR: osd init failed: (5) Input/output error</span><br><span class="line"></span><br><span class="line"># tail -100 /var/log/ceph/ceph-osd.13.log</span><br><span class="line">2019-02-27 16:31:55.758790 7ff4da40cd80 -1 osd.13 0 OSD:init: unable to mount object store</span><br><span class="line">2019-02-27 16:31:55.758804 7ff4da40cd80 -1  ** ERROR: osd init failed: (5) Input/output error</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="2-确定osd-13的关联"><a href="#2-确定osd-13的关联" class="headerlink" title="2.确定osd-13的关联"></a>2.确定osd-13的关联</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">  进入一个OSD盘容器</span><br><span class="line"># docker exec -it osd_data_sdb bash</span><br><span class="line"></span><br><span class="line">  查看挂载的OSD物理盘13与对应挂载位置</span><br><span class="line"># mount |grep osd</span><br><span class="line">/dev/sdb1 on /var/lib/ceph/osd/ceph-13 type xfs (rw,noatime,attr2,inode64,noquota)</span><br><span class="line"></span><br><span class="line">  查看挂载的ceph-13目录内容 可以看到这个盘具体的分区关系</span><br><span class="line"># ll -Alh /var/lib/ceph/osd/ceph-13</span><br><span class="line">total 60K</span><br><span class="line">-rw-r--r-- 1 root root 420 Jan 21  2019 activate.monmap</span><br><span class="line">-rw-r--r-- 1 ceph ceph   3 Jan 21  2019 active</span><br><span class="line">lrwxrwxrwx 1 ceph ceph  58 Jan 21  2019 block -&gt; /dev/disk/by-partuuid/2a6d8ea0-ce3e-46df-ae21-ae1f0ef73c99</span><br><span class="line">lrwxrwxrwx 1 ceph ceph  58 Jan 21  2019 block.db -&gt; /dev/disk/by-partuuid/d2f520c7-7361-4a0f-8d8f-02fcdfa3d6b7</span><br><span class="line">-rw-r--r-- 1 ceph ceph  37 Jan 21  2019 block.db_uuid</span><br><span class="line">lrwxrwxrwx 1 ceph ceph  58 Jan 21  2019 block.wal -&gt; /dev/disk/by-partuuid/fcdfdee3-aa12-476c-9dbe-509ad19d3ff1</span><br><span class="line">-rw-r--r-- 1 ceph ceph  37 Jan 21  2019 block.wal_uuid</span><br><span class="line">-rw-r--r-- 1 ceph ceph  37 Jan 21  2019 block_uuid</span><br><span class="line">-rw-r--r-- 1 ceph disk   2 Jan 21  2019 bluefs</span><br><span class="line">-rw-r--r-- 1 ceph ceph  37 Jan 21  2019 ceph_fsid</span><br><span class="line">-rw-r--r-- 1 ceph ceph  37 Jan 21  2019 fsid</span><br><span class="line">-rw------- 1 ceph ceph  57 Jan 21  2019 keyring</span><br><span class="line">-rw-r--r-- 1 ceph disk   8 Jan 21  2019 kv_backend</span><br><span class="line">-rw-r--r-- 1 ceph ceph  21 Jan 21  2019 magic</span><br><span class="line">-rw-r--r-- 1 ceph disk   4 Jan 21  2019 mkfs_done</span><br><span class="line">-rw-r--r-- 1 ceph ceph   0 Jul 21 16:23 none</span><br><span class="line">-rw-r--r-- 1 ceph disk   6 Jan 21  2019 ready</span><br><span class="line">-rw-r--r-- 1 ceph ceph  10 Jan 21  2019 type</span><br><span class="line">-rw-r--r-- 1 ceph ceph   3 Jan 21  2019 whoami</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  查看目标盘osd13的Label内容</span><br><span class="line"># ceph-bluestore-tool show-label --path /var/lib/ceph/osd/ceph-13</span><br><span class="line">inferring bluefs devices from bluestore path</span><br><span class="line">&#123;</span><br><span class="line">    &quot;/var/lib/ceph/osd/ceph-13/block&quot;: &#123;</span><br><span class="line">        &quot;osd_uuid&quot;: &quot;b1b7930d-a786-46c7-95e5-2811452f1525&quot;,</span><br><span class="line">        &quot;size&quot;: 998421237760,</span><br><span class="line">        &quot;btime&quot;: &quot;2019-01-21 16:55:32.924526&quot;,</span><br><span class="line">        &quot;description&quot;: &quot;main&quot;,</span><br><span class="line">        &quot;bluefs&quot;: &quot;1&quot;,</span><br><span class="line">        &quot;ceph_fsid&quot;: &quot;297db882-ed2a-4f7a-9202-0e77e7992c79&quot;,</span><br><span class="line">        &quot;kv_backend&quot;: &quot;rocksdb&quot;,</span><br><span class="line">        &quot;magic&quot;: &quot;ceph osd volume v026&quot;,</span><br><span class="line">        &quot;mkfs_done&quot;: &quot;yes&quot;,</span><br><span class="line">        &quot;ready&quot;: &quot;ready&quot;,</span><br><span class="line">        &quot;whoami&quot;: &quot;13&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;/var/lib/ceph/osd/ceph-13/block.wal&quot;: &#123;</span><br><span class="line">        &quot;osd_uuid&quot;: &quot;b1b7930d-a786-46c7-95e5-2811452f1525&quot;,</span><br><span class="line">        &quot;size&quot;: 603979776,</span><br><span class="line">        &quot;btime&quot;: &quot;2019-01-21 16:55:33.032695&quot;,</span><br><span class="line">        &quot;description&quot;: &quot;bluefs wal&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;/var/lib/ceph/osd/ceph-13/block.db&quot;: &#123;</span><br><span class="line">        &quot;osd_uuid&quot;: &quot;b1b7930d-a786-46c7-95e5-2811452f1525&quot;,</span><br><span class="line">        &quot;size&quot;: 1073741824,</span><br><span class="line">        &quot;btime&quot;: &quot;2019-01-21 16:55:32.991752&quot;,</span><br><span class="line">        &quot;description&quot;: &quot;bluefs db&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-通过HBA卡查看磁盘状态信息"><a href="#3-通过HBA卡查看磁盘状态信息" class="headerlink" title="3.通过HBA卡查看磁盘状态信息"></a>3.通过HBA卡查看磁盘状态信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"># hpssacli ctrl slot=0  show  config detail</span><br><span class="line"></span><br><span class="line">  Array: B</span><br><span class="line">      Interface Type: Solid State SATA</span><br><span class="line">      Unused Space: 0  MB (0.0%)</span><br><span class="line">      Used Space: 1.7 TB (100.0%)</span><br><span class="line">      Status: Failed Physical Drive    #盘丢了，warning也有提示</span><br><span class="line">      MultiDomain Status: OK</span><br><span class="line">      Array Type: Data       HPE SSD Smart Path: enable</span><br><span class="line"></span><br><span class="line">      Warning: One of the drives on this array have failed or has been removed.</span><br><span class="line"></span><br><span class="line">      Logical Drive: 2</span><br><span class="line">         Size: 1.7 TB</span><br><span class="line">         Fault Tolerance: 0</span><br><span class="line">         Heads: 255</span><br><span class="line">         Sectors Per Track: 32</span><br><span class="line">         Cylinders: 65535</span><br><span class="line">         Strip Size: 256 KB</span><br><span class="line">         Full Stripe Size: 256 KB</span><br><span class="line">         Status: Failed #挂了</span><br><span class="line">         MultiDomain Status: OK</span><br><span class="line">         Caching:  Disabled</span><br><span class="line">         Unique Identifier: 600508B1001C3FBF225890CDE3612E98</span><br><span class="line">         Logical Drive Label: 0606978APVYKH0BRH9507N6082</span><br><span class="line">         Drive Type: Data</span><br><span class="line">         LD Acceleration Method: HPE SSD Smart Path</span><br><span class="line"></span><br><span class="line">      physicaldrive 2I:4:1 #记录插槽序号，后面备用</span><br><span class="line">         Port: 2I</span><br><span class="line">         Box: 4</span><br><span class="line">         Bay: 1</span><br><span class="line">         Status: Failed</span><br><span class="line">         Last Failure Reason: Hot removed</span><br><span class="line">         Drive Type: Data Drive</span><br><span class="line">         Interface Type: Solid State SATA</span><br><span class="line">         Size: 1920.3 GB</span><br><span class="line">         Drive exposed to OS: False</span><br><span class="line">         Native Block Size: 4096</span><br><span class="line">         Firmware Revision: 4IYVHPG1</span><br><span class="line">         Serial Number: BTYS802201ZJ1P9DGN</span><br><span class="line">         Model: ATA     VK001920GWJPH</span><br><span class="line">         SATA NCQ Capable: True</span><br><span class="line">         SATA NCQ Enabled: True</span><br><span class="line">         Maximum Temperature (C): 41</span><br><span class="line">         Usage remaining: 99.80%   #剩余</span><br><span class="line">         Power On Hours: 4868      #在线小时数</span><br><span class="line">         Estimated Life Remaining based on workload to date: 101213 days</span><br><span class="line">         SSD Smart Trip Wearout: False</span><br><span class="line">         PHY Count: 1</span><br><span class="line">         PHY Transfer Rate: Unknown</span><br><span class="line">         Drive Authentication Status: Not Applicable</span><br><span class="line">         Sanitize Erase Supported: False</span><br></pre></td></tr></table></figure>
+<h4 id="4-确定SSD损坏，需要清除剩余的LVM信息"><a href="#4-确定SSD损坏，需要清除剩余的LVM信息" class="headerlink" title="4.确定SSD损坏，需要清除剩余的LVM信息"></a>4.确定SSD损坏，需要清除剩余的LVM信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">1.先umount</span><br><span class="line"></span><br><span class="line">  查看目标盘挂载地址及位置</span><br><span class="line"># mount -l|grep ceph-13</span><br><span class="line">/dev/sdb1 on /var/lib/ceph/osd/ceph-13 type xfs (rw,noatime,attr2,inode64,noquota)</span><br><span class="line"></span><br><span class="line"># umount  /var/lib/ceph/osd/ceph-13</span><br><span class="line"># mount -l|grep ceph-13 看不到了</span><br><span class="line"></span><br><span class="line"># vgs  检查vg和lv信息，注意pv有warning，提示丢了盘(因为卸载了)</span><br><span class="line">  WARNING: Device for PV centos not found or rejected by a filter.</span><br><span class="line"># lvs  </span><br><span class="line">  WARNING: Device for PV centos not found or rejected by a filter.</span><br><span class="line"></span><br><span class="line">遵从LVM三级结构，LV-&gt;VG-&gt;PV,先删掉lv和vg</span><br><span class="line"></span><br><span class="line"># lvs</span><br><span class="line">  WARNING: Failed to connect to lvmetad. Falling back to device scanning.</span><br><span class="line">  LV     VG     Attr       LSize  Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert</span><br><span class="line">  docker centos twi-aotz-- 87.89g             9.74   3.98                            </span><br><span class="line">  root   centos -wi-ao---- 87.89g   </span><br><span class="line"></span><br><span class="line"># vgs</span><br><span class="line">  WARNING: Failed to connect to lvmetad. Falling back to device scanning.</span><br><span class="line">  VG     #PV #LV #SN Attr   VSize   VFree  </span><br><span class="line">  centos   1   2   0 wz--n- 930.53g 753.75g</span><br><span class="line"></span><br><span class="line"># pvs</span><br><span class="line">  WARNING: Failed to connect to lvmetad. Falling back to device scanning.</span><br><span class="line">  PV         VG     Fmt  Attr PSize   PFree  </span><br><span class="line">  /dev/sda3  centos lvm2 a--  930.53g 753.75g</span><br><span class="line"></span><br><span class="line"># vgremove ceph-72de7913-115e-4df5-868d-7f4cf7ea2b37  移除vg</span><br><span class="line">  WARNING: Device for PV BLh8zq-EFYG-Yoy9-75uU-b7VM-p66e-o0C6Fu not found or rejected by a filter.</span><br><span class="line">  WARNING: 1 physical volumes are currently missing from the system.</span><br><span class="line">	Do you really want to remove volume group &quot;ceph-72de7913-115e-4df5-868d-7f4cf7ea2b37&quot; containing 1 logical volumes? [y/n]: y</span><br><span class="line">	Do you really want to remove active logical volume ceph-72de7913-115e-4df5-868d-7f4cf7ea2b37/osd-block-a99bc25c-4cf4-5429-9171-4084555af14b? [y/n]: y</span><br><span class="line"># lvs  查不到了</span><br><span class="line"># vgs  查不到了</span><br><span class="line"># pvs  检查pv状态，发现有unknown设备，提示有pv设备“BLh8zq-EFYG-Yoy9-75uU-b7VM-p66e-o0C6Fu” 丢失</span><br><span class="line">  WARNING: Device for PV BLh8zq-EFYG-Yoy9-75uU-b7VM-p66e-o0C6Fu not found or rejected by a filter.</span><br><span class="line">  WARNING: Device for PV BLh8zq-EFYG-Yoy9-75uU-b7VM-p66e-o0C6Fu not found or rejected by a filter.</span><br></pre></td></tr></table></figure>
+<h4 id="5-更新pvs缓存并通知-机房还盘"><a href="#5-更新pvs缓存并通知-机房还盘" class="headerlink" title="5.更新pvs缓存并通知 机房还盘"></a>5.更新pvs缓存并通知 机房还盘</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  手工删除pv是不行的，这里需要用到一个pvscan --cache命令去刷新缓存，之后再看pv、vg、lv通通都被清理掉了</span><br><span class="line"># pvscan --cache  </span><br><span class="line"># pvs</span><br><span class="line"># vgs</span><br><span class="line"># lvs</span><br><span class="line"></span><br><span class="line">  最后保守起见还是手工点亮故障灯，通知机房换盘(使用hbak命令使故障盘灯常亮)</span><br><span class="line"># hpssacli ctrl slot=0 pd 2I:4:1 modify led=on</span><br></pre></td></tr></table></figure>
+<p>总结：Bluestore用到了LVM，因此卸载物理磁盘之前，一定要遵循LVM规范去删除残留数据，不然之后换上新盘会造成管理上的混乱。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/10/云平台网络多线分压设置/" class="archive-article-date">
-  	<time datetime="2019-04-10T07:00:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/10/云平台网络多线分压设置/">云平台网络多线分压设置</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Ceph</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -249,433 +262,112 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/31/Bluestore的SSD故障排查/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/往生广咒/" class="archive-article-date">
-  	<time datetime="2019-04-09T08:06:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/07/31/Ceph读写测试/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Ceph读写测试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/25/资产配置表/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">资产配置表</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/往生广咒/">往生广咒</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/治眼病咒/" class="archive-article-date">
-  	<time datetime="2019-04-09T08:03:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/治眼病咒/">治眼病咒</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/元音上师传治糖尿病方/" class="archive-article-date">
-  	<time datetime="2019-04-09T08:01:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/元音上师传治糖尿病方/">元音上师传治糖尿病方</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/楞严咒心/" class="archive-article-date">
-  	<time datetime="2019-04-09T07:54:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/楞严咒心/">楞严咒心</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/凉菜调料汁集锦/" class="archive-article-date">
-  	<time datetime="2019-04-09T01:05:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/凉菜调料汁集锦/">凉菜调料汁集锦</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cate美食</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/Linux笔记/" class="archive-article-date">
-  	<time datetime="2019-04-09T00:33:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/Linux笔记/">Linux笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SHELL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/08/MAC工具/" class="archive-article-date">
-  	<time datetime="2019-04-08T00:53:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/08/MAC工具/">MAC工具</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/08/Intellj-IDEA-插件-HTTP-Client/" class="archive-article-date">
-  	<time datetime="2019-04-08T00:29:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/08/Intellj-IDEA-插件-HTTP-Client/">Intellj IDEA 插件 HTTP Client</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/04/enable-multi-tenancy-on-openstack-pike/" class="archive-article-date">
-  	<time datetime="2019-04-04T06:02:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/04/enable-multi-tenancy-on-openstack-pike/">enable multi-tenancy on openstack pike</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/5/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -699,8 +391,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

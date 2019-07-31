@@ -189,6 +189,211 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Ceph读写测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/31/Ceph读写测试/">Ceph读写测试</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/31/Ceph读写测试/" class="archive-article-date">
+  	<time datetime="2019-07-31T02:27:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ceph读写测试"><a href="#ceph读写测试" class="headerlink" title="ceph读写测试"></a>ceph读写测试</h1><h4 id="ceph自带rados-bench工具可以完成测试目的"><a href="#ceph自带rados-bench工具可以完成测试目的" class="headerlink" title="ceph自带rados bench工具可以完成测试目的"></a>ceph自带rados bench工具可以完成测试目的</h4><blockquote>
+<p>语法：rados bench -p &lt;pool_name&gt; <seconds> &lt;write|seq|rand&gt; -b <block size> -t –no-cleanup</block></seconds></p>
+</blockquote>
+<ul>
+<li>pool_name：测试所针对的存储池</li>
+<li>seconds：  测试所持续的秒数</li>
+<li>&lt;write|seq|rand&gt;：操作模 式write写；seq顺序读；rand随机读</li>
+<li>-b：block size：即块大小，默认为 4M</li>
+<li>-t：读/写并行进程数，默认为 16</li>
+<li>–no-cleanup 表示测试完成后不删除测试用数据。在做读测试之前，需要使用该参数来运行一遍写测试来产生测试数据，全部测试结束后使用命令清理测试数据 rados -p &lt;pool_name&gt; cleanup</li>
+</ul>
+<h4 id="磁盘性能指标–IOPS"><a href="#磁盘性能指标–IOPS" class="headerlink" title="磁盘性能指标–IOPS:"></a>磁盘性能指标–IOPS:</h4><ul>
+<li>IOPS是指单位时间内系统能处理的I/O请求数量，一般以每秒处理的 I/O请求数量为单位，I/O请求通常为读或写数据操作请求。</li>
+<li>IOPS和数据吞吐量适用于不同的场合：</li>
+<li>读取10000个1KB文件，用时10秒 Throught(吞吐量)=1MB/s ，IOPS=1000 追 求IOPS;</li>
+<li>读取1个10MB文件，用时0.2秒 Throught(吞吐量)=50MB/s, IOPS=5 追求吞吐量。</li>
+</ul>
+        
+          <a class="article-more-a" href="/2019/07/31/Ceph读写测试/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Ceph</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/31/Ceph读写测试/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Bluestore的SSD故障排查" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/31/Bluestore的SSD故障排查/">Bluestore的SSD故障排查</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/31/Bluestore的SSD故障排查/" class="archive-article-date">
+  	<time datetime="2019-07-31T01:36:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Bluestore的SSD故障排查"><a href="#Bluestore的SSD故障排查" class="headerlink" title="Bluestore的SSD故障排查"></a>Bluestore的SSD故障排查</h1><h3 id="Bluestore存储的关键分区项"><a href="#Bluestore存储的关键分区项" class="headerlink" title="Bluestore存储的关键分区项"></a>Bluestore存储的关键分区项</h3><ol>
+<li>存放osd keyring等配置信息的 xfs(或者其他fs)目录(100MB)<br>osd data = /tmp/cbt/mnt/osd-device-0-data </li>
+<li>存放用户数据的盘/分区<br>bluestore block path = /dev/disk/by-partlabel/osd-device-0-block </li>
+<li>存放 rocksdb 的盘/分区(1GB）<br>bluestore block db path = /dev/disk/by-partlabel/osd-device-0-db </li>
+<li>存放 wal 的盘/分区(1GB)<br>bluestore block wal path = /dev/disk/by-partlabel/osd-device-0-wal</li>
+</ol>
+        
+          <a class="article-more-a" href="/2019/07/31/Bluestore的SSD故障排查/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Ceph</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/31/Bluestore的SSD故障排查/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-资产配置表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -921,246 +1126,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/07/19/网卡bond与vlan/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Graylog检索系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/19/Graylog检索系统/">Graylog检索系统</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/19/Graylog检索系统/" class="archive-article-date">
-  	<time datetime="2019-07-19T02:03:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Graylog检索系统"><a href="#Graylog检索系统" class="headerlink" title="Graylog检索系统"></a>Graylog检索系统</h1><table>
-<thead>
-<tr>
-<th>编号</th>
-<th>名称</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>官网</td>
-<td><a href="https://www.graylog.org/" target="_blank" rel="noopener">https://www.graylog.org/</a></td>
-</tr>
-<tr>
-<td>2</td>
-<td>场景</td>
-<td>ELK、大数据、开发</td>
-</tr>
-<tr>
-<td>3</td>
-<td>接收源</td>
-<td>syslog、Filebeat、Log4j、Logstash、elasticsearch</td>
-</tr>
-<tr>
-<td>4</td>
-<td>接收协议</td>
-<td>UDP、TCP、HTTP、AMQP。</td>
-</tr>
-<tr>
-<td>5</td>
-<td>参考资料</td>
-<td><a href="https://www.cnblogs.com/CloudMan6/p/7808708.html" target="_blank" rel="noopener">https://www.cnblogs.com/CloudMan6/p/7808708.html</a><br><a href="https://blog.csdn.net/z497896143/article/details/81912001" target="_blank" rel="noopener">https://blog.csdn.net/z497896143/article/details/81912001</a><br><a href="https://www.cnblogs.com/digod/p/9626882.html" target="_blank" rel="noopener">https://www.cnblogs.com/digod/p/9626882.html</a></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>注：商业版搜索工具有Splunk，而Graylog就是开源界的它。</td>
-</tr>
-</tbody>
-</table>
-<p><img src="/images/2019/07/19/a8d02f40-a9c8-11e9-94c9-2b20544ee215.png" alt="image.png"></p>
-<h5 id="1-下载image"><a href="#1-下载image" class="headerlink" title="1.下载image"></a>1.下载image</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull mongo:3</span><br><span class="line">docker pull elasticsearch:5.6.9</span><br><span class="line">docker pull graylog/graylog:2.4</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/07/19/Graylog检索系统/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ELK</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">监控</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/19/Graylog检索系统/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-达摩大师-悟性论" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/18/达摩大师-悟性论/">达摩大师-悟性论</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/18/达摩大师-悟性论/" class="archive-article-date">
-  	<time datetime="2019-07-18T07:34:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
-</a>
-        
-
-        <!-- 目录内容 -->
-           
-        <!-- 目录内容结束 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="第五门《悟性论》"><a href="#第五门《悟性论》" class="headerlink" title="第五门《悟性论》"></a>第五门《悟性论》</h1><p><img src="/images/2019/07/18/cfda6220-a934-11e9-886a-a1b7c84fcb66.png" alt="image.png"></p>
-<p>夫“道”者，以“<code>寂灭</code>”为<code>体</code>。“修”者，以“<code>离相</code>”为<code>宗</code>。故经云：“寂灭是菩提，灭诸相故。”</p>
-<p>　　佛者，觉也。人有觉心，得菩提道，故名为佛。经云：“离一切诸相，即名诸佛。”是知“有相”是无相之相，不可以眼见，唯可以智知。若闻此法者，生一念信心，此人以发大乘心超三界。三界者，贪嗔痴是。返贪嗔痴为戒定慧，即名超三界。然贪嗔痴亦无实性，但据众生而言矣。若能返照，了了见，贪嗔痴性即是佛性，贪嗔痴外更无别有佛性。经云：“诸佛从本来，常处于三毒，<strong><code>长养于白法，而成于世尊。</code></strong> ”三毒者，贪嗔痴也。</p>
-        
-          <a class="article-more-a" href="/2019/07/18/达摩大师-悟性论/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">禅净密</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/18/达摩大师-悟性论/">展开全文 >></a>
         </p>
       
 

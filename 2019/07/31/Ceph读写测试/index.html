@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 寂而常乐</title>
+  <title>Ceph读写测试 | 寂而常乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="妙无立，无不可立！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="寂而常乐">
-<meta property="og:url" content="http://yoursite.com/archives/page/4/index.html">
+  <meta name="description" content="ceph读写测试ceph自带rados bench工具可以完成测试目的 语法：rados bench -p &amp;lt;pool_name&amp;gt;  &amp;lt;write|seq|rand&amp;gt; -b  -t –no-cleanup   pool_name：测试所针对的存储池 seconds：  测试所持续的秒数 &amp;lt;write|seq|rand&amp;gt;：操作模 式write写；seq顺序读；ra">
+<meta name="keywords" content="Ceph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ceph读写测试">
+<meta property="og:url" content="http://yoursite.com/2019/07/31/Ceph读写测试/index.html">
 <meta property="og:site_name" content="寂而常乐">
-<meta property="og:description" content="妙无立，无不可立！">
+<meta property="og:description" content="ceph读写测试ceph自带rados bench工具可以完成测试目的 语法：rados bench -p &amp;lt;pool_name&amp;gt;  &amp;lt;write|seq|rand&amp;gt; -b  -t –no-cleanup   pool_name：测试所针对的存储池 seconds：  测试所持续的秒数 &amp;lt;write|seq|rand&amp;gt;：操作模 式write写；seq顺序读；ra">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/2019/07/31/9aa2a1f0-b33c-11e9-9ff9-6b8eeeb13b8d.png">
+<meta property="og:image" content="http://yoursite.com/images/2019/07/31/86306900-b33c-11e9-9ff9-6b8eeeb13b8d.png">
+<meta property="og:updated_time" content="2019-07-31T02:52:00.095Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="寂而常乐">
-<meta name="twitter:description" content="妙无立，无不可立！">
+<meta name="twitter:title" content="Ceph读写测试">
+<meta name="twitter:description" content="ceph读写测试ceph自带rados bench工具可以完成测试目的 语法：rados bench -p &amp;lt;pool_name&amp;gt;  &amp;lt;write|seq|rand&amp;gt; -b  -t –no-cleanup   pool_name：测试所针对的存储池 seconds：  测试所持续的秒数 &amp;lt;write|seq|rand&amp;gt;：操作模 式write写；seq顺序读；ra">
+<meta name="twitter:image" content="http://yoursite.com/images/2019/07/31/9aa2a1f0-b33c-11e9-9ff9-6b8eeeb13b8d.png">
   
     <link rel="alternative" href="/atom.xml" title="寂而常乐" type="application/atom+xml">
   
@@ -187,56 +192,83 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Ceph读写测试" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ceph读写测试
+    </h1>
+  
+
+        
+        <a href="/2019/07/31/Ceph读写测试/" class="archive-article-date">
+  	<time datetime="2019-07-31T02:27:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
+</a>
+        
+
+        <!-- 目录内容 -->
+           
+        <!-- 目录内容结束 -->
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ceph读写测试"><a href="#ceph读写测试" class="headerlink" title="ceph读写测试"></a>ceph读写测试</h1><h4 id="ceph自带rados-bench工具可以完成测试目的"><a href="#ceph自带rados-bench工具可以完成测试目的" class="headerlink" title="ceph自带rados bench工具可以完成测试目的"></a>ceph自带rados bench工具可以完成测试目的</h4><blockquote>
+<p>语法：rados bench -p &lt;pool_name&gt; <seconds> &lt;write|seq|rand&gt; -b <block size> -t –no-cleanup</block></seconds></p>
+</blockquote>
+<ul>
+<li>pool_name：测试所针对的存储池</li>
+<li>seconds：  测试所持续的秒数</li>
+<li>&lt;write|seq|rand&gt;：操作模 式write写；seq顺序读；rand随机读</li>
+<li>-b：block size：即块大小，默认为 4M</li>
+<li>-t：读/写并行进程数，默认为 16</li>
+<li>–no-cleanup 表示测试完成后不删除测试用数据。在做读测试之前，需要使用该参数来运行一遍写测试来产生测试数据，全部测试结束后使用命令清理测试数据 rados -p &lt;pool_name&gt; cleanup</li>
+</ul>
+<h4 id="磁盘性能指标–IOPS"><a href="#磁盘性能指标–IOPS" class="headerlink" title="磁盘性能指标–IOPS:"></a>磁盘性能指标–IOPS:</h4><ul>
+<li>IOPS是指单位时间内系统能处理的I/O请求数量，一般以每秒处理的 I/O请求数量为单位，I/O请求通常为读或写数据操作请求。</li>
+<li>IOPS和数据吞吐量适用于不同的场合：</li>
+<li>读取10000个1KB文件，用时10秒 Throught(吞吐量)=1MB/s ，IOPS=1000 追 求IOPS;</li>
+<li>读取1个10MB文件，用时0.2秒 Throught(吞吐量)=50MB/s, IOPS=5 追求吞吐量。</li>
+</ul>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">写：</span><br><span class="line"># rados bench -p vms 10 write --no-cleanup</span><br><span class="line">顺序读：</span><br><span class="line"># rados bench -p vms 10 seq</span><br><span class="line">随机读：</span><br><span class="line"># rados bench -p vms 10 rand</span><br><span class="line">删除rados bench命令创建的数据：</span><br><span class="line"># rados -p vms cleanup</span><br><span class="line">查看磁盘io: </span><br><span class="line"># iotop -P</span><br><span class="line"></span><br><span class="line">关键指标：</span><br><span class="line">cur 是current的缩写 </span><br><span class="line">cur MB/s 当前速度</span><br><span class="line">avg MB/s 平均速度</span><br><span class="line">Bandwidth (MB/sec): 吞吐量</span><br><span class="line">Average IOPS: 平均iops</span><br><span class="line">Stddev IOPS: 标准偏差</span><br><span class="line">Average Latency(s): 平均延迟</span><br><span class="line"></span><br><span class="line">  ceph集群盘位信息</span><br><span class="line"># ceph osd tree             </span><br><span class="line">ID CLASS WEIGHT  TYPE NAME         STATUS REWEIGHT PRI-AFF </span><br><span class="line">-1       8.18097 root default                              </span><br><span class="line">-3       2.72699     host control2                         </span><br><span class="line"> 5   hdd 0.90900         osd.5         up  1.00000 1.00000 </span><br><span class="line">11   hdd 0.90900         osd.11        up  1.00000 1.00000 </span><br><span class="line">12   hdd 0.90900         osd.12        up  1.00000 1.00000 </span><br><span class="line">-7       2.72699     host control3                         </span><br><span class="line">16   hdd 0.90900         osd.16        up  1.00000 1.00000 </span><br><span class="line">17   hdd 0.90900         osd.17        up  1.00000 1.00000 </span><br><span class="line">18   hdd 0.90900         osd.18        up  1.00000 1.00000 </span><br><span class="line">-5       2.72699     host control4                         </span><br><span class="line">13   hdd 0.90900         osd.13        up  1.00000 1.00000 </span><br><span class="line">19   hdd 0.90900         osd.19        up  1.00000 1.00000 </span><br><span class="line">20   hdd 0.90900         osd.20        up  1.00000 1.00000</span><br></pre></td></tr></table></figure>
+<h4 id="1-测试vms池的10进程写入能力"><a href="#1-测试vms池的10进程写入能力" class="headerlink" title="1.测试vms池的10进程写入能力"></a>1.测试vms池的10进程写入能力</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"># rados bench -p vms 10 write --no-cleanup   </span><br><span class="line">hints = 1</span><br><span class="line">Maintaining 16 concurrent writes of 4194304 bytes to objects of size 4194304 for up to 10 seconds or 0 objects</span><br><span class="line">Object prefix: benchmark_data_control1_10016</span><br><span class="line">  sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)</span><br><span class="line">    0       0         0         0         0         0           -           0</span><br><span class="line">    1      16        16         0         0         0           -           0</span><br><span class="line">    2      16        19         3   5.99935         6     1.53919     1.21661</span><br><span class="line">    3      16        22         6   7.99904        12     2.79158     1.89827</span><br><span class="line">    4      16        44        28   27.9965        88      0.3876     1.97318</span><br><span class="line">    5      16        61        45   35.9957        68     0.45104     1.51702</span><br><span class="line">    6      16        72        56   37.3288        44    0.216165      1.4057</span><br><span class="line">    7      16        88        72   41.1378        64    0.246917     1.29173</span><br><span class="line">    8      16       102        86   42.9944        56     1.75896     1.21765</span><br><span class="line">    9      16       116       100   44.4383        56     4.61164     1.22777</span><br><span class="line">   10      16       129       113   45.1936        52    0.420096     1.20266</span><br><span class="line">   11      16       130       114   41.4487         4     0.44506     1.19601</span><br><span class="line">   12      15       130       115    38.328         4     2.95026     1.21127</span><br><span class="line">   13       9       130       121   37.2255        24     4.82761     1.37725</span><br><span class="line">Total time run:         13.9598  总耗时</span><br><span class="line">Total writes made:      130</span><br><span class="line">Write size:             4194304  </span><br><span class="line">Object size:            4194304</span><br><span class="line">Bandwidth (MB/sec):     37.2498  吞吐量 重要指标</span><br><span class="line">Stddev Bandwidth:       29.7045</span><br><span class="line">Max bandwidth (MB/sec): 88</span><br><span class="line">Min bandwidth (MB/sec): 0</span><br><span class="line">Average IOPS:           9        平均iops 重要指标</span><br><span class="line">Stddev IOPS:            7</span><br><span class="line">Max IOPS:               22</span><br><span class="line">Min IOPS:               0</span><br><span class="line">Average Latency(s):     1.65133  平均延迟 重要指标</span><br><span class="line">Stddev Latency(s):      1.70479</span><br><span class="line">Max latency(s):         8.41211</span><br><span class="line">Min latency(s):         0.216165</span><br><span class="line"></span><br><span class="line"># rados -p vms ls</span><br><span class="line">rbd_data.f01b652ae8944a.00000000000005d9</span><br><span class="line">rbd_data.f01b652ae8944a.00000000000003d0</span><br><span class="line">rbd_data.f01b652ae8944a.0000000000000005</span><br><span class="line">benchmark_data_control1_10016_object56</span><br><span class="line">rbd_data.f01b652ae8944a.00000000000007e0</span><br><span class="line">benchmark_data_control1_10016_object70</span><br><span class="line">rbd_data.f01b652ae8944a.0000000000000004</span><br><span class="line">rbd_data.f01b652ae8944a.0000000000000011</span><br><span class="line">rbd_data.f01b652ae8944a.0000000000000014</span><br><span class="line">rbd_data.f01b652ae8944a.0000000000000009</span><br><span class="line">....</span><br><span class="line"></span><br><span class="line"># rados -p &lt;pool_name&gt; cleanup</span><br></pre></td></tr></table></figure>
+<h4 id="2-测试vms池10进程的顺序读能力"><a href="#2-测试vms池10进程的顺序读能力" class="headerlink" title="2.测试vms池10进程的顺序读能力"></a>2.测试vms池10进程的顺序读能力</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># rados bench -p vms 10 seq   </span><br><span class="line">hints = 1</span><br><span class="line">  sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)</span><br><span class="line">    0       0         0         0         0         0           -           0</span><br><span class="line">    1      16        28        12    47.986        48    0.176277    0.405525</span><br><span class="line">    2      16        31        15   29.9923        12     1.94886    0.630798</span><br><span class="line">    3      16        49        33   43.9904        72    0.273046     1.00163</span><br><span class="line">    4      16        74        58   57.9882       100    0.168785    0.811541</span><br><span class="line">    5      16        90        74   59.1888        64    0.136903    0.760271</span><br><span class="line">    6      16       106        90   59.9893        64    0.122937    0.779695</span><br><span class="line">    7      16       116       100   57.1328        40    0.164216    0.788312</span><br><span class="line">    8      16       129       113   56.4905        52    0.143824    0.821369</span><br><span class="line">    9      16       130       114   50.6584         4    0.169895    0.815654</span><br><span class="line">   10      15       130       115   45.9925         4     4.56292    0.848239</span><br><span class="line">   11      15       130       115   41.8114         0           -    0.848239</span><br><span class="line">   12      15       130       115   38.3273         0           -    0.848239</span><br><span class="line">   13       7       130       123   37.8403   10.6667     7.09945     1.25051</span><br><span class="line">Total time run:       13.0787</span><br><span class="line">Total reads made:     130</span><br><span class="line">Read size:            4194304</span><br><span class="line">Object size:          4194304</span><br><span class="line">Bandwidth (MB/sec):   39.7594</span><br><span class="line">Average IOPS:         9</span><br><span class="line">Stddev IOPS:          8</span><br><span class="line">Max IOPS:             25</span><br><span class="line">Min IOPS:             0</span><br><span class="line">Average Latency(s):   1.56103</span><br><span class="line">Max latency(s):       9.40969</span><br><span class="line">Min latency(s):       0.0838071</span><br></pre></td></tr></table></figure>
+<h4 id="3-测试vms池10进程的随机读能力"><a href="#3-测试vms池10进程的随机读能力" class="headerlink" title="3.测试vms池10进程的随机读能力"></a>3.测试vms池10进程的随机读能力</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># rados bench -p vms 10 rand</span><br><span class="line">hints = 1</span><br><span class="line">  sec Cur ops   started  finished  avg MB/s  cur MB/s last lat(s)  avg lat(s)</span><br><span class="line">    0       0         0         0         0         0           -           0</span><br><span class="line">    1      16        41        25   99.9749       100    0.182175    0.341859</span><br><span class="line">    2      16        67        51   101.978       104   0.0533732    0.300124</span><br><span class="line">    3      16        72        56   74.6531        20     2.06798    0.382147</span><br><span class="line">    4      16        75        59   58.9896        12     3.50511    0.518033</span><br><span class="line">    5      16        82        66    52.791        28   0.0416405    0.623403</span><br><span class="line">    6      16        95        79   52.6578        52   0.0411261     0.63416</span><br><span class="line">    7      16        99        83   47.4207        16     5.01317    0.734536</span><br><span class="line">    8      16       104        88   43.9929        20   0.0413592    0.888556</span><br><span class="line">    9      16       118       102   45.3261        56   0.0420904    0.905816</span><br><span class="line">   10      16       128       112    44.793        40     6.93066    0.997972</span><br><span class="line">   11      16       128       112   40.7209         0           -    0.997972</span><br><span class="line">   12      15       128       113   37.6609         2     7.57799      1.0562</span><br><span class="line">   13      15       128       113    34.764         0           -      1.0562</span><br><span class="line">   14      14       128       114   32.5667         2     7.87439     1.11601</span><br><span class="line">   15       9       128       119   31.7287        20     6.44873     1.36167</span><br><span class="line">Total time run:       15.1394</span><br><span class="line">Total reads made:     128</span><br><span class="line">Read size:            4194304</span><br><span class="line">Object size:          4194304</span><br><span class="line">Bandwidth (MB/sec):   33.819</span><br><span class="line">Average IOPS:         8</span><br><span class="line">Stddev IOPS:          8</span><br><span class="line">Max IOPS:             26</span><br><span class="line">Min IOPS:             0</span><br><span class="line">Average Latency(s):   1.83948</span><br><span class="line">Max latency(s):       11.7347</span><br><span class="line">Min latency(s):       0.0407655</span><br></pre></td></tr></table></figure>
+<h2 id="HDD磁盘读写测试："><a href="#HDD磁盘读写测试：" class="headerlink" title="HDD磁盘读写测试："></a>HDD磁盘读写测试：</h2><ol>
+<li>单个osd磁盘写性能<br><img src="/images/2019/07/31/9aa2a1f0-b33c-11e9-9ff9-6b8eeeb13b8d.png" alt="image.png"><br>#清除缓存页，目录项和inodes<br>[root@lrr-ceph1 osd]# echo 3 &gt; /proc/sys/vm/drop_caches </li>
+</ol>
+<p>#执行写命令<br>[root@lrr-ceph1 osd]# dd if=/dev/zero of=/var/lib/ceph/osd/lrr01 bs=1G count=1 oflag=direct   </p>
+<p>注：两个OSD同时写性能<br>[root@lrr-ceph1 osd]# for i in <code>mount | grep osd | awk &#39;{print $3}&#39;</code>; do (dd if=/dev/zero of=$i/lrr01 bs=1G count=1 oflag=direct  $) ; done</p>
+<ol start="2">
+<li>单个OSD同时读性能<br><img src="/images/2019/07/31/86306900-b33c-11e9-9ff9-6b8eeeb13b8d.png" alt="image.png"><br>[root@lrr-ceph1 osd]# dd if=/var/lib/ceph/osd/lrr01 of=/dev/null bs=2G count=1 iflag=direct<br>0+1 records in<br>0+1 records out<br>1073741824 bytes (1.1 GB) copied, 7.13509 s, 150 MB/s</li>
+</ol>
+<p>注：两个OSD同时读性能</p>
+<p>[root@lrr-ceph1 osd]# for i in <code>mount | grep osd | awk &#39;{print $3}&#39;</code>; do (dd if=$i/lrr01 of=/dev/null bs=1G count=1 iflag=direct &amp;); done</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/10/云平台网络多线分压设置/" class="archive-article-date">
-  	<time datetime="2019-04-10T07:00:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/10/云平台网络多线分压设置/">云平台网络多线分压设置</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Ceph</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -249,433 +281,103 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/31/Ceph读写测试/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/往生广咒/" class="archive-article-date">
-  	<time datetime="2019-04-09T08:06:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/31/Bluestore的SSD故障排查/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bluestore的SSD故障排查</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/往生广咒/">往生广咒</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/治眼病咒/" class="archive-article-date">
-  	<time datetime="2019-04-09T08:03:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/治眼病咒/">治眼病咒</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/元音上师传治糖尿病方/" class="archive-article-date">
-  	<time datetime="2019-04-09T08:01:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/元音上师传治糖尿病方/">元音上师传治糖尿病方</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/楞严咒心/" class="archive-article-date">
-  	<time datetime="2019-04-09T07:54:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/楞严咒心/">楞严咒心</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/佛法//" class="article-tag-list-link color3">佛法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/凉菜调料汁集锦/" class="archive-article-date">
-  	<time datetime="2019-04-09T01:05:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/凉菜调料汁集锦/">凉菜调料汁集锦</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">cate美食</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/09/Linux笔记/" class="archive-article-date">
-  	<time datetime="2019-04-09T00:33:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/09/Linux笔记/">Linux笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">SHELL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/08/MAC工具/" class="archive-article-date">
-  	<time datetime="2019-04-08T00:53:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/08/MAC工具/">MAC工具</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mac</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/08/Intellj-IDEA-插件-HTTP-Client/" class="archive-article-date">
-  	<time datetime="2019-04-08T00:29:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/08/Intellj-IDEA-插件-HTTP-Client/">Intellj IDEA 插件 HTTP Client</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/04/enable-multi-tenancy-on-openstack-pike/" class="archive-article-date">
-  	<time datetime="2019-04-04T06:02:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/04/enable-multi-tenancy-on-openstack-pike/">enable multi-tenancy on openstack pike</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">原创</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ironic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/5/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -699,8 +401,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
